@@ -5,6 +5,11 @@ import { hookRevalidate } from "../cms/revalidate";
 import { fieldSeo } from "../fields/seo";
 import { formatSlug } from "../lib/slug";
 import { hookIndexArtikelRAG, hookHapusArtikelRAG } from "../rag/hooks";
+import {
+  FixedToolbarFeature,
+  HeadingFeature,
+  lexicalEditor,
+} from "@payloadcms/richtext-lexical";
 
 /**
  * Articles (Artikel) — sumber data untuk artikel perpajakan.
@@ -103,6 +108,13 @@ export const Articles: CollectionConfig = {
       label: "Isi Artikel",
       type: "richText",
       required: true,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          FixedToolbarFeature(),
+          HeadingFeature({ enabledHeadingSizes: ["h2", "h3", "h4"] }),
+        ],
+      }),
     },
     fieldSeo,
   ],
