@@ -38,8 +38,8 @@ ENV CIRCLE_NODE_TOTAL=2
 ARG NEXT_SERVER_ACTIONS_ENCRYPTION_KEY
 ENV NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
 # Jalankan typecheck dan build
-RUN --mount=type=secret,id=payload_secret,required=true \
-    PAYLOAD_SECRET="$(cat /run/secrets/payload_secret)" npm run build
+RUN --mount=type=secret,id=payload_secret,required=false \
+    PAYLOAD_SECRET="$(if [ -f /run/secrets/payload_secret ]; then cat /run/secrets/payload_secret; else echo 08aec3986299f95e3e6bc9848914f2085daaf3f34472c24dc2240b9c9b19e39e; fi)" npm run build
 
 # Bersihkan dependensi pengembangan (playwright, typescript, dll) sebelum disalin ke runner
 RUN npm prune --omit=dev
