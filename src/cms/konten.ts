@@ -317,7 +317,7 @@ export async function ambilArtikel(): Promise<ArtikelBeranda[]> {
           : "Perpajakan",
       kategoriSlug:
         typeof a.kategori === "object" && a.kategori
-          ? a.kategori.slug
+          ? a.kategori.slug || undefined
           : undefined,
       tanggal: formatTanggal(a.tanggalTerbit),
       waktuBaca: a.waktuBaca ?? "5 mnt baca",

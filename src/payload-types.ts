@@ -290,9 +290,9 @@ export interface Kategori {
   id: number;
   nama: string;
   /**
-   * Versi huruf kecil untuk filter, mis. akuntansi.
+   * Versi huruf kecil untuk filter (otomatis diisi dari nama jika dikosongkan).
    */
-  slug: string;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -309,6 +309,9 @@ export interface Artikel {
    */
   ringkasan: string;
   sampul?: (number | null) | Media;
+  /**
+   * Pilih kategori artikel atau klik tombol '+' di sebelah kanan untuk menambahkan kategori baru langsung.
+   */
   kategori: number | Kategori;
   tag?:
     | {

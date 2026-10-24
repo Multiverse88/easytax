@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload";
 
 import { adminSaja, siapaSaja, stafPenulis } from "../access";
 import { hookRevalidate } from "../cms/revalidate";
+import { formatSlug } from "../lib/slug";
 
 /**
  * Kategori artikel (mis. Akuntansi, Bisnis, Perpajakan). Dipakai oleh filter
@@ -22,6 +23,16 @@ export const Kategori: CollectionConfig = {
     delete: adminSaja,
   },
   hooks: {
+    beforeValidate: [
+      ({ data }) => {
+        if (!data) return data;
+        const target = data.slug || data.nama;
+        if (target) {
+          data.slug = formatSlug(target);
+        }
+        return data;
+      },
+    ],
     afterChange: [hookRevalidate("artikel")],
     afterDelete: [hookRevalidate("artikel")],
   },
@@ -31,10 +42,13 @@ export const Kategori: CollectionConfig = {
       name: "slug",
       label: "Slug",
       type: "text",
-      required: true,
+      required: false,
       unique: true,
       index: true,
-      admin: { description: "Versi huruf kecil untuk filter, mis. akuntansi." },
+      admin: {
+        description:
+          "Versi huruf kecil untuk filter (otomatis diisi dari nama jika dikosongkan).",
+      },
     },
   ],
 };

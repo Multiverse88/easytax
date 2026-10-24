@@ -77,6 +77,11 @@ export const Articles: CollectionConfig = {
       type: "relationship",
       relationTo: "kategori",
       required: true,
+      admin: {
+        allowCreate: true,
+        description:
+          "Pilih kategori artikel atau klik tombol '+' di sebelah kanan untuk menambahkan kategori baru langsung.",
+      },
     },
     {
       name: "tag",
