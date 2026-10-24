@@ -12,7 +12,7 @@ import {
   ambilTopikKonsultasi,
 } from "@/cms/konten";
 import { getClient } from "@/lib/payload";
-import { ekstrakHeading, type BlokIsi } from "@/lib/artikel/toc";
+import { blokKeLexical, ekstrakHeadingLexical } from "@/lib/artikel/lexical";
 import { lengkapiLayoutDefaultProps } from "@/puck/default-props";
 import type { KonteksHalaman, LayoutPuck, MetadataPuck } from "@/puck/types";
 import { validasiLayoutPuck } from "@/puck/validation";
@@ -239,9 +239,9 @@ export async function konteksRepresentatif(
     if (!contoh) return undefined;
 
     const detail = await ambilArtikelDetail(contoh.slug);
-    const blok: BlokIsi[] = detail?.blok?.length
-      ? detail.blok
-      : [{ kind: "paragraph", text: contoh.ringkasan }];
+    const blok =
+      detail?.blok ??
+      blokKeLexical([{ kind: "paragraph", text: contoh.ringkasan }]);
 
     const lain = semua.filter((a) => a.slug !== contoh.slug);
     const seKategori = lain.filter((a) => a.kategori === contoh.kategori);
@@ -253,7 +253,7 @@ export async function konteksRepresentatif(
         penulis: detail?.penulis ?? "Tim Konsultan EasyTax",
         blok,
         tags: detail?.tags ?? [],
-        headings: ekstrakHeading(blok),
+        headings: ekstrakHeadingLexical(blok),
         terkait: [...seKategori, ...lainnya].slice(0, 3),
       },
     };

@@ -61,7 +61,7 @@ node scripts/audit-responsive.mjs before   # audit overflow/tap-target 9 vp x 8 
 node scripts/measure-desktop.mjs before    # ukur container & heading desktop
 node scripts/measure-spacing.mjs           # ukur spacing section
 node scripts/shot-desktop.mjs before       # screenshot full-page matrix
-node scripts/shot-spacing2.mjs before      # screenshot desktop + mobile
+node scripts/shot-spacing.mjs before desktop,mobile  # screenshot desktop + mobile saja
 node scripts/audit-warna-verify.mjs        # verifikasi warna brand & kontras
 ```
 
@@ -112,6 +112,12 @@ public/images/                aset lokal (logo, logo klien)
 database kosong, sehingga migrasi konten ke CMS bisa bertahap. Perubahan
 di admin menginvalidasi cache lewat hook `revalidateTag` (`src/cms/revalidate.ts`).
 
+## Editor Artikel
+
+Form `/admin/collections/artikel` memakai editor rich text Lexical native Payload
+CMS (paragraf, heading H2–H4, format teks, kutipan, daftar nomor/butir, dan gambar
+dari koleksi Media). Halaman publik `/tulisan-pajak/[slug]` langsung merender
+dokumen Lexical dengan daftar isi (TOC) otomatis dari heading H2/H3.
 ### Menjalankan Payload CLI di Node 26
 
 Node 26 sudah mengeksekusi TypeScript secara native, jadi CLI Payload

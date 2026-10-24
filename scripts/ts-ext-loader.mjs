@@ -4,7 +4,7 @@
 // bug interop CJS/ESM pada undici ("Illegal constructor" via CacheStorage).
 // Node 26 sudah mendukung TypeScript secara native, tetapi tidak menambahkan
 // ekstensi pada import relatif. Loader ini menyelesaikan import relatif
-// tanpa ekstensi (mis. "./collections/Artikel") ke ".ts".
+// tanpa ekstensi (mis. "./collections/Articles") ke ".ts".
 //
 // Loader juga memetakan alias `tsconfig.json#paths` ("@/*" -> "./src/*") agar
 // berkas sumber aplikasi bisa diimpor oleh test runner (`node --test`) tanpa

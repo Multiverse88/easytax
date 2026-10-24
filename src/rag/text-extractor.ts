@@ -1,21 +1,15 @@
 /**
- * Ekstraksi teks dari artikel Payload CMS.
- *
- * Mengubah structured blocks (paragraf, judul-bagian, daftar)
- * menjadi plain text yang siap untuk chunking dan embedding.
+ * Ekstraksi teks artikel Lexical untuk chunking dan embedding.
  */
 
-type BlokArtikel =
-  | { blockType: "paragraf"; teks: string }
-  | { blockType: "judul-bagian"; teks: string; level: string }
-  | { blockType: "daftar"; terurut?: boolean; item?: { teks: string }[] };
+import { ekstrakTeksLexical } from "@/lib/artikel/lexical";
 
 export interface ArtikelUntukEkstraksi {
   id: number;
   judul: string;
   slug: string;
   ringkasan?: string;
-  blok?: BlokArtikel[];
+  blok?: unknown;
 }
 
 export interface HasilEkstraksi {
@@ -26,29 +20,6 @@ export interface HasilEkstraksi {
   contentHash: string;
 }
 
-function ekstrakTeksDariBlok(blok: BlokArtikel[]): string {
-  const bagian: string[] = [];
-
-  for (const b of blok) {
-    switch (b.blockType) {
-      case "paragraf":
-        if (b.teks?.trim()) bagian.push(b.teks.trim());
-        break;
-      case "judul-bagian":
-        if (b.teks?.trim()) bagian.push(b.teks.trim());
-        break;
-      case "daftar":
-        if (b.item?.length) {
-          for (const item of b.item) {
-            if (item.teks?.trim()) bagian.push(`• ${item.teks.trim()}`);
-          }
-        }
-        break;
-    }
-  }
-
-  return bagian.join("\n\n");
-}
 
 /**
  * Normalisasi teks: hapus whitespace berlebihan, trim.
@@ -86,10 +57,8 @@ export async function ekstrakTeksArtikel(
     bagian.push(artikel.ringkasan.trim());
   }
 
-  if (artikel.blok?.length) {
-    const teksBlok = ekstrakTeksDariBlok(artikel.blok);
-    if (teksBlok) bagian.push(teksBlok);
-  }
+  const teksBlok = ekstrakTeksLexical(artikel.blok);
+  if (teksBlok) bagian.push(teksBlok);
 
   const teksLengkap = normalisasiTeks(bagian.join("\n\n"));
 

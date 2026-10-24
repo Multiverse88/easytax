@@ -35,10 +35,14 @@ ENV DATABASE_URI=postgresql://dummy:dummy@localhost:5432/dummy
 ENV PAYLOAD_CACHE_COMPONENTS_ENABLED=true
 # Batasi worker build agar build tidak kehabisan RAM pada Docker Desktop 4 GB.
 ENV CIRCLE_NODE_TOTAL=2
-
+ARG NEXT_SERVER_ACTIONS_ENCRYPTION_KEY
+ENV NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
 # Jalankan typecheck dan build
 RUN --mount=type=secret,id=payload_secret,required=true \
     PAYLOAD_SECRET="$(cat /run/secrets/payload_secret)" npm run build
+
+# Bersihkan dependensi pengembangan (playwright, typescript, dll) sebelum disalin ke runner
+RUN npm prune --omit=dev
 
 # ==============================================================================
 # Stage 3: Runner (Production)
@@ -53,25 +57,23 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3004
 ENV HOSTNAME="0.0.0.0"
 ENV RAG_EMBEDDING_CACHE_DIR=/app/model-cache
+ARG NEXT_SERVER_ACTIONS_ENCRYPTION_KEY
+ENV NEXT_SERVER_ACTIONS_ENCRYPTION_KEY=${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY}
 
 # Buat grup dan user non-root demi keamanan kontainer
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
 # Salin aset publik, konfigurasi, dan hasil build Next.js
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next.config.ts ./next.config.ts
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
-COPY --from=builder /app/src ./src
-COPY --from=builder /app/scripts ./scripts
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
-COPY --from=builder --chmod=755 /app/docker/entrypoint.sh ./docker/entrypoint.sh
-
-# Atur kepemilikan berkas ke user non-root
-RUN chown -R nextjs:nodejs /app
+COPY --chown=nextjs:nodejs --from=builder /app/public ./public
+COPY --chown=nextjs:nodejs --from=builder /app/.next ./.next
+COPY --chown=nextjs:nodejs --from=builder /app/node_modules ./node_modules
+COPY --chown=nextjs:nodejs --from=builder /app/package.json ./package.json
+COPY --chown=nextjs:nodejs --from=builder /app/next.config.ts ./next.config.ts
+COPY --chown=nextjs:nodejs --from=builder /app/tsconfig.json ./tsconfig.json
+COPY --chown=nextjs:nodejs --from=builder /app/src ./src
+COPY --chown=nextjs:nodejs --from=builder /app/scripts ./scripts
+COPY --chown=nextjs:nodejs --chmod=755 --from=builder /app/docker/entrypoint.sh ./docker/entrypoint.sh
 # Cache model tidak dibundel ke image (ukurannya besar dan bukan artefak build).
 # Untuk mengaktifkan RAG, mount cache read-only ke /app/model-cache atau salin
 # lewat pipeline deployment yang menyediakan artifact model.

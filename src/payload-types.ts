@@ -319,35 +319,21 @@ export interface Artikel {
   penulis?: (number | null) | User;
   tanggalTerbit?: string | null;
   waktuBaca?: string | null;
-  blok?:
-    | (
-        | {
-            teks: string;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'paragraf';
-          }
-        | {
-            teks: string;
-            level: '2' | '3' | '4';
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'judul-bagian';
-          }
-        | {
-            terurut?: boolean | null;
-            item?:
-              | {
-                  teks: string;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'daftar';
-          }
-      )[]
-    | null;
+  blok: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   seo?: {
     /**
      * Judul untuk tab browser dan hasil pencarian. Kosongkan untuk memakai judul utama.
@@ -816,38 +802,7 @@ export interface ArtikelSelect<T extends boolean = true> {
   penulis?: T;
   tanggalTerbit?: T;
   waktuBaca?: T;
-  blok?:
-    | T
-    | {
-        paragraf?:
-          | T
-          | {
-              teks?: T;
-              id?: T;
-              blockName?: T;
-            };
-        'judul-bagian'?:
-          | T
-          | {
-              teks?: T;
-              level?: T;
-              id?: T;
-              blockName?: T;
-            };
-        daftar?:
-          | T
-          | {
-              terurut?: T;
-              item?:
-                | T
-                | {
-                    teks?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-      };
+  blok?: T;
   seo?:
     | T
     | {
@@ -1018,9 +973,8 @@ export interface PengaturanSitus {
   subjudul?: string | null;
   deskripsi?: string | null;
   /**
-   * Tautan CTA Konsultasi Gratis.
+   * Nomor WhatsApp resmi EasyTax yang ditampilkan di halaman Kontak. Atur nomor ini seperti email dan telepon kantor; tidak terkait dengan nomor konsultan WhatsApp Routing. Masukkan kode negara; boleh kosong untuk menyembunyikan aksi WhatsApp.
    */
-  /** Nomor WhatsApp utama halaman Kontak; format internasional, tanpa atau dengan pemisah. */
   whatsappUrl?: string | null;
   telepon?: string | null;
   email?: string | null;
@@ -1065,7 +1019,7 @@ export interface PengaturanSitus {
    */
   defaultWhatsAppMessage?: string | null;
   /**
-   * Nomor cadangan bila seluruh nomor aktif sedang tidak tersedia (contoh: 6281119200080).
+   * Field legacy. Fallback harus berupa entri aktif pada koleksi Nomor WhatsApp.
    */
   fallbackWhatsAppNumber?: string | null;
   /**

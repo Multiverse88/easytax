@@ -13,6 +13,7 @@ import { logoMitra, namaMitra } from "../data/mitra";
 import { menuNavigasi, situs } from "../data/situs";
 import { testimoni } from "../data/testimoni";
 import { timKonsultan } from "../data/tim";
+import { blokKeLexical } from "../lib/artikel/lexical";
 import { layoutDefault } from "../puck/default-layouts";
 import { halamanDariKey } from "../puck/types";
 
@@ -285,6 +286,14 @@ async function main() {
           pertanyaan: f.pertanyaan,
           jawaban: f.jawaban,
         })),
+        ...(detail?.seo
+          ? {
+              seo: {
+                judul: detail.seo.judul,
+                deskripsi: detail.seo.deskripsi,
+              },
+            }
+          : {}),
         _status: "published",
       },
     );
@@ -312,23 +321,9 @@ async function main() {
         tanggalTerbit: parseTanggal(a.tanggal),
         waktuBaca: a.waktuBaca,
         tag: (detail?.tags ?? []).map((teks) => ({ teks })),
-        blok: (detail?.blok ?? []).map((b) => {
-          if (b.kind === "paragraph") {
-            return { blockType: "paragraf", teks: b.text };
-          }
-          if (b.kind === "heading") {
-            return {
-              blockType: "judul-bagian",
-              teks: b.text,
-              level: String(b.level),
-            };
-          }
-          return {
-            blockType: "daftar",
-            terurut: b.ordered,
-            item: b.items.map((teks) => ({ teks })),
-          };
-        }),
+        blok:
+          detail?.blok ??
+          blokKeLexical([{ kind: "paragraph", text: a.ringkasan }]),
         _status: "published",
       },
     );
@@ -398,7 +393,7 @@ async function main() {
       nama: situs.nama,
       subjudul: situs.subjudul,
       deskripsi: situs.deskripsi,
-      whatsappUrl: situs.whatsappUrl,
+      whatsappUrl: situs.kontak.telepon,
       telepon: situs.kontak.telepon,
       email: situs.kontak.email,
       alamat: situs.kontak.alamat,

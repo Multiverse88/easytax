@@ -6,6 +6,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 
 import { ekstrakTeksArtikel, buatContentHash } from "@/rag/text-extractor";
+import { blokKeLexical } from "@/lib/artikel/lexical";
 
 describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
   it("mengekstrak judul, ringkasan, dan paragraf menjadi teks lengkap", async () => {
@@ -14,14 +15,14 @@ describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
       judul: "Panduan PPh 21",
       slug: "panduan-pph-21",
       ringkasan: "Ringkasan tentang PPh 21 bagi karyawan.",
-      blok: [
-        { blockType: "paragraf", teks: "PPh 21 adalah pajak penghasilan." },
-        { blockType: "judul-bagian", teks: "Cara Menghitung", level: "2" },
+      blok: blokKeLexical([
+        { kind: "paragraph", text: "PPh 21 adalah pajak penghasilan." },
+        { kind: "heading", text: "Cara Menghitung", level: 2 },
         {
-          blockType: "paragraf",
-          teks: "Langkah pertama adalah menentukan PTKP.",
+          kind: "paragraph",
+          text: "Langkah pertama adalah menentukan PTKP.",
         },
-      ],
+      ]),
     });
 
     assert.ok(hasil);
@@ -35,26 +36,23 @@ describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
     assert.ok(hasil.contentHash.length === 16);
   });
 
-  it("mengekstrak item daftar dengan bullet", async () => {
+  it("mengekstrak item daftar", async () => {
     const hasil = await ekstrakTeksArtikel({
       id: 2,
       judul: "Syarat PKP",
       slug: "syarat-pkp",
-      blok: [
+      blok: blokKeLexical([
         {
-          blockType: "daftar",
-          terurut: false,
-          item: [
-            { teks: "Omset > 4.8 miliar" },
-            { teks: "Memiliki NPWP" },
-          ],
+          kind: "list",
+          ordered: false,
+          items: ["Dokumen pertama", "Dokumen kedua"],
         },
-      ],
+      ]),
     });
 
     assert.ok(hasil);
-    assert.ok(hasil.teksLengkap.includes("• Omset > 4.8 miliar"));
-    assert.ok(hasil.teksLengkap.includes("• Memiliki NPWP"));
+    assert.ok(hasil.teksLengkap.includes("Dokumen pertama"));
+    assert.ok(hasil.teksLengkap.includes("Dokumen kedua"));
   });
 
   it("mengembalikan null jika konten terlalu pendek", async () => {
@@ -62,7 +60,7 @@ describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
       id: 3,
       judul: "Pendek",
       slug: "pendek",
-      blok: [],
+      blok: blokKeLexical([]),
     });
 
     assert.equal(hasil, null);
@@ -74,7 +72,7 @@ describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
       judul: "Kosong",
       slug: "kosong",
       ringkasan: "",
-      blok: [{ blockType: "paragraf", teks: "" }],
+      blok: blokKeLexical([{ kind: "paragraph", text: "" }]),
     });
 
     assert.equal(hasil, null);
@@ -96,7 +94,9 @@ describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
       judul: "Panduan Pajak",
       slug: "panduan-pajak",
       ringkasan: "Ringkasan panduan pajak untuk pelaku usaha.",
-      blok: [{ blockType: "paragraf" as const, teks: "Konten yang sama untuk kedua artikel." }],
+      blok: blokKeLexical([
+        { kind: "paragraph", text: "Konten yang sama untuk kedua artikel." },
+      ]),
     };
     const lama = await ekstrakTeksArtikel(dasar);
     const baru = await ekstrakTeksArtikel({ ...dasar, slug: "panduan-pajak-baru" });
@@ -113,12 +113,12 @@ describe("unit test: RAG — Ekstraksi Teks Artikel", () => {
       judul: "Normalisasi",
       slug: "normalisasi",
       ringkasan: "  Ringkasan   dengan  spasi   berlebih  ",
-      blok: [
+      blok: blokKeLexical([
         {
-          blockType: "paragraf",
-          teks: "Paragraf\n\n\n\n\ndengan banyak baris kosong.",
+          kind: "paragraph",
+          text: "Paragraf\n\n\n\n\ndengan banyak baris kosong.",
         },
-      ],
+      ]),
     });
 
     assert.ok(hasil);

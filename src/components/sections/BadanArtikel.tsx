@@ -1,26 +1,39 @@
-import type { BlokIsi, HeadingToc } from "@/lib/artikel/toc";
-import { blokDenganId } from "@/lib/artikel/toc";
+import type {
+  JSXConvertersFunction,
+} from "@payloadcms/richtext-lexical/react";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+
 import { DaftarIsiArtikel } from "@/components/sections/DaftarIsiArtikel";
+import type {
+  HeadingToc,
+  KontenArtikelLexical,
+} from "@/lib/artikel/lexical";
+
+function konverterHeading(headings: HeadingToc[]): JSXConvertersFunction {
+  let index = 0;
+
+  return ({ defaultConverters }) => ({
+    ...defaultConverters,
+    heading: ({ node, nodesToJSX }) => {
+      const Tag = node.tag;
+      const id = Tag === "h1" ? undefined : headings[index++]?.id;
+      return <Tag id={id}>{nodesToJSX({ nodes: node.children })}</Tag>;
+    },
+  });
+}
 
 /**
- * Badan artikel: grid isi (kiri) + daftar isi sticky (kanan), tag di
- * akhir artikel.
- *
- * Tata letak kolom mirip pola umum blog (v1 juga memakai dua kolom),
- * tetapi gaya visual berbeda: foto hero menumpuk ke atas, heading H2
- * bergaris kuning di kiri, dan daftar isi bernomor ala v2.
+ * Badan artikel: konten Lexical dengan daftar isi sticky dan tag artikel.
  */
 export function BadanArtikel({
   blok,
   tags,
   headings,
 }: {
-  blok: BlokIsi[];
+  blok: KontenArtikelLexical;
   tags: string[];
   headings: HeadingToc[];
 }) {
-  const blokBerkas = blokDenganId(blok);
-
   return (
     <section
       aria-label="Isi artikel"
@@ -28,92 +41,30 @@ export function BadanArtikel({
     >
       <div className="mx-auto w-full max-w-maks px-6 md:px-8">
         <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_280px]">
-          {/* Daftar isi: di atas konten pada mobile, kolom kanan pada desktop */}
           <aside className="lg:col-start-2 lg:row-start-1 lg:sticky lg:top-[92px] lg:self-start">
             <DaftarIsiArtikel headings={headings} />
           </aside>
 
-          {/* Isi artikel */}
           <div className="lg:col-start-1 lg:row-start-1">
             <article className="max-w-[760px]">
-              {blokBerkas.map((b, i) => {
-                if (b.kind === "heading") {
-                  if (b.level === 2) {
-                    return (
-                      <h2
-                        key={b.id ?? `h-${i}`}
-                        id={b.id}
-                        className="mt-9 mb-3 scroll-mt-28 border-l-4 border-yellow-500 pl-4 font-heading text-[clamp(1.3rem,2.2vw,1.55rem)] leading-[1.35] font-bold text-navy-900"
-                      >
-                        {b.text}
-                      </h2>
-                    );
-                  }
-                  return (
-                    <h3
-                      key={b.id ?? `h-${i}`}
-                      id={b.id}
-                      className="mt-7 mb-2.5 scroll-mt-28 font-heading text-[1.15rem] leading-[1.4] font-bold text-navy-900"
-                    >
-                      {b.text}
-                    </h3>
-                  );
-                }
-
-                if (b.kind === "list") {
-                  const TagList = b.ordered ? "ol" : "ul";
-                  return (
-                    <TagList
-                      key={`list-${i}`}
-                      className={
-                        b.ordered
-                          ? "mb-6 grid list-decimal gap-2.5 pl-6 marker:font-heading marker:font-extrabold marker:text-navy-900"
-                          : "mb-6 grid list-disc gap-2.5 pl-6 marker:text-navy-900"
-                      }
-                    >
-                      {b.items.map((item, j) => (
-                        <li
-                          key={j}
-                          className="text-[1rem] leading-[1.7] text-teks-sekunder"
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </TagList>
-                  );
-                }
-
-                /* Paragraf pertama tampil sedikit lebih besar sebagai lead. */
-                return i === 0 ? (
-                  <p
-                    key={`p-${i}`}
-                    className="mb-6 text-[1.1rem] leading-[1.75] font-medium text-navy-900"
-                  >
-                    {b.text}
-                  </p>
-                ) : (
-                  <p
-                    key={`p-${i}`}
-                    className="mb-5 text-[1.02rem] leading-[1.8] text-teks-sekunder"
-                  >
-                    {b.text}
-                  </p>
-                );
-              })}
+              <RichText
+                className="[&_a]:font-semibold [&_a]:text-navy-900 [&_a]:underline [&_a]:decoration-yellow-500 [&_a]:underline-offset-4 [&_blockquote]:my-7 [&_blockquote]:border-l-4 [&_blockquote]:border-yellow-500 [&_blockquote]:pl-5 [&_blockquote]:italic [&_blockquote]:text-teks-sekunder [&_h2]:mt-9 [&_h2]:mb-3 [&_h2]:scroll-mt-28 [&_h2]:border-l-4 [&_h2]:border-yellow-500 [&_h2]:pl-4 [&_h2]:font-heading [&_h2]:text-[clamp(1.3rem,2.2vw,1.55rem)] [&_h2]:leading-[1.35] [&_h2]:font-bold [&_h2]:text-navy-900 [&_h3]:mt-7 [&_h3]:mb-2.5 [&_h3]:scroll-mt-28 [&_h3]:font-heading [&_h3]:text-[1.15rem] [&_h3]:leading-[1.4] [&_h3]:font-bold [&_h3]:text-navy-900 [&_h4]:mt-6 [&_h4]:mb-2 [&_h4]:scroll-mt-28 [&_h4]:font-heading [&_h4]:text-[1.08rem] [&_h4]:font-bold [&_h4]:text-navy-900 [&_img]:my-8 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-2xl [&_li]:text-[1rem] [&_li]:leading-[1.7] [&_li]:text-teks-sekunder [&_ol]:mb-6 [&_ol]:grid [&_ol]:list-decimal [&_ol]:gap-2.5 [&_ol]:pl-6 [&_p]:mb-5 [&_p]:text-[1.02rem] [&_p]:leading-[1.8] [&_p]:text-teks-sekunder [&_p:first-child]:text-[1.1rem] [&_p:first-child]:leading-[1.75] [&_p:first-child]:font-medium [&_p:first-child]:text-navy-900 [&_picture]:block [&_ul]:mb-6 [&_ul]:grid [&_ul]:list-disc [&_ul]:gap-2.5 [&_ul]:pl-6"
+                converters={konverterHeading(headings)}
+                data={blok}
+              />
             </article>
 
-            {/* Tag artikel */}
             {tags.length > 0 && (
               <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-garis pt-7">
                 <span className="mr-1 text-[0.78rem] font-extrabold tracking-[0.08em] text-teks-redup uppercase">
                   Tag
                 </span>
-                {tags.map((t) => (
+                {tags.map((tag) => (
                   <span
-                    key={t}
+                    key={tag}
                     className="rounded-full border border-garis bg-netral-lat px-4 py-1.5 text-[0.84rem] font-semibold text-navy-900"
                   >
-                    {t}
+                    {tag}
                   </span>
                 ))}
               </div>

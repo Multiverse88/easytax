@@ -22,6 +22,10 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+    deploy:
+      resources:
+        limits:
+          memory: 384M
 
   app:
     container_name: easytax-app
@@ -30,6 +34,10 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 800M
     depends_on:
       postgres:
         condition: service_healthy
@@ -42,6 +50,7 @@ services:
       PAYLOAD_CACHE_COMPONENTS_ENABLED: "true"
       PORT: 3004
       RUN_MIGRATIONS: "false"
+      NEXT_SERVER_ACTIONS_ENCRYPTION_KEY: ${NEXT_SERVER_ACTIONS_ENCRYPTION_KEY:-}
       # Semantic search tetap mati secara default. Nyalakan hanya setelah
       # migrasi pgvector dan cache model tersedia.
       RAG_ARTIKEL_ENABLED: ${RAG_ARTIKEL_ENABLED:-false}

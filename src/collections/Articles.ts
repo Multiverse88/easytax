@@ -101,56 +101,8 @@ export const Articles: CollectionConfig = {
     {
       name: "blok",
       label: "Isi Artikel",
-      type: "blocks",
-      labels: { singular: "Blok Isi", plural: "Blok Isi" },
-      blocks: [
-        {
-          slug: "paragraf",
-          labels: { singular: "Paragraf", plural: "Paragraf" },
-          fields: [
-            { name: "teks", label: "Teks", type: "textarea", required: true },
-          ],
-        },
-        {
-          slug: "judul-bagian",
-          labels: { singular: "Sub-judul", plural: "Sub-judul" },
-          fields: [
-            { name: "teks", label: "Teks", type: "text", required: true },
-            {
-              name: "level",
-              label: "Tingkat Heading",
-              type: "select",
-              required: true,
-              defaultValue: "2",
-              options: [
-                { label: "H2", value: "2" },
-                { label: "H3", value: "3" },
-                { label: "H4", value: "4" },
-              ],
-            },
-          ],
-        },
-        {
-          slug: "daftar",
-          labels: { singular: "Daftar", plural: "Daftar" },
-          fields: [
-            {
-              name: "terurut",
-              label: "Daftar Bernomor",
-              type: "checkbox",
-              defaultValue: false,
-            },
-            {
-              name: "item",
-              label: "Item",
-              type: "array",
-              fields: [
-                { name: "teks", label: "Teks", type: "text", required: true },
-              ],
-            },
-          ],
-        },
-      ],
+      type: "richText",
+      required: true,
     },
     fieldSeo,
   ],

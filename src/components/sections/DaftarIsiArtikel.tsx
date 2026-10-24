@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Dokumen } from "@/components/ikon";
-import type { HeadingToc } from "@/lib/artikel/toc";
+import type { HeadingToc } from "@/lib/artikel/lexical";
 
 /**
  * Daftar isi artikel — sticky di kolom kanan (desktop) dan accordion di

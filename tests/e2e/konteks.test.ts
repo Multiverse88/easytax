@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 
 import { ambilArtikel, ambilArtikelDetail } from "@/cms/konten";
 import { konteksRepresentatif } from "@/cms/layout";
+import { ekstrakTeksLexical } from "@/lib/artikel/lexical";
 
 /**
  * Uji konteks representatif untuk template detail.
@@ -32,7 +33,7 @@ describe("konteks representatif template detail", () => {
     const artikel = konteks.artikel.artikel;
     assert.ok(artikel.slug.length > 0);
     assert.ok(artikel.judul.length > 0);
-    assert.ok(konteks.artikel.blok.length > 0, "blok isi artikel harus terisi");
+    assert.ok(ekstrakTeksLexical(konteks.artikel.blok).length > 0, "isi artikel harus terisi");
     assert.ok(konteks.artikel.penulis.length > 0);
     assert.ok(konteks.artikel.terkait.length > 0, "harus ada artikel terkait");
   });

@@ -7,16 +7,22 @@
  * `artikelBeranda`, file ini hanya menambah penulis, tag, dan blok isi.
  */
 
-import type { BlokIsi } from "@/lib/artikel/toc";
+import {
+  blokKeLexical,
+  type BlokIsi,
+  type KontenArtikelLexical,
+} from "@/lib/artikel/lexical";
 
 export interface ArtikelDetail {
   slug: string;
   penulis: string;
   tags: string[];
-  blok: BlokIsi[];
+  blok: KontenArtikelLexical;
 }
 
-export const artikelDetail: ArtikelDetail[] = [
+type ArtikelDetailLama = Omit<ArtikelDetail, "blok"> & { blok: BlokIsi[] };
+
+const artikelDetailLama: ArtikelDetailLama[] = [
   {
     slug: "rekonsiliasi-fiskal-positif-negatif",
     penulis: "Tim Konsultan EasyTax",
@@ -847,6 +853,10 @@ export const artikelDetail: ArtikelDetail[] = [
   },
 ];
 
+export const artikelDetail: ArtikelDetail[] = artikelDetailLama.map(
+  ({ blok, ...artikel }) => ({ ...artikel, blok: blokKeLexical(blok) }),
+);
+
 export function cariArtikelDetail(slug: string): ArtikelDetail | undefined {
-  return artikelDetail.find((a) => a.slug === slug);
+  return artikelDetail.find((artikel) => artikel.slug === slug);
 }

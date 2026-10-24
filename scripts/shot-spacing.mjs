@@ -5,7 +5,9 @@ const routes = [
   ["/tulisan-pajak", "tulisan"], ["/tulisan-pajak/rekonsiliasi-fiskal-positif-negatif", "artikel"],
   ["/tentang-kami", "tentang"], ["/kontak", "kontak"], ["/kalkulator-pajak", "kalkulator"],
 ];
-const vps = [["desktop", 1440, 900], ["tablet", 768, 1024], ["mobile", 390, 844]];
+const allVps = [["desktop", 1440, 900], ["tablet", 768, 1024], ["mobile", 390, 844]];
+const vpFilter = process.argv[3]?.split(",");
+const vps = vpFilter ? allVps.filter(([name]) => vpFilter.includes(name)) : allVps;
 const b = await chromium.launch();
 for (const [vp, w, h] of vps) {
   const p = await b.newPage({ viewport: { width: w, height: h } });

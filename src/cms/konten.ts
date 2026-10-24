@@ -23,7 +23,6 @@ import { timKonsultan as timStatis, type AnggotaTim } from "@/data/tim";
 import { getClient } from "@/lib/payload";
 import { formatHargaRupiah, formatSatuan } from "@/lib/format-harga";
 import { mediaUrlRelatif } from "@/lib/media-url";
-import type { BlokIsi } from "@/lib/artikel/toc";
 import type { ItemNavigasi } from "@/types";
 import type { Media, PengaturanSitus } from "@/payload-types";
 
@@ -269,9 +268,16 @@ export async function ambilDetailLayanan(
       jawaban: f.jawaban,
     }));
 
+    const seo = d.seo
+      ? {
+          judul: d.seo.judul ?? undefined,
+          deskripsi: d.seo.deskripsi ?? undefined,
+        }
+      : cariDetailLayanan(cleanSlug)?.seo;
+
     // Dokumen CMS yang sengaja dikosongkan tetap harus tercermin kosong;
     // fallback statis hanya dipakai saat CMS benar-benar gagal dibaca.
-    return { slug: d.slug, paket, faq };
+    return { slug: d.slug, paket, faq, seo };
   } catch (error) {
     catatKegagalanCms("layanan-detail", error);
     propagarKegagalanCmsSaatBuild(error);
@@ -362,32 +368,13 @@ export async function ambilArtikelDetail(
     // Tidak ditemukan setelah kueri berhasil = memang tidak terbit/terhapus.
     if (!a) return undefined;
 
-    const blok: BlokIsi[] = (a.blok ?? []).map((b) => {
-      if (b.blockType === "paragraf") {
-        return { kind: "paragraph", text: b.teks };
-      }
-      if (b.blockType === "judul-bagian") {
-        return {
-          kind: "heading",
-          level: Number(b.level) as 2 | 3 | 4,
-          text: b.teks,
-        };
-      }
-      return {
-        kind: "list",
-        ordered: Boolean(b.terurut),
-        items: (b.item ?? []).map((i) => i.teks),
-      };
-    });
+    const blok = a.blok;
 
     const penulis =
       typeof a.penulis === "object" && a.penulis
         ? a.penulis.nama || a.penulis.email
         : undefined;
 
-    // Blok kosong tetap kosong. Halaman detail dapat menampilkan ringkasan
-    // sebagai isi cadangan, tetapi tidak boleh memunculkan kembali naskah
-    // statis yang sudah dihapus dari CMS.
     return {
       slug: a.slug,
       penulis: penulis || "Tim Konsultan EasyTax",

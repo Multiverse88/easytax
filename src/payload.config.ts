@@ -56,6 +56,7 @@ export default buildConfig({
       baseDir: dirname,
     },
     components: {
+      beforeDashboard: ["/components/admin/DashboardExecutive#DashboardExecutive"],
       afterNavLinks: ["/components/admin/page-builder/TautanNav#TautanNav"],
       views: {
         pageBuilder: {
@@ -102,6 +103,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: databaseUri,
+      max: Number(process.env.DATABASE_POOL_MAX || 5),
     },
     push: false,
   }),

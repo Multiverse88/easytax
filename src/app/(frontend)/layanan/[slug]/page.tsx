@@ -23,19 +23,25 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const cleanSlug = slug.toLowerCase();
-  const layanan = (await ambilLayanan()).find(
+  const [semuaLayanan, detail] = await Promise.all([
+    ambilLayanan(),
+    ambilDetailLayanan(cleanSlug),
+  ]);
+  const layanan = semuaLayanan.find(
     (l) => l.slug.toLowerCase() === cleanSlug,
   );
   if (!layanan) notFound();
 
+  const title = detail?.seo?.judul || `${layanan.judul} | EasyTax`;
+  const description = detail?.seo?.deskripsi || layanan.ringkasan;
   const canonical = `/layanan/${encodeURIComponent(layanan.slug)}`;
   return {
-    title: `${layanan.judul} | EasyTax`,
-    description: layanan.ringkasan,
+    title,
+    description,
     alternates: { canonical },
     openGraph: {
-      title: layanan.judul,
-      description: layanan.ringkasan,
+      title,
+      description,
       images: layanan.gambar ? [layanan.gambar] : [],
       type: "website",
       locale: "id_ID",
@@ -44,8 +50,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: layanan.judul,
-      description: layanan.ringkasan,
+      title,
+      description,
       images: layanan.gambar ? [layanan.gambar] : undefined,
     },
   };

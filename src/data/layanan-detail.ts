@@ -24,6 +24,10 @@ export interface DetailLayanan {
   slug: string;
   paket: PaketLayanan[];
   faq: FaqLayanan[];
+  seo?: {
+    judul?: string;
+    deskripsi?: string;
+  };
 }
 
 const FAQ_SAMA: FaqLayanan[] = [
@@ -183,6 +187,11 @@ export const detailLayanan: DetailLayanan[] = [
       },
       ...FAQ_SAMA,
     ],
+    seo: {
+      judul: "Jasa Lapor SPT Tahunan Badan/Pribadi - Easytax",
+      deskripsi:
+        "Jasa lapor SPT Tahunan Badan atau Pribadi melalui Coretax bersama tim berpengalaman EasyTax. Dari konsultasi, penyusunan, perhitungan, hingga pelaporan kami siap membantu Anda.",
+    },
   },
   {
     slug: "pengurusan-pkp",
@@ -309,6 +318,11 @@ export const detailLayanan: DetailLayanan[] = [
       },
       ...FAQ_SAMA,
     ],
+    seo: {
+      judul: "Jasa Akuntansi dan Pajak untuk Bisnis & UMKM - Easytax",
+      deskripsi:
+        "Bingung kelola pembukuan? Gunakan jasa akuntansi dan pajak dari Easytax. Laporan keuangan rapi, SPT akurat, dan bebas sanksi. Konsultasi gratis!",
+    },
   },
 ];
 

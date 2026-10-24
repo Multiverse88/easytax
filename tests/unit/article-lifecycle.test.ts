@@ -2,13 +2,19 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { tentukanAksiLifecycleArtikel } from "@/rag/article-lifecycle";
 import { indexArtikelDenganDependensi, type DependensiIndexingArtikel } from "@/rag/article-indexing";
+import { blokKeLexical } from "@/lib/artikel/lexical";
 
 const ARTICLE = {
   id: 11,
   slug: "pajak-usaha",
   judul: "Panduan Pajak Usaha",
   ringkasan: "Panduan bagi pelaku usaha tentang kewajiban perpajakan yang berlaku.",
-  blok: [{ blockType: "paragraf" as const, teks: "Pelaku usaha perlu memahami kewajiban pajak dan pelaporan secara berkala." }],
+  blok: blokKeLexical([
+    {
+      kind: "paragraph" as const,
+      text: "Pelaku usaha perlu memahami kewajiban pajak dan pelaporan secara berkala.",
+    },
+  ]),
 };
 
 function makeDependencies(overrides: Partial<DependensiIndexingArtikel> = {}) {

@@ -42,6 +42,16 @@ const nextConfig: NextConfig = {
         destination: "/tulisan-pajak/:slug*",
         permanent: true,
       },
+      {
+        source: "/layanan-laporan-perpajakan-keuangan",
+        destination: "/layanan/laporan-perpajakan-keuangan",
+        permanent: true,
+      },
+      {
+        source: "/layanan-spt-pajak",
+        destination: "/layanan/laporan-spt",
+        permanent: true,
+      },
     ];
   },
   // Dimatikan karena bug pada Payload 3.91: saat Partial Prefetching aktif,

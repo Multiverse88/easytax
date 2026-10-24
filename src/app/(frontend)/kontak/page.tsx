@@ -9,14 +9,14 @@ import { LokasiKantor } from "@/components/sections/LokasiKantor";
 import { ambilJamOperasional, ambilPengaturan, ambilTopikKonsultasi } from "@/cms/konten";
 
 export const metadata: Metadata = {
-  title: "Kontak & Konsultasi Pajak | EasyTax",
+  title: "Kontak Kami - EasyTax",
   description:
-    "Hubungi konsultan pajak EasyTax untuk konsultasi SPT, pembukuan, PKP, restitusi, dan kebutuhan perpajakan bisnis Anda.",
+    "Hubungi kami jika ada kendala atau butuh informasi terkait produk dari Easylegal lainnya.",
   alternates: { canonical: "/kontak" },
   openGraph: {
-    title: "Kontak & Konsultasi Pajak | EasyTax",
+    title: "Kontak Kami - EasyTax",
     description:
-      "Hubungi konsultan pajak EasyTax untuk konsultasi perpajakan dan keuangan bisnis Anda.",
+      "Hubungi kami jika ada kendala atau butuh informasi terkait produk dari Easylegal lainnya.",
     type: "website",
     locale: "id_ID",
     siteName: "EasyTax",

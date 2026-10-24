@@ -8,7 +8,7 @@ import { ArtikelTerkait } from "@/components/sections/ArtikelTerkait";
 import { BadanArtikel } from "@/components/sections/BadanArtikel";
 import { CTA } from "@/components/sections/CTA";
 import { ambilArtikel, ambilArtikelDetail } from "@/cms/konten";
-import { ekstrakHeading, type BlokIsi } from "@/lib/artikel/toc";
+import { blokKeLexical, ekstrakHeadingLexical } from "@/lib/artikel/lexical";
 
 type Params = Promise<{ slug: string }>;
 
@@ -74,10 +74,10 @@ async function IsiArtikelHalaman({ params }: { params: Params }) {
   const artikel = artikelBeranda.find((a) => a.slug.toLowerCase() === cleanSlug);
   if (!artikel) notFound();
 
-  const blok: BlokIsi[] = detail?.blok ?? [
-    { kind: "paragraph", text: artikel.ringkasan },
-  ];
-  const headings = ekstrakHeading(blok);
+  const blok =
+    detail?.blok ??
+    blokKeLexical([{ kind: "paragraph", text: artikel.ringkasan }]);
+  const headings = ekstrakHeadingLexical(blok);
 
   /* Terkait: satu kategori dulu, sisanya diisi artikel lain. */
   const lain = artikelBeranda.filter((a) => a.slug.toLowerCase() !== cleanSlug);

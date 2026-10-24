@@ -10,6 +10,7 @@ import assert from "node:assert/strict";
 
 import { ekstrakTeksArtikel } from "@/rag/text-extractor";
 import { chunkTeksArtikel } from "@/rag/chunker";
+import { blokKeLexical } from "@/lib/artikel/lexical";
 
 describe("unit test: RAG — Isolasi Scope Artikel", () => {
   it("hanya memproses data dengan format ArtikelUntukEkstraksi", async () => {
@@ -19,12 +20,12 @@ describe("unit test: RAG — Isolasi Scope Artikel", () => {
       judul: "Panduan PPh Badan",
       slug: "panduan-pph-badan",
       ringkasan: "Artikel tentang pajak badan usaha.",
-      blok: [
+      blok: blokKeLexical([
         {
-          blockType: "paragraf",
-          teks: "PPh Badan dikenakan atas penghasilan neto badan.",
+          kind: "paragraph",
+          text: "PPh Badan dikenakan atas penghasilan neto badan.",
         },
-      ],
+      ]),
     });
 
     assert.ok(artikelValid, "Artikel valid harus bisa diekstrak");
@@ -66,25 +67,22 @@ describe("unit test: RAG — Isolasi Scope Artikel", () => {
     }
   });
 
-  it("tidak menerima data dengan blockType yang bukan milik artikel", async () => {
-    // Block types artikel: paragraf, judul-bagian, daftar
-    // Block types lain (misalnya dari Puck) tidak termasuk
-    const hasilDenganBlokAsing = await ekstrakTeksArtikel({
+  it("mengabaikan data isi yang bukan dokumen Lexical", async () => {
+    const hasil = await ekstrakTeksArtikel({
       id: 20,
-      judul: "Blok Asing",
-      slug: "blok-asing",
-      blok: [
-        // blockType "hero" dan "testimonial" bukan tipe artikel yang dikenali
-        { blockType: "hero" as "paragraf", teks: "Hero section" },
-        { blockType: "testimonial" as "paragraf", teks: "Sangat puas" },
-      ],
+      judul: "Data Asing",
+      slug: "data-asing",
+      blok: {
+        components: [
+          { type: "hero", text: "Hero section" },
+          { type: "testimonial", text: "Sangat puas" },
+        ],
+      },
     });
 
-    // Blok dengan tipe asing diabaikan karena switch/case tidak mengenalinya
-    // Hasil bisa null (jika hanya judul "Blok Asing" yang tersisa)
-    if (hasilDenganBlokAsing) {
-      assert.ok(!hasilDenganBlokAsing.teksLengkap.includes("Hero section"));
-      assert.ok(!hasilDenganBlokAsing.teksLengkap.includes("Sangat puas"));
+    if (hasil) {
+      assert.ok(!hasil.teksLengkap.includes("Hero section"));
+      assert.ok(!hasil.teksLengkap.includes("Sangat puas"));
     }
   });
 });

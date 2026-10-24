@@ -8,7 +8,7 @@ import type {
 } from "../data/layanan-detail";
 import type { Testimoni as ItemTestimoni } from "../data/testimoni";
 import type { AnggotaTim } from "../data/tim";
-import type { BlokIsi, HeadingToc } from "../lib/artikel/toc";
+import type { HeadingToc, KontenArtikelLexical } from "../lib/artikel/lexical";
 import { NAMA_KOMPONEN_GENERIC, type PropsGeneric } from "./komponen/tipe";
 
 /**
@@ -233,7 +233,7 @@ export type KonteksLayanan = {
 export type KonteksArtikel = {
   artikel: ArtikelBeranda;
   penulis: string;
-  blok: BlokIsi[];
+  blok: KontenArtikelLexical;
   tags: string[];
   headings: HeadingToc[];
   terkait: ArtikelBeranda[];

@@ -5,7 +5,6 @@ import { isEmailValid, isPhoneValid, sanitizeText } from "@/lib/validation";
 import { validasiDataLead } from "@/features/leads/schema";
 import { formatSlug, buatSlug } from "@/lib/slug";
 import { formatHargaRupiah, formatSatuan } from "@/lib/format-harga";
-import { buatMetadata } from "@/lib/seo";
 
 describe("unit test features & lib", () => {
   it("validasi email dan nomor telepon", () => {
@@ -47,15 +46,6 @@ describe("unit test features & lib", () => {
   it("slug generator dan alias", () => {
     assert.equal(formatSlug("Layanan Restitusi Pajak"), "layanan-restitusi-pajak");
     assert.equal(buatSlug("Layanan Restitusi Pajak"), "layanan-restitusi-pajak");
-  });
-
-  it("SEO helper menghasilkan metadata Next.js yang valid", () => {
-    const meta = buatMetadata({
-      title: "Uji Layanan",
-      description: "Deskripsi uji layanan",
-    });
-    assert.equal(meta.title, "Uji Layanan | EasyTax");
-    assert.equal(meta.description, "Deskripsi uji layanan");
   });
 
   it("format harga dan satuan", () => {

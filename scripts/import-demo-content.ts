@@ -15,6 +15,7 @@ import { menuNavigasi, situs } from "../src/data/situs";
 import { layoutDefault } from "../src/puck/default-layouts";
 import { halamanDariKey } from "../src/puck/types";
 import { validasiLayoutPuck } from "../src/puck/validation";
+import { buatKontenArtikelKosong } from "../src/lib/artikel/lexical";
 
 const root = process.cwd();
 const payload = await getPayload({ config });
@@ -64,13 +65,6 @@ function normalize(value: unknown): string {
   return JSON.stringify(value);
 }
 
-function articleBlocks(blocks: (typeof artikelDetail)[number]["blok"]) {
-  return blocks.map((block) => {
-    if (block.kind === "paragraph") return { blockType: "paragraf", teks: block.text };
-    if (block.kind === "heading") return { blockType: "judul-bagian", teks: block.text, level: String(block.level) };
-    return { blockType: "daftar", terurut: block.ordered, item: block.items.map((teks) => ({ teks })) };
-  });
-}
 
 try {
   const kategoriIds = new Map<string, number>();
@@ -113,7 +107,7 @@ try {
     const data = {
       judul: item.judul, slug: item.slug, ringkasan: item.ringkasan,
       kategori: category, tanggalTerbit: tanggalIso(item.tanggal), waktuBaca: item.waktuBaca,
-      tag: (detail?.tags ?? []).map((teks) => ({ teks })), blok: articleBlocks(detail?.blok ?? []),
+      tag: (detail?.tags ?? []).map((teks) => ({ teks })), blok: detail?.blok ?? buatKontenArtikelKosong(),
       _status: "published",
     };
     if (await createOnly("artikel", "slug", item.slug, data)) counts.artikel++;
