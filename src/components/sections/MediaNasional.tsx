@@ -1,96 +1,58 @@
-/* ==========================================================================
-   Section "Telah Diliput Oleh Media Nasional".
+import Image from "next/image";
 
-   Mengikuti desain easytax-demo (v1): strip kepusatan ("trust strip")
-   berlatar putih — judul uppercase kecil di tengah, diikuti baris logo
-   media (wordmark SVG inline, bukan file gambar) yang juga rata tengah
-   dan wrap. Tanpa panel dekoratif; pemisah visual hanya border-b tipis.
+/* ==========================================================================
+   Section "Telah Diliput Oleh Media Nasional / Liputan Media".
+
+   Menampilkan logo media nasional resmi yang meliput EasyTax
+   (diambil langsung dari aset asli easytax.id) yang mengarah
+   langsung ke artikel berita terkait.
    ========================================================================== */
 
-const MEDIA = [
-  { nama: "Industry.co.id", url: "https://www.industry.co.id", lebar: 160 },
-  { nama: "Warta Ekonomi", url: "https://wartaekonomi.co.id", lebar: 170 },
-  { nama: "JPNN.com", url: "https://jpnn.com", lebar: 135 },
-  { nama: "SINDOnews", url: "https://sindonews.com", lebar: 155 },
-  { nama: "Business Asia", url: "https://businessasia.co.id", lebar: 160 },
-] as const;
-
-type NamaMedia = (typeof MEDIA)[number]["nama"];
-
-/** Wordmark tiap media, memakai viewBox 0 0 <lebar> 38 ala v1. */
-function Wordmark({ nama }: { nama: NamaMedia }) {
-  const gelap = "var(--color-brand-navy)";
-  const redup = "var(--color-teks-redup)";
-
-  switch (nama) {
-    case "Industry.co.id":
-      return (
-        <svg viewBox="0 0 160 38" fill="none" role="img" aria-label="Industry.co.id" width={160} height={38} className="h-8 w-auto">
-          <rect x="0" y="7" width="22" height="24" rx="4" fill="#0077C8" />
-          <text x="5" y="24" fontFamily="var(--font-heading)" fontWeight="900" fontSize="16" fill="#FFFFFF">
-            i
-          </text>
-          <text x="28" y="24" fontFamily="var(--font-heading)" fontWeight="800" fontSize="17" fill={gelap} letterSpacing="-0.5">
-            industry
-          </text>
-          <text x="104" y="24" fontFamily="var(--font-heading)" fontWeight="800" fontSize="14" fill="#0077C8">
-            .co.id
-          </text>
-        </svg>
-      );
-
-    case "Warta Ekonomi":
-      return (
-        <svg viewBox="0 0 170 38" fill="none" role="img" aria-label="Warta Ekonomi" width={170} height={38} className="h-8 w-auto">
-          <text x="0" y="23" fontFamily="var(--font-heading)" fontWeight="900" fontSize="17" fill="#C4161C" letterSpacing="-0.5">
-            WARTA
-          </text>
-          <text x="76" y="23" fontFamily="var(--font-heading)" fontWeight="800" fontSize="17" fill={gelap} letterSpacing="-0.5">
-            EKONOMI
-          </text>
-        </svg>
-      );
-
-    case "JPNN.com":
-      return (
-        <svg viewBox="0 0 135 38" fill="none" role="img" aria-label="JPNN.com" width={135} height={38} className="h-8 w-auto">
-          <text x="0" y="24" fontFamily="var(--font-heading)" fontWeight="900" fontSize="22" fill="#E52320" letterSpacing="-0.5">
-            JPNN
-          </text>
-          <text x="74" y="24" fontFamily="var(--font-heading)" fontWeight="800" fontSize="16" fill={gelap}>
-            .com
-          </text>
-        </svg>
-      );
-
-    case "SINDOnews":
-      return (
-        <svg viewBox="0 0 155 38" fill="none" role="img" aria-label="SINDOnews" width={155} height={38} className="h-8 w-auto">
-          <text x="0" y="23" fontFamily="var(--font-heading)" fontWeight="900" fontSize="18" fill={gelap}>
-            SINDO
-          </text>
-          <text x="72" y="23" fontFamily="var(--font-heading)" fontWeight="900" fontSize="18" fill="#E52320">
-            news
-          </text>
-          <text x="126" y="23" fontFamily="var(--font-heading)" fontWeight="700" fontSize="12" fill={redup}>
-            .com
-          </text>
-        </svg>
-      );
-
-    default:
-      return (
-        <svg viewBox="0 0 160 38" fill="none" role="img" aria-label="Business Asia" width={160} height={38} className="h-8 w-auto">
-          <text x="0" y="23" fontFamily="var(--font-heading)" fontWeight="900" fontSize="16" fill={gelap} letterSpacing="0.5">
-            BUSINESS
-          </text>
-          <text x="96" y="23" fontFamily="var(--font-heading)" fontWeight="800" fontSize="16" fill="var(--color-brand-yellow)" letterSpacing="0.5">
-            ASIA
-          </text>
-        </svg>
-      );
-  }
+interface ItemMedia {
+  nama: string;
+  url: string;
+  logo: string;
+  width: number;
+  height: number;
 }
+
+const MEDIA: readonly ItemMedia[] = [
+  {
+    nama: "Industry.co.id",
+    url: "https://m.industry.co.id/read/147352/easytax-layanan-pajak-umkm-untuk-jaga-arus-kas-dan-ketertiban-usaha",
+    logo: "/images/media-liputan/industry.png",
+    width: 403,
+    height: 77,
+  },
+  {
+    nama: "Warta Ekonomi",
+    url: "https://wartaekonomi.co.id/read596584/easytax-kenalkan-layanan-pajak-terintegrasi-untuk-umkm-dengan-biaya-terjangkau",
+    logo: "/images/media-liputan/warta-ekonomi.png",
+    width: 372,
+    height: 60,
+  },
+  {
+    nama: "JPNN.com",
+    url: "https://www.jpnn.com/news/easytax-hadirkan-layanan-pajak-terintegrasi-untuk-membantu-umkm",
+    logo: "/images/media-liputan/jpnn.png",
+    width: 403,
+    height: 137,
+  },
+  {
+    nama: "SINDOnews",
+    url: "https://ekbis.sindonews.com/read/1665745/34/tekan-beban-administrasi-usaha-easytax-luncurkan-layanan-pajak-umkm-all-in-1768287674",
+    logo: "/images/media-liputan/sindonews.png",
+    width: 402,
+    height: 37,
+  },
+  {
+    nama: "Business Asia",
+    url: "https://businessasia.co.id/easytax-resmi-hadirkan-layanan-pajak-umkm-dengan-skema-all-in-rp-999-000-per-bulan/",
+    logo: "/images/media-liputan/business-asia.png",
+    width: 477,
+    height: 106,
+  },
+] as const;
 
 export function MediaNasional({
   desain,
@@ -105,7 +67,7 @@ export function MediaNasional({
       aria-labelledby="media-judul"
       className="border-b border-garis bg-white py-[clamp(44px,6vw,64px)]"
     >
-      <div className="mx-auto flex w-full max-w-maks flex-col items-center gap-[22px] px-6 text-center md:px-8">
+      <div className="mx-auto flex w-full max-w-maks flex-col items-center gap-[26px] px-6 text-center md:px-8">
         <h2
           id="media-judul"
           className="font-heading text-[0.92rem] leading-none font-extrabold tracking-[0.12em] text-navy-900 uppercase"
@@ -113,17 +75,23 @@ export function MediaNasional({
           {judul}
         </h2>
 
-        <ul className="flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-9">
+        <ul className="flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8">
           {MEDIA.map((media) => (
             <li key={media.nama}>
               <a
                 href={media.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={media.nama}
-                className="flex items-center justify-center rounded-lg px-3.5 py-2 opacity-85 grayscale-[15%] transition-[var(--transition-base)] hover:opacity-100 hover:grayscale-0"
+                title={`${media.nama} - Baca Liputan EasyTax`}
+                className="flex items-center justify-center rounded-lg p-2 transition-transform duration-200 hover:scale-105"
               >
-                <Wordmark nama={media.nama} />
+                <Image
+                  src={media.logo}
+                  alt={media.nama}
+                  width={media.width}
+                  height={media.height}
+                  className="h-7 md:h-8 w-auto max-w-[155px] object-contain transition-opacity duration-200 hover:opacity-100 opacity-90"
+                />
               </a>
             </li>
           ))}
