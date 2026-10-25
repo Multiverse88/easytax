@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { connection } from "next/server";
 import { Suspense } from "react";
 
+import { GoogleTagManager } from "@/components/analytics/GoogleTagManager";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { outfit, plusJakarta } from "@/lib/fonts";
@@ -64,6 +65,7 @@ export default async function RootLayout({
       className={`${outfit.variable} ${plusJakarta.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-navy-900">
+        <GoogleTagManager />
         <Suspense fallback={<div aria-hidden="true" className="h-[81px] shrink-0" />}>
           <ChromeNavbar />
         </Suspense>
