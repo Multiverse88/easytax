@@ -20,7 +20,7 @@ export const layananBeranda: LayananBeranda[] = [
     ringkasan:
       "Pendampingan proses restitusi pajak untuk membantu menyiapkan dokumen, memeriksa kelengkapan data, dan mendampingi proses pengajuan pengembalian kelebihan pembayaran pajak sesuai kebutuhan Anda.",
     gambar:
-      "/images/external/photo-1551836022-d5d88e9218df.webp",
+      "/images/layanan-restitusi-pajak.webp",
   },
   {
     slug: "laporan-spt",
@@ -38,7 +38,7 @@ export const layananBeranda: LayananBeranda[] = [
     ringkasan:
       "Bantu proses pengukuhan PKP, aktivasi akun e-Faktur, sertifikat elektronik DJP, dan pembekalan teknis faktur pajak.",
     gambar:
-      "/images/external/photo-1664575602554-2087b04935a5.webp",
+      "/images/layanan-pengurusan-pkp.webp",
   },
   {
     slug: "laporan-perpajakan-keuangan",
