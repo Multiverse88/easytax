@@ -7,7 +7,7 @@ import { DEFAULT_HERO } from "@/puck/default-props";
 import type { PropsHero } from "@/puck/types";
 
 const FOTO_HERO =
-  "/images/external/photo-1758518727929-4506fc031e1c.webp";
+  "/images/external/photo-1586486855514-8c633cc6fd38.webp";
 
 /**
  * Hero v1 EasyTax: latar navy penuh, dua kolom (55/45). Kolom kiri berisi
