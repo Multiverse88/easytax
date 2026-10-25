@@ -58,9 +58,9 @@ export interface ItemMitra {
 }
 
 /**
- * Daftar klien dan mitra resmi dari EasyLegal (https://easylegal.biz.id/layanan/spt-pajak-gads)
+ * Klien perusahaan resmi dari EasyLegal (OUR CLIENTS)
  */
-export const mitraKlien: ItemMitra[] = [
+export const daftarKlien: ItemMitra[] = [
   { nama: "PT Amerta Berkah Mandiri", src: "/images/klien-easylegal/pt-amerta-berkah-mandiri.png" },
   { nama: "Cloud+", src: "/images/klien-easylegal/cloud-plus.png" },
   { nama: "PT Samudra Karsa Raya", src: "/images/klien-easylegal/pt-samudra-karsa-raya.png" },
@@ -68,6 +68,12 @@ export const mitraKlien: ItemMitra[] = [
   { nama: "CV Sinar Listrik Indonesia", src: "/images/klien-easylegal/cv-sinar-listrik-indonesia.png" },
   { nama: "PT Elanus International Resources", src: "/images/klien-easylegal/pt-elanus-international-resources.png" },
   { nama: "PAN Education & Training Center", src: "/images/klien-easylegal/pan-education-training-center.png" },
+];
+
+/**
+ * Mitra perbankan & ekosistem resmi dari EasyLegal (SUPPORTED BY)
+ */
+export const daftarSupportedBy: ItemMitra[] = [
   { nama: "BCA", src: "/images/klien-easylegal/bca.png" },
   { nama: "BSI", src: "/images/klien-easylegal/bsi.png" },
   { nama: "Mekari", src: "/images/klien-easylegal/mekari.png" },
@@ -77,3 +83,5 @@ export const mitraKlien: ItemMitra[] = [
   { nama: "Everpro", src: "/images/klien-easylegal/everpro.png" },
   { nama: "JNE", src: "/images/klien-easylegal/jne.png" },
 ];
+
+export const mitraKlien: ItemMitra[] = [...daftarKlien, ...daftarSupportedBy];

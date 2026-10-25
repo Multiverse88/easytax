@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import { daftarKlien, daftarSupportedBy } from "@/data/mitra";
 /**
  * Bagian presentasional carousel logo mitra.
  *
@@ -25,21 +25,20 @@ const FAKTA = [
 ];
 
 export function MitraView({
-  items,
   desain,
 }: {
-  items: { nama: string; src: string }[];
+  items?: { nama: string; src: string }[];
   desain?: { lencana?: string; judul?: string; deskripsi?: string };
-}) {
-  const DAFTAR = ulangi(items);
-  const lencana = desain?.lencana ?? "Mitra yang sudah percaya";
+} = {}) {
+  const klienList = ulangi(daftarKlien);
+  const supportedList = ulangi(daftarSupportedBy);
+  const lencana = desain?.lencana ?? "SUPPORTED BY • OUR CLIENTS";
   const judul =
     desain?.judul ??
     "Ribuan UMKM dan perusahaan mempercayakan pajaknya kepada EasyTax";
   const deskripsi =
     desain?.deskripsi ??
     "Pembukuan, perizinan PKP, sampai pelaporan SPT, semuanya ditangani tenaga ahli berlisensi dengan proses yang aman dan terlacak.";
-
   return (
     <section
       id="mitra"
@@ -82,36 +81,76 @@ export function MitraView({
           </ul>
         </div>
 
-        <div className="relative mt-10 overflow-hidden rounded-3xl bg-netral-alt px-6 py-8 md:px-10">
-          <div className="animasi-marquee flex w-max items-center gap-5">
-            {DAFTAR.map((item, i) => (
-              <div
-                key={`${item.src}-${i}`}
-                className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-garis bg-white px-4 shadow-sm"
-              >
-                <span className="relative block h-14 w-[104px]">
-                  <Image
-                    src={item.src}
-                    alt={item.nama}
-                    fill
-                    loading="lazy"
-                    sizes="104px"
-                    className="object-contain object-center"
-                  />
-                </span>
-              </div>
-            ))}
+        {/* Baris 1: OUR CLIENTS */}
+        <div className="mt-12">
+          <div className="text-center font-heading text-xs font-bold tracking-[0.18em] text-navy-900 uppercase mb-4">
+            OUR CLIENTS
           </div>
+          <div className="relative overflow-hidden rounded-2xl bg-netral-alt px-6 py-6 md:px-8">
+            <div className="animasi-marquee flex w-max items-center gap-5">
+              {klienList.map((item, i) => (
+                <div
+                  key={`klien-${item.src}-${i}`}
+                  className="flex h-16 sm:h-20 w-36 sm:w-44 shrink-0 items-center justify-center rounded-xl border border-garis bg-white px-4 shadow-sm"
+                >
+                  <span className="relative block h-10 sm:h-12 w-[110px]">
+                    <Image
+                      src={item.src}
+                      alt={item.nama}
+                      fill
+                      loading="lazy"
+                      sizes="110px"
+                      className="object-contain object-center"
+                    />
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-[linear-gradient(90deg,var(--color-netral-alt),transparent)] lg:w-28"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-[linear-gradient(270deg,var(--color-netral-alt),transparent)] lg:w-28"
+            />
+          </div>
+        </div>
 
-          {/* Fade di kedua tepi supaya logo yang keluar tidak terpotong keras. */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-[linear-gradient(90deg,var(--color-netral-alt),transparent)] lg:w-36"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-[linear-gradient(270deg,var(--color-netral-alt),transparent)] lg:w-36"
-          />
+        {/* Baris 2: SUPPORTED BY */}
+        <div className="mt-8">
+          <div className="text-center font-heading text-xs font-bold tracking-[0.18em] text-navy-900 uppercase mb-4">
+            SUPPORTED BY
+          </div>
+          <div className="relative overflow-hidden rounded-2xl bg-netral-alt px-6 py-6 md:px-8">
+            <div className="animasi-marquee flex w-max items-center gap-5">
+              {supportedList.map((item, i) => (
+                <div
+                  key={`supported-${item.src}-${i}`}
+                  className="flex h-16 sm:h-20 w-36 sm:w-44 shrink-0 items-center justify-center rounded-xl border border-garis bg-white px-4 shadow-sm"
+                >
+                  <span className="relative block h-10 sm:h-12 w-[110px]">
+                    <Image
+                      src={item.src}
+                      alt={item.nama}
+                      fill
+                      loading="lazy"
+                      sizes="110px"
+                      className="object-contain object-center"
+                    />
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-[linear-gradient(90deg,var(--color-netral-alt),transparent)] lg:w-28"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-[linear-gradient(270deg,var(--color-netral-alt),transparent)] lg:w-28"
+            />
+          </div>
         </div>
       </div>
     </section>
