@@ -28,11 +28,6 @@ export function GoogleTagManager() {
       <Script id="google-tag-manager" strategy="afterInteractive">
         {script}
       </Script>
-      <Script
-        id="google-analytics-library"
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="afterInteractive"
-      />
       <Script id="google-analytics" strategy="afterInteractive">
         {analyticsScript}
       </Script>
