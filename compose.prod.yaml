@@ -14,7 +14,7 @@ services:
       DATABASE_URI: postgresql://${POSTGRES_USER:-easytax}:${POSTGRES_PASSWORD:-6JzPsio6gg4_SaoKb2LRHHzfwT0h4vay}@easytax-postgres:5432/${POSTGRES_DB:-easytax}
       DATABASE_URL: postgresql://${POSTGRES_USER:-easytax}:${POSTGRES_PASSWORD:-6JzPsio6gg4_SaoKb2LRHHzfwT0h4vay}@easytax-postgres:5432/${POSTGRES_DB:-easytax}
       PAYLOAD_SECRET: ${PAYLOAD_SECRET:-08aec3986299f95e3e6bc9848914f2085daaf3f34472c24dc2240b9c9b19e39e}
-      PAYLOAD_PUBLIC_SERVER_URL: ${PAYLOAD_PUBLIC_SERVER_URL:-https://easytax-157-10-252-77.sslip.io}
+      PAYLOAD_PUBLIC_SERVER_URL: ${PAYLOAD_PUBLIC_SERVER_URL:-https://easytax.id}
       PAYLOAD_CACHE_COMPONENTS_ENABLED: "true"
       RAG_ARTIKEL_ENABLED: "false"
       RUN_MIGRATIONS: "false"
