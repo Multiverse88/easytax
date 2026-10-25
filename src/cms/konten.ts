@@ -16,7 +16,7 @@ import {
   type FaqLayanan,
   type PaketLayanan,
 } from "@/data/layanan-detail";
-import { logoMitra, namaMitra } from "@/data/mitra";
+import { logoMitra, namaMitra, mitraKlien } from "@/data/mitra";
 import { menuNavigasi as navigasiStatis, situs as situsStatis } from "@/data/situs";
 import { testimoni as testimoniStatis, type Testimoni as UjiTestimoni } from "@/data/testimoni";
 import { timKonsultan as timStatis, type AnggotaTim } from "@/data/tim";
@@ -470,18 +470,12 @@ export async function ambilMitra(): Promise<{ nama: string; src: string }[]> {
       draft: false,
       overrideAccess: false,
     });
-    if (res.docs.length === 0) return [];
-
-    // Logo yang belum diunggah tidak diisi dengan logo statis: editor dapat
-    // menghapus mitra dari CMS dan hasilnya harus benar-benar kosong.
-    return res.docs
+    const list = res.docs
       .map((m) => ({ nama: m.nama, src: mediaUrl(m.logo) ?? "" }))
       .filter((m) => m.src.length > 0);
+    return list.length > 0 ? list : mitraKlien;
   } catch (error) {
     catatKegagalanCms("mitra", error);
-    return logoMitra.map((file) => ({
-      nama: namaMitra[file] ?? "Mitra EasyTax",
-      src: `/images/clients/${file}`,
-    }));
+    return mitraKlien;
   }
 }
