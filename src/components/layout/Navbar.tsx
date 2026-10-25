@@ -5,11 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Menu, Tutup, Obrolan } from "@/components/ikon";
+import { Menu, Tutup, Obrolan, PanahBawah, PanahKanan } from "@/components/ikon";
 import { Tombol } from "@/components/ui/Tombol";
 import { ConsultationButton } from "@/features/whatsapp/components/ConsultationButton";
 import { cn } from "@/lib/cn";
 import { logoMark } from "@/data/situs";
+import type { LayananBeranda } from "@/data/layanan";
 import type { ItemNavigasi } from "@/types";
 
 /**
@@ -32,11 +33,13 @@ export function Navbar({
   subjudul,
   whatsappUrl,
   menu,
+  layanan,
 }: {
   nama: string;
   subjudul: string;
   whatsappUrl: string;
   menu: ItemNavigasi[];
+  layanan: LayananBeranda[];
 }) {
   const pathname = usePathname();
   const [terbuka, setTerbuka] = useState(false);
@@ -105,6 +108,64 @@ export function Navbar({
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
 
+            if (item.href === "/layanan") {
+              return (
+                <li key={item.href} className="group relative">
+                  <Link
+                    href={item.href}
+                    aria-current={aktif ? "page" : undefined}
+                    className={cn(
+                      "tautan-nav flex items-center gap-1.5 text-[0.95rem] transition-colors duration-300",
+                      aktif
+                        ? "font-extrabold text-navy-900"
+                        : "font-semibold text-navy-900",
+                    )}
+                  >
+                    {item.label}
+                    <PanahBawah className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" />
+                  </Link>
+
+                  {/* Mega-menu: tampil saat li di-hover/focus, murni CSS tanpa state. */}
+                  <div className="invisible absolute top-full left-1/2 z-10 w-[640px] -translate-x-1/2 translate-y-2 rounded-xl border border-garis bg-white opacity-0 shadow-xl transition-[var(--transition-base)] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                    <div className="grid grid-cols-2 gap-1 p-4">
+                      {layanan.map((l) => (
+                        <Link
+                          key={l.slug}
+                          href={`/layanan/${l.slug}`}
+                          className="flex items-center gap-3 rounded-lg p-2.5 no-underline transition-colors hover:bg-netral-lat"
+                        >
+                          <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-md bg-netral-lat">
+                            <Image
+                              src={l.gambar || "/images/placeholder-layanan.svg"}
+                              alt=""
+                              fill
+                              sizes="48px"
+                              className="object-cover"
+                            />
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block truncate text-[0.88rem] font-bold text-navy-900">
+                              {l.judul}
+                            </span>
+                            <span className="block truncate text-[0.78rem] text-teks-sekunder">
+                              {l.subjudul}
+                            </span>
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                    <Link
+                      href="/layanan"
+                      className="flex items-center justify-center gap-2 border-t border-garis-halus px-4 py-3 text-[0.85rem] font-extrabold text-navy-900 no-underline transition-colors hover:text-yellow-600"
+                    >
+                      Lihat Semua Layanan
+                      <PanahKanan className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </li>
+              );
+            }
+
             return (
               <li key={item.href}>
                 <Link
@@ -160,6 +221,36 @@ export function Navbar({
               item.href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(item.href);
+
+            if (item.href === "/layanan") {
+              return (
+                <li
+                  key={item.href}
+                  className="border-b border-garis-halus last:border-b-0"
+                >
+                  <details className="group">
+                    <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[0.95rem] text-navy-900 marker:content-none [&::-webkit-details-marker]:hidden">
+                      <span className={aktif ? "font-extrabold" : "font-bold"}>
+                        {item.label}
+                      </span>
+                      <PanahBawah className="h-4 w-4 shrink-0 transition-transform duration-300 group-open:rotate-180" />
+                    </summary>
+                    <ul className="flex flex-col gap-1 pb-3.5">
+                      {layanan.map((l) => (
+                        <li key={l.slug}>
+                          <Link
+                            href={`/layanan/${l.slug}`}
+                            className="block rounded-md px-3 py-2 text-[0.88rem] font-semibold text-teks-sekunder no-underline hover:bg-netral-lat hover:text-navy-900"
+                          >
+                            {l.judul}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </li>
+              );
+            }
 
             return (
               <li key={item.href}>

@@ -80,9 +80,21 @@ export default async function RootLayout({
 
 async function ChromeNavbar() {
   await connection();
-  const { ambilNavigasi, ambilSitus } = await import("@/cms/konten");
-  const [situs, navigasi] = await Promise.all([ambilSitus(), ambilNavigasi()]);
-  return <Navbar nama={situs.nama} subjudul={situs.subjudul} whatsappUrl={situs.whatsappUrl} menu={navigasi} />;
+  const { ambilNavigasi, ambilSitus, ambilLayanan } = await import("@/cms/konten");
+  const [situs, navigasi, layanan] = await Promise.all([
+    ambilSitus(),
+    ambilNavigasi(),
+    ambilLayanan(),
+  ]);
+  return (
+    <Navbar
+      nama={situs.nama}
+      subjudul={situs.subjudul}
+      whatsappUrl={situs.whatsappUrl}
+      menu={navigasi}
+      layanan={layanan}
+    />
+  );
 }
 
 async function ChromeFooter() {
