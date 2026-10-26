@@ -91,7 +91,7 @@ describe("POST /api/artikel/search", () => {
           slug: "pajak-usaha",
           ringkasan: "Ringkasan pajak usaha.",
           kategori: "Pajak",
-          url: "/tulisan-pajak/pajak-usaha",
+          url: "/artikel/pajak-usaha",
           relevansi: 0.91,
         },
         {
@@ -100,7 +100,7 @@ describe("POST /api/artikel/search", () => {
           slug: "ppn & ppnbm",
           ringkasan: "Ringkasan pajak usaha.",
           kategori: "Pajak",
-          url: "/tulisan-pajak/ppn%20%26%20ppnbm",
+          url: "/artikel/ppn%20%26%20ppnbm",
           relevansi: 0.6,
         },
       ],

@@ -34,7 +34,7 @@ export function petakanHasilPencarian(
       slug: chunk.slug,
       ringkasan: (chunk.ringkasan || "").slice(0, 280),
       kategori: chunk.kategori,
-      url: `/tulisan-pajak/${encodeURIComponent(chunk.slug)}`,
+      url: `/artikel/${encodeURIComponent(chunk.slug)}`,
       relevansi: Number(chunk.similarity),
     });
   }

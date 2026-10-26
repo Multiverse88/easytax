@@ -9,7 +9,7 @@ import { slugPublikAda, type JenisKontenPublik } from "@/cms/keberadaan";
  * dikirim, sehingga response tetap 200. Proxy ini memeriksa slug sebelum
  * render dan menulis status 404 sejak awal, tanpa mengubah URL yang valid.
  */
-const RUTE_DETAIL = /^\/(tulisan-pajak|layanan)\/([^/]+)\/?$/;
+const RUTE_DETAIL = /^\/(artikel|tulisan-pajak|layanan)\/([^/]+)\/?$/;
 
 export async function proxy(request: NextRequest) {
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -40,5 +40,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/tulisan-pajak/:slug", "/layanan/:slug"],
+  matcher: ["/artikel/:slug", "/tulisan-pajak/:slug", "/layanan/:slug"],
 };

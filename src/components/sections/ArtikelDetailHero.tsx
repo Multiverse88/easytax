@@ -31,7 +31,7 @@ export function ArtikelDetailHero({
             Beranda
           </Link>
           <span aria-hidden="true">&gt;</span>
-          <Link href="/tulisan-pajak" className="no-underline">
+          <Link href="/artikel" className="no-underline">
             Artikel &amp; Edukasi Perpajakan
           </Link>
           <span aria-hidden="true">&gt;</span>

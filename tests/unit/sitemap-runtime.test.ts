@@ -37,10 +37,10 @@ it("mempertahankan URL kanonis statis dan memasukkan slug artikel/layanan yang d
 
   const urls = sitemap.map(({ url }) => url);
   assert.ok(urls.includes("https://example.test/"));
-  assert.ok(urls.includes("https://example.test/tulisan-pajak"));
-  assert.ok(urls.includes("https://example.test/tulisan-pajak/artikel-published"));
+  assert.ok(urls.includes("https://example.test/artikel"));
+  assert.ok(urls.includes("https://example.test/artikel/artikel-published"));
   assert.ok(urls.includes("https://example.test/layanan/layanan-published"));
-  assert.ok(!urls.some((url) => url.includes("/artikel/")));
+  assert.ok(!urls.some((url) => url.includes("/tulisan-pajak/")));
   assert.equal(sitemap.find(({ url }) => url === "https://example.test/")?.priority, 1);
 });
 

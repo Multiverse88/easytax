@@ -51,7 +51,7 @@ describe("registry halaman Puck", () => {
 
   it("dua template detail memakai rute dinamis yang berbeda", () => {
     assert.equal(halamanDariKey("template-layanan-detail")?.rute, "/layanan/[slug]");
-    assert.equal(halamanDariKey("template-artikel-detail")?.rute, "/tulisan-pajak/[slug]");
+    assert.equal(halamanDariKey("template-artikel-detail")?.rute, "/artikel/[slug]");
   });
 });
 

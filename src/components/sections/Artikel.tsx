@@ -78,7 +78,7 @@ export function Artikel({ artikel }: { artikel: ArtikelBeranda[] }) {
           </p>
 
           <Tombol
-            href="/tulisan-pajak"
+            href="/artikel"
             varian="garisSolid"
             ukuran="sedang"
             ikonKanan={<PanahKanan className="h-4 w-4" />}
@@ -162,7 +162,7 @@ function KartuArtikel({ artikel }: { artikel: ArtikelBeranda }) {
         </div>
 
         <h3 className="mb-3 line-clamp-2 font-heading text-[1.22rem] leading-[1.4] font-bold tracking-[-0.02em] text-navy-900">
-          <Link href={`/tulisan-pajak/${artikel.slug}`} className="no-underline">
+          <Link href={`/artikel/${artikel.slug}`} className="no-underline">
             {artikel.judul}
           </Link>
         </h3>
@@ -172,7 +172,7 @@ function KartuArtikel({ artikel }: { artikel: ArtikelBeranda }) {
         </p>
 
         <Link
-          href={`/tulisan-pajak/${artikel.slug}`}
+          href={`/artikel/${artikel.slug}`}
           className="inline-flex w-fit items-center gap-2 py-1 text-[0.88rem] font-bold text-navy-900 no-underline transition-all hover:gap-3"
         >
           Baca Selengkapnya

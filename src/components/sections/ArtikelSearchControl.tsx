@@ -49,7 +49,7 @@ async function cariKeyword(query: string, signal: AbortSignal): Promise<HasilSem
     ringkasan: item.ringkasan ?? "",
     gambar: typeof item.sampul === "object" && item.sampul?.url ? item.sampul.url : undefined,
     kategori: typeof item.kategori === "object" ? item.kategori?.nama : undefined,
-    url: `/tulisan-pajak/${encodeURIComponent(item.slug)}`,
+    url: `/artikel/${encodeURIComponent(item.slug)}`,
     relevansi: 0,
   }));
 }

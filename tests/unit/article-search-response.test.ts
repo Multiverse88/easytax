@@ -35,7 +35,7 @@ describe("article search response mapping", () => {
     ]);
 
     assert.equal(article.ringkasan.length, 280);
-    assert.equal(article.url, "/tulisan-pajak/pajak%20%26%20usaha");
+    assert.equal(article.url, "/artikel/pajak%20%26%20usaha");
   });
 
   it("returns only public fields and never leaks embeddings or internal metadata", () => {
@@ -64,7 +64,7 @@ describe("article search response mapping", () => {
       slug: "panduan-pajak",
       ringkasan: "Ringkasan artikel.",
       kategori: "Pajak",
-      url: "/tulisan-pajak/panduan-pajak",
+      url: "/artikel/panduan-pajak",
       relevansi: 0.8,
     });
   });

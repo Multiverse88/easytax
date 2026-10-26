@@ -24,7 +24,7 @@ export async function generateMetadata({
   );
   if (!artikel) notFound();
 
-  const canonical = `/tulisan-pajak/${encodeURIComponent(artikel.slug)}`;
+  const canonical = `/artikel/${encodeURIComponent(artikel.slug)}`;
   return {
     title: `${artikel.judul} | EasyTax`,
     description: artikel.ringkasan,

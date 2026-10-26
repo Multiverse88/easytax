@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Artikel & Edukasi Perpajakan | EasyTax",
   description:
     "Pusat artikel dan edukasi perpajakan EasyTax: panduan praktis SPT, PKP, pembukuan, dan strategi pajak untuk bisnis.",
-  alternates: { canonical: "/tulisan-pajak" },
+  alternates: { canonical: "/artikel" },
   openGraph: {
     title: "Artikel & Edukasi Perpajakan | EasyTax",
     description:
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     siteName: "EasyTax",
-    url: "/tulisan-pajak",
+    url: "/artikel",
   },
 };
 

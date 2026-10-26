@@ -64,7 +64,7 @@ export function ArtikelTerkait({ artikel }: { artikel: ArtikelBeranda[] }) {
 
                   <h3 className="mb-2 line-clamp-2 font-heading text-[1.22rem] leading-[1.4] font-bold text-navy-900">
                     <Link
-                      href={`/tulisan-pajak/${a.slug}`}
+                      href={`/artikel/${a.slug}`}
                       className="no-underline transition-colors hover:underline"
                     >
                       {a.judul}
@@ -76,7 +76,7 @@ export function ArtikelTerkait({ artikel }: { artikel: ArtikelBeranda[] }) {
                   </p>
 
                   <Link
-                    href={`/tulisan-pajak/${a.slug}`}
+                    href={`/artikel/${a.slug}`}
                     className="inline-flex w-fit items-center gap-2 py-1 text-[0.88rem] font-bold text-navy-900 no-underline transition-[var(--transition-base)] hover:gap-3"
                   >
                     Baca Selengkapnya

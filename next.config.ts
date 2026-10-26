@@ -62,15 +62,15 @@ const nextConfig: NextConfig = {
     ];
 
     return [
-      { source: "/artikel", destination: "/tulisan-pajak", permanent: true },
+      { source: "/tulisan-pajak", destination: "/artikel", permanent: true },
       {
-        source: "/artikel/:slug*",
-        destination: "/tulisan-pajak/:slug*",
+        source: "/tulisan-pajak/:slug*",
+        destination: "/artikel/:slug*",
         permanent: true,
       },
       ...artikelLamaSlugs.map((slug) => ({
         source: `/${slug}`,
-        destination: `/tulisan-pajak/${slug}`,
+        destination: `/artikel/${slug}`,
         permanent: true,
       })),
       {

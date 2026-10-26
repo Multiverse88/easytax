@@ -68,7 +68,7 @@ export const HALAMAN_PUCK = {
   "tulisan-pajak-listing": {
     key: "tulisan-pajak-listing",
     judul: "Tulisan Pajak (Halaman Utama)",
-    rute: "/tulisan-pajak",
+    rute: "/artikel",
     keterangan: "Halaman listing artikel pajak.",
   },
   "template-layanan-detail": {
@@ -80,7 +80,7 @@ export const HALAMAN_PUCK = {
   "template-artikel-detail": {
     key: "template-artikel-detail",
     judul: "Template Detail Artikel",
-    rute: "/tulisan-pajak/[slug]",
+    rute: "/artikel/[slug]",
     keterangan: "Template bersama untuk semua halaman detail artikel.",
   },
 } as const satisfies Record<string, HalamanPuck>;

@@ -11,11 +11,14 @@ type SumberSitemap = {
 const STATIS = [
   { path: "/", priority: 1, changeFrequency: "weekly" as const },
   { path: "/layanan", priority: 0.9, changeFrequency: "weekly" as const },
-  { path: "/tulisan-pajak", priority: 0.8, changeFrequency: "weekly" as const },
+  { path: "/artikel", priority: 0.8, changeFrequency: "weekly" as const },
   { path: "/tentang-kami", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/tim", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/kontak", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/kalkulator-pajak", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/kebijakan-privasi", priority: 0.5, changeFrequency: "yearly" as const },
+  { path: "/syarat-dan-ketentuan", priority: 0.5, changeFrequency: "yearly" as const },
+  { path: "/verifikasi-rekening", priority: 0.6, changeFrequency: "monthly" as const },
 ];
 
 /** Build canonical URLs from current published CMS entries plus fixed public pages. */
@@ -41,7 +44,7 @@ export async function buatSitemap(
       priority: 0.7,
     })),
     ...artikel.map((item) => ({
-      url: `${baseUrl}/tulisan-pajak/${encodeURIComponent(item.slug)}`,
+      url: `${baseUrl}/artikel/${encodeURIComponent(item.slug)}`,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),

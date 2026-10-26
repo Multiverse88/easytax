@@ -26,7 +26,7 @@ function tautanHalaman(page: number, kategori?: string, q?: string): string {
   if (kategori) params.set("kategori", kategori);
   if (q) params.set("q", q);
   const query = params.toString();
-  return `/tulisan-pajak${query ? `?${query}` : ""}`;
+  return `/artikel${query ? `?${query}` : ""}`;
 }
 
 function jendelaHalaman(sekarang: number, total: number): number[] {
@@ -164,13 +164,13 @@ export function DaftarArtikel({
                     </li>
                   ))}
                 </ul>
-                <Link href={kategoriAktif ? `/tulisan-pajak?kategori=${encodeURIComponent(kategoriAktif)}` : "/tulisan-pajak"} className="mx-auto mt-7 block w-fit rounded-full border border-garis px-5 py-2.5 text-sm font-bold text-navy-900 no-underline transition-colors hover:bg-netral-lat">Kembali ke daftar artikel</Link>
+                <Link href={kategoriAktif ? `/artikel?kategori=${encodeURIComponent(kategoriAktif)}` : "/artikel"} className="mx-auto mt-7 block w-fit rounded-full border border-garis px-5 py-2.5 text-sm font-bold text-navy-900 no-underline transition-colors hover:bg-netral-lat">Kembali ke daftar artikel</Link>
               </>
             ) : (
               <div className="rounded-xl border border-dashed border-garis bg-netral-lat px-6 py-12 text-center">
                 <p className="font-heading font-bold text-navy-900">Tidak ada artikel yang cocok</p>
                 <p className="mt-2 text-sm text-teks-sekunder">Coba kata kunci lain atau kembali ke daftar artikel.</p>
-                <Link href={kategoriAktif ? `/tulisan-pajak?kategori=${encodeURIComponent(kategoriAktif)}` : "/tulisan-pajak"} className="mt-4 inline-block rounded-full bg-yellow-500 px-5 py-2.5 text-sm font-bold text-navy-900 no-underline">Tampilkan semua artikel</Link>
+                <Link href={kategoriAktif ? `/artikel?kategori=${encodeURIComponent(kategoriAktif)}` : "/artikel"} className="mt-4 inline-block rounded-full bg-yellow-500 px-5 py-2.5 text-sm font-bold text-navy-900 no-underline">Tampilkan semua artikel</Link>
               </div>
             )
           ) : artikel.length === 0 ? (
@@ -187,7 +187,7 @@ export function DaftarArtikel({
                   : "Belum ada artikel pada kategori ini."}
               </p>
               <Link
-                href="/tulisan-pajak"
+                href="/artikel"
                 className="inline-flex h-11 items-center rounded-md bg-navy-900 px-6 text-[0.9rem] font-bold text-white no-underline transition-[var(--transition-base)] hover:-translate-y-0.5 hover:shadow-lg"
               >
                 Tampilkan semua artikel
@@ -223,7 +223,7 @@ export function DaftarArtikel({
 
                         <h3 className="mb-2 line-clamp-2 font-heading text-[1.22rem] leading-[1.4] font-bold text-navy-900">
                           <Link
-                            href={`/tulisan-pajak/${a.slug}`}
+                            href={`/artikel/${a.slug}`}
                             className="no-underline transition-colors hover:underline"
                           >
                             {a.judul}
@@ -235,7 +235,7 @@ export function DaftarArtikel({
                         </p>
 
                         <Link
-                          href={`/tulisan-pajak/${a.slug}`}
+                          href={`/artikel/${a.slug}`}
                           className="inline-flex w-fit items-center gap-2 py-1 text-[0.88rem] font-bold text-navy-900 no-underline transition-[var(--transition-base)] hover:gap-3"
                         >
                           Baca Selengkapnya
