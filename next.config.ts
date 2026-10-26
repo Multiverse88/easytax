@@ -32,8 +32,8 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@puckeditor/core"],
     globalNotFound: true,
   },
-  // /artikel adalah duplikat lama dari /tulisan-pajak. Arahkan permanen ke
-  // URL kanonis agar tidak ada dua halaman indeksabel dengan isi identik.
+  // URL lama diarahkan permanen ke URL kanonis agar trafik dan indeks mesin
+  // pencari tidak berakhir di halaman 404 atau konten duplikat.
   async redirects() {
     return [
       { source: "/artikel", destination: "/tulisan-pajak", permanent: true },
@@ -50,6 +50,11 @@ const nextConfig: NextConfig = {
       {
         source: "/layanan-spt-pajak",
         destination: "/layanan/laporan-spt",
+        permanent: true,
+      },
+      {
+        source: "/jasa-pengajuan-pkp-perusahaan-online-pengurusan-pkp-perusahaan-online",
+        destination: "/layanan/pengurusan-pkp",
         permanent: true,
       },
     ];
