@@ -35,6 +35,32 @@ const nextConfig: NextConfig = {
   // URL lama diarahkan permanen ke URL kanonis agar trafik dan indeks mesin
   // pencari tidak berakhir di halaman 404 atau konten duplikat.
   async redirects() {
+    const artikelLamaSlugs = [
+      "apa-yang-dimaksud-dengan-pengusaha-kena-pajak",
+      "pengertian-nomor-pengukuhan-pkp-nppkp",
+      "pentingnya-pengusaha-kena-pajak-mengirimkan-invoice-dengan-menyertakan-faktur-pajak",
+      "keuntungan-pelaku-usaha-menjadi-pengusaha-kena-pajak-pkp",
+      "syarat-pengukuhan-pengusaha-kena-pajak-pkp-yang-wajib-diketahui",
+      "sudah-tau-syarat-pengusaha-kena-pajak-pkp-pahami-ini-penting",
+      "pahami-hak-dan-kewajiban-pengusaha-kena-pajak-pkp",
+      "contoh-pengusaha-kena-pajak-pkp-di-indonesia",
+      "negara-dengan-pajak-tinggi",
+      "baru-wajib-pajak-pahami-kewajiban-pajak-dengan-tepat",
+      "simak-arti-dan-perbedaan-pajak-pusat-dan-pajak-daerah",
+      "apa-yang-dimaksud-spt-tahunan-yang-wajib-pajak-harus-tahunan",
+      "wajib-pajak-cek-lebih-jauh-tentang-pph-21",
+      "pph-21-harus-tahu-bagi-wajib-pajak-cek-ulasanya",
+      "pph-final-umkm-05-terbaru-dampak-pp-nomor-20-tahun-2026",
+      "pt-perorangan-masih-bisa-pakai-pph-final-05-ini-jawabannya",
+      "spt-bulanan-siapa-wajib-lapor-dan-risikonya-jika-terlambat",
+      "pengusaha-wajib-bayar-pajak-ini-penjelasan-lengkapnya",
+      "tarif-pph-21-terbaru-berapa-potongan-gaji-anda",
+      "pmk-37-tahun-2025-berlaku-dampaknya-bagi-seller-marketplace",
+      "tarif-ppn-2026-terbaru-besaran-ketentuan-dan-cara-menghitung",
+      "jenis-jenis-npwp-di-indonesia-kenali-perbedaannya",
+      "pengertian-spt-bulanan-panduan-lengkap-bagi-anda",
+    ];
+
     return [
       { source: "/artikel", destination: "/tulisan-pajak", permanent: true },
       {
@@ -42,6 +68,11 @@ const nextConfig: NextConfig = {
         destination: "/tulisan-pajak/:slug*",
         permanent: true,
       },
+      ...artikelLamaSlugs.map((slug) => ({
+        source: `/${slug}`,
+        destination: `/tulisan-pajak/${slug}`,
+        permanent: true,
+      })),
       {
         source: "/layanan-laporan-perpajakan-keuangan",
         destination: "/layanan/laporan-perpajakan-keuangan",
@@ -57,6 +88,14 @@ const nextConfig: NextConfig = {
         destination: "/layanan/pengurusan-pkp",
         permanent: true,
       },
+      { source: "/about", destination: "/tentang-kami", permanent: true },
+      { source: "/our-team", destination: "/tim", permanent: true },
+      { source: "/privacy-policy", destination: "/kebijakan-privasi", permanent: true },
+      { source: "/terms-and-condition", destination: "/syarat-dan-ketentuan", permanent: true },
+      { source: "/cv-easytax-solusi-bangsa", destination: "/verifikasi-rekening", permanent: true },
+      { source: "/spt-bulanan-metaads", destination: "/spt-bulanan-metaads-2", permanent: true },
+      { source: "/produk-kami-2", destination: "/layanan", permanent: true },
+      { source: "/produk-kami", destination: "/layanan", permanent: true },
     ];
   },
   // Dimatikan karena bug pada Payload 3.91: saat Partial Prefetching aktif,

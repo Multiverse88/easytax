@@ -151,10 +151,21 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/8 pt-6 text-[0.85rem]">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/8 pt-6 text-[0.85rem]">
           <p className="text-white/55">
             &copy; {TAHUN} {situs.nama}. All Rights Reserved.
           </p>
+          <div className="flex flex-wrap items-center gap-5 text-white/60">
+            <Link href="/kebijakan-privasi" className="no-underline transition-colors hover:text-yellow-500">
+              Kebijakan Privasi
+            </Link>
+            <Link href="/syarat-dan-ketentuan" className="no-underline transition-colors hover:text-yellow-500">
+              Syarat &amp; Ketentuan
+            </Link>
+            <Link href="/verifikasi-rekening" className="no-underline transition-colors hover:text-yellow-500">
+              Verifikasi Rekening
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

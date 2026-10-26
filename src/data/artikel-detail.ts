@@ -12,6 +12,7 @@ import {
   type BlokIsi,
   type KontenArtikelLexical,
 } from "@/lib/artikel/lexical";
+import { artikelDetailLamaWP } from "./artikel-lama";
 
 export interface ArtikelDetail {
   slug: string;
@@ -853,9 +854,13 @@ const artikelDetailLama: ArtikelDetailLama[] = [
   },
 ];
 
-export const artikelDetail: ArtikelDetail[] = artikelDetailLama.map(
-  ({ blok, ...artikel }) => ({ ...artikel, blok: blokKeLexical(blok) }),
-);
+export const artikelDetail: ArtikelDetail[] = [
+  ...artikelDetailLama,
+  ...artikelDetailLamaWP,
+].map(({ blok, ...artikel }) => ({
+  ...artikel,
+  blok: blokKeLexical(blok),
+}));
 
 export function cariArtikelDetail(slug: string): ArtikelDetail | undefined {
   return artikelDetail.find((artikel) => artikel.slug === slug);

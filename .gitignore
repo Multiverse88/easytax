@@ -27,6 +27,8 @@
 *Akses*.md
 *.credentials
 credentials.json
+*.sql
+u947750278*
 
 # debug
 npm-debug.log*

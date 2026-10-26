@@ -2,6 +2,7 @@
  * Artikel untuk section "Jelajahi Artikel dan Wawasan Kami" di beranda.
  * Diport dari easytax-demo (v1); entry "[DEV]" dibuang karena data contoh.
  */
+import { artikelLama } from "./artikel-lama";
 
 export interface ArtikelBeranda {
   slug: string;
@@ -15,7 +16,7 @@ export interface ArtikelBeranda {
   gambar: string;
 }
 
-export const artikelBeranda: ArtikelBeranda[] = [
+const artikelBerandaAwal: ArtikelBeranda[] = [
   {
     slug: "rekonsiliasi-fiskal-positif-negatif",
     judul:
@@ -154,4 +155,9 @@ export const artikelBeranda: ArtikelBeranda[] = [
     gambar:
       "/images/external/photo-1589829545856-d10d557cf95f.webp",
   },
+];
+
+export const artikelBeranda: ArtikelBeranda[] = [
+  ...artikelBerandaAwal,
+  ...artikelLama,
 ];
