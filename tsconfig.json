@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "LP - ET2", "u947750278*"]
+  "exclude": ["node_modules"]
 }
