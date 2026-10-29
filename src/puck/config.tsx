@@ -1,5 +1,7 @@
 import type { Config } from "@puckeditor/core";
 
+import { faqBeranda } from "@/data/faq-beranda";
+
 import { Artikel } from "@/components/sections/Artikel";
 import { ArtikelDetailHero } from "@/components/sections/ArtikelDetailHero";
 import { ArtikelTerkait } from "@/components/sections/ArtikelTerkait";
@@ -252,6 +254,11 @@ export const puckConfig: Config<PropsPuck> = {
       ),
     },
 
+    FaqBeranda: {
+      label: "FAQ Beranda",
+      ...STATIS,
+      render: () => <FaqLayanan faq={faqBeranda} desain={{ lencana: "FAQ", judul: "Pertanyaan Umum Seputar EasyTax" }} />,
+    },
     CTA: {
       label: "CTA Penutup",
       fields: {

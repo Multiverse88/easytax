@@ -295,6 +295,8 @@ export type PropsPuck = PropsGeneric & {
     judul?: string;
     deskripsi?: string;
   };
+  /** Akordeon FAQ beranda (data statis). */
+  FaqBeranda: Record<string, never>;
   /** Banner CTA penutup di atas footer. */
   CTA: PropsCta;
 
@@ -357,6 +359,7 @@ export const NAMA_KOMPONEN_WEBSITE: NamaKomponenPuck[] = [
   "Mitra",
   "MediaNasional",
   "Testimoni",
+  "FaqBeranda",
   "CTA",
   "TentangHero",
   "LayananHero",

@@ -40,6 +40,7 @@ const KONTEN_BERANDA: { type: string; props: Record<string, unknown> }[] = [
     type: "Testimoni",
     props: { id: "testimoni-beranda", ...DEFAULT_TESTIMONI },
   },
+  { type: "FaqBeranda", props: { id: "faqberanda-beranda" } },
   { type: "CTA", props: { id: "cta-beranda", ...DEFAULT_CTA } },
 ];
 
