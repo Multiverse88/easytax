@@ -4,6 +4,7 @@ import { connection } from "next/server";
 
 import { Artikel } from "@/components/sections/Artikel";
 import { CTA } from "@/components/sections/CTA";
+import { FaqLayanan } from "@/components/sections/FaqLayanan";
 import { CaraKerja } from "@/components/sections/CaraKerja";
 import { Hero } from "@/components/sections/Hero";
 import { Keunggulan } from "@/components/sections/Keunggulan";
@@ -14,14 +15,15 @@ import { Testimoni } from "@/components/sections/Testimoni";
 import { PuckRender } from "@/components/puck/PuckRender";
 import { ambilArtikel, ambilLayanan } from "@/cms/konten";
 import { ambilLayoutTerbit } from "@/cms/layout";
+import { faqBeranda } from "@/data/faq-beranda";
 
 export const metadata: Metadata = {
-  title: "EasyTax | Konsultan Pajak & Akuntansi untuk Bisnis",
+  title: "Jasa Konsultan Pajak Dan Akuntansi Untuk Bisnis - EasyTax",
   description:
     "Jasa konsultan pajak dan akuntansi terpercaya untuk UMKM dan perusahaan di Indonesia. Pelaporan SPT, pembukuan, pengurusan PKP, restitusi, dan pendampingan audit.",
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", languages: { id: "/" } },
   openGraph: {
-    title: "EasyTax | Konsultan Pajak & Akuntansi untuk Bisnis",
+    title: "Jasa Konsultan Pajak Dan Akuntansi Untuk Bisnis - EasyTax",
     description:
       "Jasa konsultan pajak dan akuntansi terpercaya untuk UMKM dan perusahaan di Indonesia.",
     type: "website",
@@ -62,6 +64,7 @@ async function HomeRuntime() {
       <Mitra />
       <MediaNasional />
       <Testimoni />
+      <FaqLayanan faq={faqBeranda} desain={{ lencana: "FAQ", judul: "Pertanyaan Umum Seputar EasyTax" }} />
       <CTA />
     </>
   );
