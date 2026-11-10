@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Menu, Tutup, Obrolan, PanahBawah, PanahKanan } from "@/components/ikon";
+import { Menu, Tutup, Obrolan, PanahBawah, PanahKanan, Buku, Dokumen } from "@/components/ikon";
 import { Tombol } from "@/components/ui/Tombol";
 import { ConsultationButton } from "@/features/whatsapp/components/ConsultationButton";
 import { cn } from "@/lib/cn";
@@ -126,8 +126,9 @@ export function Navbar({
                   </Link>
 
                   {/* Mega-menu: tampil saat li di-hover/focus, murni CSS tanpa state. */}
-                  <div className="invisible absolute top-full left-1/2 z-10 w-[640px] -translate-x-1/2 translate-y-2 rounded-xl border border-garis bg-white opacity-0 shadow-xl transition-[var(--transition-base)] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <div className="grid grid-cols-2 gap-1 p-4">
+                  <div className="invisible absolute top-full left-1/2 z-50 w-[640px] -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="rounded-xl border border-garis bg-white shadow-xl">
+                      <div className="grid grid-cols-2 gap-1 p-4">
                       {layanan.map((l) => (
                         <Link
                           key={l.slug}
@@ -153,14 +154,78 @@ export function Navbar({
                           </span>
                         </Link>
                       ))}
+                      </div>
+                      <Link
+                        href="/layanan"
+                        className="flex items-center justify-center gap-2 border-t border-garis-halus px-4 py-3 text-[0.85rem] font-extrabold text-navy-900 no-underline transition-colors hover:text-yellow-600"
+                      >
+                        Lihat Semua Layanan
+                        <PanahKanan className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
-                    <Link
-                      href="/layanan"
-                      className="flex items-center justify-center gap-2 border-t border-garis-halus px-4 py-3 text-[0.85rem] font-extrabold text-navy-900 no-underline transition-colors hover:text-yellow-600"
-                    >
-                      Lihat Semua Layanan
-                      <PanahKanan className="h-3.5 w-3.5" />
-                    </Link>
+                  </div>
+                </li>
+              );
+            }
+            if (item.href === "/edukasi" || item.label === "Edukasi") {
+              const aktifEdukasi =
+                pathname.startsWith("/artikel") ||
+                pathname.startsWith("/istilah") ||
+                pathname.startsWith("/tulisan-pajak") ||
+                pathname === "/edukasi";
+
+              return (
+                <li key={item.href} className="group relative">
+                  <Link
+                    href="/artikel"
+                    aria-current={aktifEdukasi ? "page" : undefined}
+                    className={cn(
+                      "tautan-nav flex items-center gap-1.5 text-[0.95rem] transition-colors duration-300",
+                      aktifEdukasi
+                        ? "font-extrabold text-navy-900"
+                        : "font-semibold text-navy-900",
+                    )}
+                  >
+                    {item.label}
+                    <PanahBawah className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" />
+                  </Link>
+
+                  {/* Dropdown Edukasi */}
+                  <div className="invisible absolute top-full left-0 z-50 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="w-[280px] rounded-xl border border-garis bg-white p-2 shadow-xl">
+                      <Link
+                        href="/artikel"
+                        className="flex items-start gap-3 rounded-lg p-3 no-underline transition-colors hover:bg-netral-lat"
+                      >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-yellow-500/15 text-navy-900">
+                          <Dokumen className="h-4.5 w-4.5 text-navy-900" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-[0.9rem] font-bold text-navy-900">
+                            Artikel Pajak
+                          </span>
+                          <span className="block text-[0.78rem] text-teks-sekunder">
+                            Panduan, tips &amp; edukasi perpajakan
+                          </span>
+                        </span>
+                      </Link>
+                      <Link
+                        href="/istilah"
+                        className="flex items-start gap-3 rounded-lg p-3 no-underline transition-colors hover:bg-netral-lat"
+                      >
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-yellow-500/15 text-navy-900">
+                          <Buku className="h-4.5 w-4.5 text-navy-900" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-[0.9rem] font-bold text-navy-900">
+                            Kamus Istilah
+                          </span>
+                          <span className="block text-[0.78rem] text-teks-sekunder">
+                            Glosarium istilah pajak &amp; akuntansi
+                          </span>
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 </li>
               );
@@ -246,6 +311,59 @@ export function Navbar({
                           </Link>
                         </li>
                       ))}
+                    </ul>
+                  </details>
+                </li>
+              );
+            }
+            if (item.href === "/edukasi" || item.label === "Edukasi") {
+              const aktifEdukasi =
+                pathname.startsWith("/artikel") ||
+                pathname.startsWith("/istilah") ||
+                pathname.startsWith("/tulisan-pajak") ||
+                pathname === "/edukasi";
+
+              return (
+                <li
+                  key={item.href}
+                  className="border-b border-garis-halus last:border-b-0"
+                >
+                  <details className="group" open={aktifEdukasi}>
+                    <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[0.95rem] text-navy-900 marker:content-none [&::-webkit-details-marker]:hidden">
+                      <span className={aktifEdukasi ? "font-extrabold" : "font-bold"}>
+                        {item.label}
+                      </span>
+                      <PanahBawah className="h-4 w-4 shrink-0 transition-transform duration-300 group-open:rotate-180" />
+                    </summary>
+                    <ul className="flex flex-col gap-1 pb-3.5">
+                      <li>
+                        <Link
+                          href="/artikel"
+                          className={cn(
+                            "flex items-center gap-2.5 rounded-md px-3 py-2 text-[0.88rem] no-underline hover:bg-netral-lat hover:text-navy-900",
+                            pathname.startsWith("/artikel") || pathname.startsWith("/tulisan-pajak")
+                              ? "bg-yellow-500/12 font-bold text-navy-900"
+                              : "font-semibold text-teks-sekunder",
+                          )}
+                        >
+                          <Dokumen className="h-4 w-4 shrink-0 text-navy-900" />
+                          <span>Artikel Pajak</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/istilah"
+                          className={cn(
+                            "flex items-center gap-2.5 rounded-md px-3 py-2 text-[0.88rem] no-underline hover:bg-netral-lat hover:text-navy-900",
+                            pathname.startsWith("/istilah")
+                              ? "bg-yellow-500/12 font-bold text-navy-900"
+                              : "font-semibold text-teks-sekunder",
+                          )}
+                        >
+                          <Buku className="h-4 w-4 shrink-0 text-navy-900" />
+                          <span>Kamus Istilah</span>
+                        </Link>
+                      </li>
                     </ul>
                   </details>
                 </li>

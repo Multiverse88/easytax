@@ -25,7 +25,7 @@ export const situs = {
 export const menuNavigasi: ItemNavigasi[] = [
   { label: "Beranda", href: "/" },
   { label: "Layanan", href: "/layanan" },
-  { label: "Artikel", href: "/artikel" },
+  { label: "Edukasi", href: "/edukasi" },
   { label: "Kalkulator Pajak", href: "/kalkulator-pajak" },
   { label: "Tentang Kami", href: "/tentang-kami" },
   { label: "Kontak", href: "/kontak" },

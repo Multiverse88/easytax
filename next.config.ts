@@ -96,6 +96,7 @@ const nextConfig: NextConfig = {
       { source: "/spt-bulanan-metaads", destination: "/spt-bulanan-metaads-2", permanent: true },
       { source: "/produk-kami-2", destination: "/layanan", permanent: true },
       { source: "/produk-kami", destination: "/layanan", permanent: true },
+      { source: "/edukasi", destination: "/artikel", permanent: false },
     ];
   },
   // Dimatikan karena bug pada Payload 3.91: saat Partial Prefetching aktif,

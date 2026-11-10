@@ -35,7 +35,8 @@ export type NamaIkon =
   | "tiktok"
   | "whatsapp"
   | "panah-bawah"
-  | "kalkulator";
+  | "kalkulator"
+  | "buku";
 
 /** Judul + deskripsi standar untuk bagian halaman. */
 export interface JudulBagian {

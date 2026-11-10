@@ -267,6 +267,15 @@ export function WhatsApp(props: PropsIkon) {
   );
 }
 
+export function Buku(props: PropsIkon) {
+  return (
+    <Bungkus {...props}>
+      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+      <path d="M6 2v20" />
+    </Bungkus>
+  );
+}
+
 /** Peta nama ikon -> komponen, supaya section cukup menulis ikon="medali". */
 export const IKON = {
   "panah-kanan": PanahKanan,
@@ -295,6 +304,7 @@ export const IKON = {
   whatsapp: WhatsApp,
   "panah-bawah": PanahBawah,
   kalkulator: Kalkulator,
+  buku: Buku,
 } satisfies Record<NamaIkon, (props: PropsIkon) => React.ReactNode>;
 
 export type { PropsIkon };

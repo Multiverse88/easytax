@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import type { ArtikelBeranda } from "@/data/artikel";
 import type { LayananBeranda } from "@/data/layanan";
 
+import { daftarIstilah } from "@/data/istilah";
 type SumberSitemap = {
   ambilArtikel: () => Promise<ArtikelBeranda[]>;
   ambilLayanan: () => Promise<LayananBeranda[]>;
@@ -19,6 +20,7 @@ const STATIS = [
   { path: "/kebijakan-privasi", priority: 0.5, changeFrequency: "yearly" as const },
   { path: "/syarat-dan-ketentuan", priority: 0.5, changeFrequency: "yearly" as const },
   { path: "/verifikasi-rekening", priority: 0.6, changeFrequency: "monthly" as const },
+  { path: "/istilah", priority: 0.8, changeFrequency: "weekly" as const },
 ];
 
 /** Build canonical URLs from current published CMS entries plus fixed public pages. */
@@ -45,6 +47,11 @@ export async function buatSitemap(
     })),
     ...artikel.map((item) => ({
       url: `${baseUrl}/artikel/${encodeURIComponent(item.slug)}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    ...daftarIstilah.map((item) => ({
+      url: `${baseUrl}/istilah/${encodeURIComponent(item.slug)}`,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
