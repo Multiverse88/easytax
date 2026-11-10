@@ -50,6 +50,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     robots: { index: true, follow: true },
     icons: { icon: "/favicon.ico", apple: "/favicon.webp" },
+    verification: {
+      google: "Mui7RTnnbRGfmw-tJUOuf2qSfrNY9Gb-WmOEVUsiOFY",
+    },
   };
 }
 

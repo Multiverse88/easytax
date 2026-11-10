@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     siteName: "EasyTax",
     url: "/",
   },
+  verification: {
+    google: "Mui7RTnnbRGfmw-tJUOuf2qSfrNY9Gb-WmOEVUsiOFY",
+  },
 };
 
 /**
