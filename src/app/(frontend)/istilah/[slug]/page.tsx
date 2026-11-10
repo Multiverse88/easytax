@@ -15,10 +15,6 @@ const ABJAD = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 type Params = Promise<{ slug: string }>;
 
-export async function generateStaticParams() {
-  return daftarIstilah.map((t) => ({ slug: t.slug }));
-}
-
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
   const term = await ambilDetailIstilah(slug);
