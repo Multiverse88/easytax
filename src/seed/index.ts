@@ -14,7 +14,7 @@ import { menuNavigasi, situs } from "../data/situs";
 import { testimoni } from "../data/testimoni";
 import { timKonsultan } from "../data/tim";
 import { daftarIstilah } from "../data/istilah";
-import { blokKeLexical } from "../lib/artikel/lexical";
+import { blokKeLexical, markdownKeLexical } from "../lib/artikel/lexical";
 import { layoutDefault } from "../puck/default-layouts";
 import { halamanDariKey } from "../puck/types";
 
@@ -343,7 +343,7 @@ async function main() {
         category: item.category,
         dasarHukum: item.dasarHukum,
         excerpt: item.excerpt,
-        content: item.content,
+        content: markdownKeLexical(item.content),
         status: "published",
       },
     );

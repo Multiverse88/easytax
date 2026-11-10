@@ -23,7 +23,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
       "category" "public"."enum_istilah_category" DEFAULT 'Perpajakan' NOT NULL,
       "dasar_hukum" varchar,
       "excerpt" varchar NOT NULL,
-      "content" varchar NOT NULL,
+      "content" jsonb NOT NULL,
       "status" "public"."enum_istilah_status" DEFAULT 'published' NOT NULL,
       "updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
       "created_at" timestamp(3) with time zone DEFAULT now() NOT NULL

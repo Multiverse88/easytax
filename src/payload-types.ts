@@ -385,9 +385,23 @@ export interface Istilah {
    */
   excerpt: string;
   /**
-   * Penjelasan lengkap istilah. Mendukung format heading (## atau ###), poin (- atau *), daftar bernomor (1., 2.), dan teks tebal (**teks**).
+   * Penjelasan lengkap istilah dengan editor visual (judul, teks tebal/miring, daftar, kutipan).
    */
-  content: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   status: 'published' | 'draft';
   updatedAt: string;
   createdAt: string;

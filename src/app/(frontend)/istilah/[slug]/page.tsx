@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -6,6 +7,7 @@ import { connection } from "next/server";
 
 import { Buku, Dokumen, PanahKanan, PanahKiri, Perisai, Rumah, WhatsApp } from "@/components/ikon";
 import { CTA } from "@/components/sections/CTA";
+import { markdownKeLexical } from "@/lib/artikel/lexical";
 import { ambilDetailIstilah } from "@/cms/konten";
 import { cariIstilah, cariIstilahTerkait, daftarIstilah } from "@/data/istilah";
 import { tautanKonsultasiWhatsApp } from "@/features/whatsapp/config";
@@ -50,126 +52,16 @@ export default function HalamanDetailIstilah({ params }: { params: Params }) {
     </Suspense>
   );
 }
-
-function renderFormattedContent(text: string): React.ReactNode[] {
-  const lines = text.split("\n");
-  const nodes: React.ReactNode[] = [];
-  let currentList: string[] = [];
-  let isOrdered = false;
-
-  const flushList = () => {
-    if (currentList.length === 0) return;
-    if (isOrdered) {
-      nodes.push(
-        <ol key={nodes.length} className="my-4 ml-6 list-decimal space-y-2 text-[0.95rem] leading-relaxed text-navy-900/90">
-          {currentList.map((item, idx) => (
-            <li key={idx}>{renderInlineMarkup(item)}</li>
-          ))}
-        </ol>,
-      );
-    } else {
-      nodes.push(
-        <ul key={nodes.length} className="my-4 ml-6 list-disc space-y-2 text-[0.95rem] leading-relaxed text-navy-900/90">
-          {currentList.map((item, idx) => (
-            <li key={idx}>{renderInlineMarkup(item)}</li>
-          ))}
-        </ul>,
-      );
-    }
-    currentList = [];
-    isOrdered = false;
-  };
-
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i]!;
-    const line = raw.trim();
-
-    if (!line) {
-      flushList();
-      continue;
-    }
-
-    if (line.startsWith("### ")) {
-      flushList();
-      nodes.push(
-        <h3 key={nodes.length} className="mt-8 mb-3 font-heading text-lg font-bold text-navy-900">
-          {renderInlineMarkup(line.slice(4))}
-        </h3>,
-      );
-      continue;
-    }
-
-    if (line.startsWith("## ")) {
-      flushList();
-      nodes.push(
-        <h2 key={nodes.length} className="mt-10 mb-4 border-b border-garis pb-2 font-heading text-xl font-bold text-navy-900 sm:text-2xl">
-          {renderInlineMarkup(line.slice(3))}
-        </h2>,
-      );
-      continue;
-    }
-
-    if (line.startsWith("# ")) {
-      flushList();
-      nodes.push(
-        <h2 key={nodes.length} className="mt-10 mb-4 border-b border-garis pb-2 font-heading text-2xl font-bold text-navy-900">
-          {renderInlineMarkup(line.slice(2))}
-        </h2>,
-      );
-      continue;
-    }
-
-    if (line.startsWith("- ") || line.startsWith("* ")) {
-      if (isOrdered && currentList.length > 0) flushList();
-      isOrdered = false;
-      currentList.push(line.slice(2));
-      continue;
-    }
-
-    const orderMatch = line.match(/^(\d+)\.\s+(.*)/);
-    if (orderMatch) {
-      if (!isOrdered && currentList.length > 0) flushList();
-      isOrdered = true;
-      currentList.push(orderMatch[2]!);
-      continue;
-    }
-
-    flushList();
-    nodes.push(
-      <p key={nodes.length} className="mb-4 text-[0.96rem] leading-relaxed text-navy-900/90">
-        {renderInlineMarkup(line)}
-      </p>,
-    );
-  }
-
-  flushList();
-  return nodes;
-}
-
-function renderInlineMarkup(text: string): React.ReactNode {
-  // Replace HTML bold tags with standard markdown bold syntax if present
-  const cleaned = text.replace(/<\/?b>/gi, "**").replace(/<\/?strong>/gi, "**");
-  const parts = cleaned.split(/(\*\*[^*]+\*\*)/g);
-
-  return parts.map((part, idx) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return (
-        <strong key={idx} className="font-extrabold text-navy-900">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    return <span key={idx}>{part}</span>;
-  });
-}
-
 async function IsiDetailIstilah({ params }: { params: Params }) {
   await connection();
   const { slug } = await params;
   const term = await ambilDetailIstilah(slug);
   if (!term) notFound();
   const related = cariIstilahTerkait(term.slug, term.category, 5);
-
+  const lexicalData =
+    term.content && typeof term.content === "object"
+      ? (term.content as any)
+      : markdownKeLexical(typeof term.content === "string" ? term.content : "");
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTerm",
@@ -286,9 +178,10 @@ async function IsiDetailIstilah({ params }: { params: Params }) {
             {/* MAIN ARTICLE COLUMN */}
             <article className="lg:col-span-8">
               <div className="rounded-3xl border border-garis bg-white p-6 sm:p-10 shadow-xs">
-                <div className="prose prose-slate max-w-none text-navy-900">
-                  {renderFormattedContent(term.content)}
-                </div>
+                <RichText
+                  data={lexicalData}
+                  className="prose prose-slate max-w-none text-navy-900 leading-relaxed [&_h2]:mt-9 [&_h2]:mb-3 [&_h2]:border-b [&_h2]:border-garis [&_h2]:pb-2 [&_h2]:font-heading [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-navy-900 sm:[&_h2]:text-2xl [&_h3]:mt-7 [&_h3]:mb-2.5 [&_h3]:font-heading [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-navy-900 [&_ul]:my-4 [&_ul]:ml-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ol]:my-4 [&_ol]:ml-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_p]:mb-4 [&_p]:text-[0.96rem] [&_p]:leading-relaxed [&_p]:text-navy-900/90 [&_strong]:font-extrabold [&_strong]:text-navy-900"
+                />
 
                 {/* BOTTOM HELPER NOTICE */}
                 <div className="mt-10 border-t border-garis-halus pt-6 flex flex-wrap items-center justify-between gap-4">

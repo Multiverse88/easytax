@@ -124,6 +124,75 @@ export function blokKeLexical(blok: readonly BlokIsi[]): KontenArtikelLexical {
   };
 }
 
+export function markdownKeBlokIsi(content: string): BlokIsi[] {
+  const lines = content.replace(/\r\n/g, "\n").split("\n");
+  const bloks: BlokIsi[] = [];
+  let currentList: string[] = [];
+  let isOrdered = false;
+
+  const flushList = () => {
+    if (currentList.length === 0) return;
+    bloks.push({
+      kind: "list",
+      ordered: isOrdered,
+      items: [...currentList],
+    });
+    currentList = [];
+    isOrdered = false;
+  };
+
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line) {
+      flushList();
+      continue;
+    }
+
+    if (line.startsWith("### ")) {
+      flushList();
+      bloks.push({ kind: "heading", level: 3, text: line.slice(4).trim() });
+      continue;
+    }
+
+    if (line.startsWith("## ")) {
+      flushList();
+      bloks.push({ kind: "heading", level: 2, text: line.slice(3).trim() });
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      flushList();
+      bloks.push({ kind: "heading", level: 2, text: line.slice(2).trim() });
+      continue;
+    }
+
+    if (line.startsWith("- ") || line.startsWith("* ")) {
+      if (isOrdered && currentList.length > 0) flushList();
+      isOrdered = false;
+      currentList.push(line.slice(2).trim());
+      continue;
+    }
+
+    const orderMatch = line.match(/^(\d+)\.\s+(.*)/);
+    if (orderMatch) {
+      if (!isOrdered && currentList.length > 0) flushList();
+      isOrdered = true;
+      currentList.push(orderMatch[2]!.trim());
+      continue;
+    }
+
+    flushList();
+    bloks.push({ kind: "paragraph", text: line });
+  }
+
+  flushList();
+  return bloks;
+}
+
+export function markdownKeLexical(content: string): KontenArtikelLexical {
+  return blokKeLexical(markdownKeBlokIsi(content));
+}
+
 export function slugifyHeading(text: string): string {
   const slug = text
     .toLowerCase()

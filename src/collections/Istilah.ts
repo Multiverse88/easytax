@@ -1,4 +1,9 @@
 import type { CollectionConfig } from "payload";
+import {
+  FixedToolbarFeature,
+  HeadingFeature,
+  lexicalEditor,
+} from "@payloadcms/richtext-lexical";
 
 import { adminSaja, siapaSaja, stafPenulis } from "../access";
 import { hookRevalidate } from "../cms/revalidate";
@@ -101,10 +106,17 @@ export const Istilah: CollectionConfig = {
     {
       name: "content",
       label: "Penjelasan Lengkap",
-      type: "textarea",
+      type: "richText",
       required: true,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          FixedToolbarFeature(),
+          HeadingFeature({ enabledHeadingSizes: ["h2", "h3", "h4"] }),
+        ],
+      }),
       admin: {
-        description: "Penjelasan lengkap istilah. Mendukung format heading (## atau ###), poin (- atau *), daftar bernomor (1., 2.), dan teks tebal (**teks**).",
+        description: "Penjelasan lengkap istilah dengan editor visual (judul, teks tebal/miring, daftar, kutipan).",
       },
     },
     {
