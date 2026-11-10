@@ -13,6 +13,7 @@ import { logoMitra, namaMitra } from "../data/mitra";
 import { menuNavigasi, situs } from "../data/situs";
 import { testimoni } from "../data/testimoni";
 import { timKonsultan } from "../data/tim";
+import { daftarIstilah } from "../data/istilah";
 import { blokKeLexical } from "../lib/artikel/lexical";
 import { layoutDefault } from "../puck/default-layouts";
 import { halamanDariKey } from "../puck/types";
@@ -146,7 +147,7 @@ function unggahDariFile(file: string, nama: string, alt: string) {
 type HasilUpsert = { id: number; baru: boolean };
 
 async function upsert(
-  collection: "layanan" | "artikel" | "kategori" | "testimoni" | "tim" | "mitra",
+  collection: "layanan" | "artikel" | "kategori" | "testimoni" | "tim" | "mitra" | "istilah",
   where: Record<string, unknown>,
   data: Record<string, unknown>,
 ): Promise<HasilUpsert> {
@@ -329,6 +330,25 @@ async function main() {
     );
   }
   console.log(`· ${artikelBeranda.length} artikel`);
+
+  /* Kamus Istilah. */
+  for (const item of daftarIstilah) {
+    await upsert(
+      "istilah",
+      { slug: { equals: item.slug } },
+      {
+        title: item.title,
+        shortTitle: item.shortTitle,
+        slug: item.slug,
+        category: item.category,
+        dasarHukum: item.dasarHukum,
+        excerpt: item.excerpt,
+        content: item.content,
+        status: "published",
+      },
+    );
+  }
+  console.log(`· ${daftarIstilah.length} istilah`);
 
   /* Testimoni. */
   for (const [i, t] of testimoni.entries()) {

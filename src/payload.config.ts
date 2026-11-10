@@ -18,6 +18,7 @@ import { Testimonials } from "./collections/Testimonials";
 import { TeamMembers } from "./collections/TeamMembers";
 import { Users } from "./collections/Users";
 import { WhatsAppNumbers } from "./collections/WhatsAppNumbers";
+import { Istilah } from "./collections/Istilah";
 import { SiteSettings } from "./globals/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -78,6 +79,7 @@ export default buildConfig({
     Services,
     Kategori,
     Articles,
+    Istilah,
     TeamMembers,
     Testimonials,
     ClientLogos,

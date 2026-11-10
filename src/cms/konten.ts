@@ -20,6 +20,11 @@ import { logoMitra, namaMitra, mitraKlien } from "@/data/mitra";
 import { menuNavigasi as navigasiStatis, situs as situsStatis } from "@/data/situs";
 import { testimoni as testimoniStatis, type Testimoni as UjiTestimoni } from "@/data/testimoni";
 import { timKonsultan as timStatis, type AnggotaTim } from "@/data/tim";
+import {
+  daftarIstilah as daftarIstilahStatis,
+  cariIstilah as cariIstilahStatis,
+  type IstilahItem,
+} from "@/data/istilah";
 import { getClient } from "@/lib/payload";
 import { formatHargaRupiah, formatSatuan } from "@/lib/format-harga";
 import { mediaUrlRelatif } from "@/lib/media-url";
@@ -385,6 +390,85 @@ export async function ambilArtikelDetail(
     catatKegagalanCms("artikel-detail", error);
     propagarKegagalanCmsSaatBuild(error);
     return cariArtikelDetail(cleanSlug);
+  }
+}
+
+/* ============================== Istilah ================================= */
+
+export async function ambilDaftarIstilah(): Promise<IstilahItem[]> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag("istilah");
+
+  try {
+    const payload = await getClient();
+    const res = await (payload as any).find({
+      collection: "istilah",
+      depth: 0,
+      limit: 500,
+      where: {
+        status: { equals: "published" },
+      },
+      overrideAccess: true,
+    });
+
+    if (!res?.docs || res.docs.length === 0) return daftarIstilahStatis;
+
+    return res.docs.map((doc: any) => ({
+      slug: doc.slug,
+      title: doc.title,
+      shortTitle: doc.shortTitle || undefined,
+      category: doc.category,
+      excerpt: doc.excerpt,
+      content: doc.content,
+      dasarHukum: doc.dasarHukum || undefined,
+    }));
+  } catch (error) {
+    catatKegagalanCms("istilah", error);
+    propagarKegagalanCmsSaatBuild(error);
+    return daftarIstilahStatis;
+  }
+}
+
+export async function ambilDetailIstilah(
+  slug: string,
+): Promise<IstilahItem | undefined> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag("istilah");
+
+  const cleanSlug = slug.toLowerCase().trim();
+
+  try {
+    const payload = await getClient();
+    const res = await (payload as any).find({
+      collection: "istilah",
+      where: {
+        slug: { equals: cleanSlug },
+        status: { equals: "published" },
+      },
+      limit: 1,
+      depth: 0,
+      overrideAccess: true,
+    });
+
+    const doc: any = res?.docs?.[0];
+    if (doc) {
+      return {
+        slug: doc.slug,
+        title: doc.title,
+        shortTitle: doc.shortTitle || undefined,
+        category: doc.category,
+        excerpt: doc.excerpt,
+        content: doc.content,
+        dasarHukum: doc.dasarHukum || undefined,
+      };
+    }
+    return cariIstilahStatis(cleanSlug);
+  } catch (error) {
+    catatKegagalanCms("istilah-detail", error);
+    propagarKegagalanCmsSaatBuild(error);
+    return cariIstilahStatis(cleanSlug);
   }
 }
 

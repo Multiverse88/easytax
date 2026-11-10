@@ -5,6 +5,7 @@ import * as migration_20261022_artikel_embeddings from './20261022_artikel_embed
 import * as migration_20261023_artikel_embeddings_local from './20261023_artikel_embeddings_local';
 import * as migration_20261023_testimoni_foto_profil from './20261023_testimoni_foto_profil';
 import * as migration_20261024_081557_artikel_lexical from './20261024_081557_artikel_lexical';
+import * as migration_20261026_090000_istilah from './20261026_090000_istilah';
 
 export const migrations = [
   {
@@ -41,5 +42,10 @@ export const migrations = [
     up: migration_20261024_081557_artikel_lexical.up,
     down: migration_20261024_081557_artikel_lexical.down,
     name: '20261024_081557_artikel_lexical'
+  },
+  {
+    up: migration_20261026_090000_istilah.up,
+    down: migration_20261026_090000_istilah.down,
+    name: '20261026_090000_istilah'
   },
 ];

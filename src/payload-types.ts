@@ -72,6 +72,7 @@ export interface Config {
     layanan: Layanan;
     kategori: Kategori;
     artikel: Artikel;
+    istilah: Istilah;
     tim: Tim;
     testimoni: Testimoni;
     mitra: Mitra;
@@ -91,6 +92,7 @@ export interface Config {
     layanan: LayananSelect<false> | LayananSelect<true>;
     kategori: KategoriSelect<false> | KategoriSelect<true>;
     artikel: ArtikelSelect<false> | ArtikelSelect<true>;
+    istilah: IstilahSelect<false> | IstilahSelect<true>;
     tim: TimSelect<false> | TimSelect<true>;
     testimoni: TestimoniSelect<false> | TestimoniSelect<true>;
     mitra: MitraSelect<false> | MitraSelect<true>;
@@ -357,6 +359,40 @@ export interface Artikel {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Kamus istilah perpajakan dan akuntansi untuk halaman /istilah.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "istilah".
+ */
+export interface Istilah {
+  id: number;
+  /**
+   * Contoh: "PPh 21 (Pajak Penghasilan Pasal 21)" atau "Faktur Pajak"
+   */
+  title: string;
+  /**
+   * Contoh: "PPh 21", "PPN", "PKP". Digunakan untuk badge dan pencarian cepat.
+   */
+  shortTitle?: string | null;
+  slug: string;
+  category: 'Perpajakan' | 'PPh' | 'PPN' | 'PKP' | 'SPT' | 'Akuntansi' | 'Kepatuhan Pajak';
+  /**
+   * Contoh: "UU No. 7 Tahun 2021 (UU HPP), PP 58/2023, PMK 168/2023"
+   */
+  dasarHukum?: string | null;
+  /**
+   * Ditampilkan di kartu kamus istilah dan sebagai ringkasan di bagian atas halaman detail.
+   */
+  excerpt: string;
+  /**
+   * Penjelasan lengkap istilah. Mendukung format heading (## atau ###), poin (- atau *), daftar bernomor (1., 2.), dan teks tebal (**teks**).
+   */
+  content: string;
+  status: 'published' | 'draft';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tim".
  */
@@ -583,6 +619,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'artikel';
         value: number | Artikel;
+      } | null)
+    | ({
+        relationTo: 'istilah';
+        value: number | Istilah;
       } | null)
     | ({
         relationTo: 'tim';
@@ -817,6 +857,22 @@ export interface ArtikelSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "istilah_select".
+ */
+export interface IstilahSelect<T extends boolean = true> {
+  title?: T;
+  shortTitle?: T;
+  slug?: T;
+  category?: T;
+  dasarHukum?: T;
+  excerpt?: T;
+  content?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

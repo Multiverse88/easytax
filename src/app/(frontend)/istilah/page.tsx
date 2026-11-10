@@ -10,6 +10,7 @@ import {
   filterIstilah,
   type KategoriIstilah,
 } from "@/data/istilah";
+import { ambilDaftarIstilah } from "@/cms/konten";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://easytax.id").replace(/\/+$/, "");
 
@@ -68,13 +69,14 @@ async function IsiHalamanIstilah({ searchParams }: { searchParams: SearchParams 
   const kategoriAktif = (params.category || "Semua") as KategoriIstilah;
   const abjadAktif = (params.letter || "ALL").toUpperCase();
   const page = Math.max(1, parseInt(params.page || "1", 10) || 1);
-
+  const allTerms = await ambilDaftarIstilah();
   const { data: terms, meta } = filterIstilah({
     q,
     category: kategoriAktif,
     letter: abjadAktif,
     page,
     limit: 24,
+    source: allTerms,
   });
 
   const jsonLd = {

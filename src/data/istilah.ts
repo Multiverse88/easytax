@@ -680,6 +680,7 @@ export function filterIstilah(opts: {
   letter?: string;
   page?: number;
   limit?: number;
+  source?: IstilahItem[];
 }): {
   data: IstilahItem[];
   meta: {
@@ -694,9 +695,9 @@ export function filterIstilah(opts: {
   const letter = opts.letter && opts.letter !== "ALL" ? opts.letter.toUpperCase() : null;
   const page = Math.max(1, opts.page || 1);
   const limit = Math.max(1, opts.limit || 24);
+  const base = opts.source && opts.source.length > 0 ? opts.source : daftarIstilah;
 
-  let filtered = daftarIstilah.filter((item) => {
-    if (category && item.category !== category) return false;
+  let filtered = base.filter((item) => {
     if (letter && !item.title.toUpperCase().startsWith(letter)) return false;
     if (q) {
       const matchTitle = item.title.toLowerCase().includes(q);

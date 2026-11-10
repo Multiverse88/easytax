@@ -6,6 +6,7 @@ import { connection } from "next/server";
 
 import { Buku, Dokumen, PanahKanan, PanahKiri, Perisai, Rumah, WhatsApp } from "@/components/ikon";
 import { CTA } from "@/components/sections/CTA";
+import { ambilDetailIstilah } from "@/cms/konten";
 import { cariIstilah, cariIstilahTerkait, daftarIstilah } from "@/data/istilah";
 import { tautanKonsultasiWhatsApp } from "@/features/whatsapp/config";
 
@@ -20,9 +21,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
-  const term = cariIstilah(slug);
+  const term = await ambilDetailIstilah(slug);
   if (!term) notFound();
-
   const title = `${term.title} | Kamus Istilah EasyTax`;
   const description = term.excerpt;
   const canonical = `/istilah/${encodeURIComponent(term.slug)}`;
@@ -170,9 +170,8 @@ function renderInlineMarkup(text: string): React.ReactNode {
 async function IsiDetailIstilah({ params }: { params: Params }) {
   await connection();
   const { slug } = await params;
-  const term = cariIstilah(slug);
+  const term = await ambilDetailIstilah(slug);
   if (!term) notFound();
-
   const related = cariIstilahTerkait(term.slug, term.category, 5);
 
   const jsonLd = {
