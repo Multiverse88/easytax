@@ -86,7 +86,7 @@ async function IsiLayanan({ params }: { params: Params }) {
     <>
       <LayananDetailHero layanan={ini} />
       <Keunggulan />
-      <HargaLayanan paket={detail?.paket ?? []} />
+      <HargaLayanan paket={detail?.paket ?? []} slug={ini.slug} />
       <CaraKerja />
       <Mitra />
       <MediaNasional />

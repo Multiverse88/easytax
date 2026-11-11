@@ -72,6 +72,205 @@ function KartuPaket({
     </article>
   );
 }
+const BARIS_SPT = [
+  { omzet: "0 / tidak beroperasi", badan: "Rp 499.000", pribadi: "Rp 449.000" },
+  { omzet: "Rp 0 – 600 Jt", badan: "Rp 1.499.000", pribadi: "Rp 1.349.000" },
+  { omzet: "Rp 600 Jt – 1,2 M", badan: "Rp 1.999.000", pribadi: "Rp 1.799.000" },
+  { omzet: "Rp 1,2 M – 2,4 M", badan: "Rp 2.499.000", pribadi: "Rp 2.249.000" },
+  { omzet: "Rp 2,4 M – 3,6 M", badan: "Rp 2.999.000", pribadi: "Rp 2.699.000" },
+  { omzet: "Rp 3,6 M – 4,8 M", badan: "Rp 3.499.000", pribadi: "Rp 3.149.000" },
+  { omzet: "> 4,8 M", badan: "Negotiable", pribadi: "Negotiable" },
+];
+
+const FITUR_SPT = [
+  { teks: "Penyusunan Laporan Laba Rugi dan Neraca", catatan: "Untuk layanan SPT Badan Usaha" },
+  { teks: "Penyusunan Draft SPT Tahunan PPh Badan/Pribadi" },
+  { teks: "Pembuatan Kode Billing PPh Tahunan (untuk status kurang bayar)" },
+  { teks: "Submit SPT Tahunan PPh Badan/Pribadi resmi DJP" },
+  { teks: "[GRATIS] Revisi SPT Tahunan PPh, 1 kali dalam setahun" },
+];
+
+function TabelHargaSpt({ labelTombol }: { labelTombol: string }) {
+  return (
+    <div className="mx-auto max-w-4xl">
+      <div className="overflow-hidden rounded-3xl border border-garis bg-white shadow-sm">
+        <div className="bg-navy-900 px-6 py-5 text-center text-white sm:px-8">
+          <h3 className="font-heading text-xl font-bold tracking-tight sm:text-2xl">
+            Laporan SPT Tahunan Badan Usaha &amp; Pribadi
+          </h3>
+          <p className="mt-1 text-xs text-teks-terang sm:text-sm">
+            Tarif resmi penyusunan dan pelaporan SPT Tahunan berdasarkan omzet per bulan
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-garis bg-amber-400 text-navy-900 font-heading text-sm font-extrabold sm:text-base">
+                <th scope="col" className="py-4 px-6 sm:px-8">
+                  Omzet per Bulan
+                </th>
+                <th scope="col" className="py-4 px-6 text-center sm:px-8 bg-amber-500/30">
+                  Badan
+                </th>
+                <th scope="col" className="py-4 px-6 text-center sm:px-8 bg-navy-900 text-white">
+                  Pribadi
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-garis text-sm sm:text-[0.95rem]">
+              {BARIS_SPT.map((baris, idx) => (
+                <tr
+                  key={baris.omzet}
+                  className={idx % 2 === 0 ? "bg-white hover:bg-amber-50/40" : "bg-netral-lat/50 hover:bg-amber-50/40"}
+                >
+                  <td className="py-3.5 px-6 font-semibold text-navy-900 sm:px-8">
+                    {baris.omzet}
+                  </td>
+                  <td className="py-3.5 px-6 text-center font-extrabold text-navy-900 sm:px-8 bg-amber-500/5">
+                    {baris.badan}
+                  </td>
+                  <td className="py-3.5 px-6 text-center font-extrabold text-navy-900 sm:px-8">
+                    {baris.pribadi}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="border-t border-garis bg-gradient-to-b from-white to-amber-50/25 p-6 sm:p-8">
+          <h4 className="font-heading text-sm font-extrabold text-navy-900 uppercase tracking-wider sm:text-base">
+            Fitur Layanan:
+          </h4>
+          <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {FITUR_SPT.map((f) => (
+              <li key={f.teks} className="flex items-start gap-2.5 text-sm text-navy-900">
+                <Centang className="mt-0.5 h-4 w-4 shrink-0 text-emerald-accent" />
+                <span>
+                  <strong>{f.teks}</strong>
+                  {f.catatan && (
+                    <span className="block text-xs text-teks-redup italic mt-0.5">
+                      * {f.catatan}
+                    </span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3">
+            <ConsultationButton
+              sumber="tabel-harga-spt"
+              konteks="paket"
+              pesan="Halo EasyTax, saya ingin konsultasi mengenai Laporan SPT Tahunan Badan & Pribadi."
+              ukuran="sedang"
+              className="w-full sm:w-auto rounded-xl py-3.5 px-8 text-base font-bold shadow-sm"
+            >
+              {labelTombol || "Konsultasi SPT Sekarang"}
+            </ConsultationButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const BARIS_BULANAN = [
+  { omzet: "0 / tidak beroperasi", harga: "Rp 749.000" },
+  { omzet: "Rp 0 – 50 Jt", harga: "Rp 999.000" },
+  { omzet: "Rp 50 Jt – 100 Jt", harga: "Rp 1.499.000" },
+  { omzet: "Rp 100 Jt – 200 Jt", harga: "Rp 1.999.000" },
+  { omzet: "Rp 200 Jt – 300 Jt", harga: "Rp 2.499.000" },
+  { omzet: "Rp 300 Jt – 400 Jt", harga: "Rp 2.999.000" },
+  { omzet: "Rp 400 Jt – 500 Jt", harga: "Rp 3.999.000" },
+  { omzet: "Rp 500 Jt – 1 M", harga: "Rp 4.999.000" },
+  { omzet: "Rp 1 M – 2,5 M", harga: "Rp 5.999.000" },
+  { omzet: "> 2,5 M", harga: "Negotiable" },
+];
+
+const FITUR_BULANAN = [
+  "SPT Bulanan PPh",
+  "Laporan Keuangan",
+  "Konsultasi Pajak",
+  "Free SPT Tahunan (pembelian paket 12 bulan di muka atau rutin 12 bulan)",
+];
+
+function TabelHargaBulanan({ labelTombol }: { labelTombol: string }) {
+  return (
+    <div className="mx-auto max-w-3xl">
+      <div className="overflow-hidden rounded-3xl border border-garis bg-white shadow-sm">
+        <div className="bg-navy-900 px-6 py-5 text-center text-white sm:px-8">
+          <h3 className="font-heading text-xl font-bold tracking-tight sm:text-2xl">
+            Perpajakan Dan Laporan Keuangan Bulanan
+          </h3>
+          <p className="mt-1 text-xs text-teks-terang sm:text-sm">
+            Tarif resmi pembukuan dan kepatuhan pajak bulanan berdasarkan omzet
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-garis bg-amber-400 text-navy-900 font-heading text-sm font-extrabold sm:text-base">
+                <th scope="col" className="py-4 px-6 sm:px-8">
+                  Omzet per Bulan
+                </th>
+                <th scope="col" className="py-4 px-6 text-right sm:px-8 bg-navy-900 text-white">
+                  Harga per Bulan
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-garis text-sm sm:text-[0.95rem]">
+              {BARIS_BULANAN.map((baris, idx) => (
+                <tr
+                  key={baris.omzet}
+                  className={idx % 2 === 0 ? "bg-white hover:bg-amber-50/40" : "bg-netral-lat/50 hover:bg-amber-50/40"}
+                >
+                  <td className="py-3.5 px-6 font-semibold text-navy-900 sm:px-8">
+                    {baris.omzet}
+                  </td>
+                  <td className="py-3.5 px-6 text-right font-extrabold text-navy-900 sm:px-8">
+                    {baris.harga}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="border-t border-garis bg-gradient-to-b from-white to-amber-50/25 p-6 sm:p-8">
+          <h4 className="font-heading text-sm font-extrabold text-navy-900 uppercase tracking-wider sm:text-base">
+            Fitur Layanan Utama:
+          </h4>
+          <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {FITUR_BULANAN.map((f) => (
+              <li key={f} className="flex items-start gap-2.5 text-sm text-navy-900">
+                <Centang className="mt-0.5 h-4 w-4 shrink-0 text-emerald-accent" />
+                <span className="font-semibold">{f}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs text-teks-redup italic">
+            (*) Khusus PKP Pembuatan Faktur Dibatasi Sebanyak 25 Faktur Keluaran Dalam Sebulan
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3">
+            <ConsultationButton
+              sumber="tabel-harga-bulanan"
+              konteks="paket"
+              pesan="Halo EasyTax, saya ingin konsultasi mengenai Layanan Perpajakan & Laporan Keuangan Bulanan."
+              ukuran="sedang"
+              className="w-full sm:w-auto rounded-xl py-3.5 px-8 text-base font-bold shadow-sm"
+            >
+              {labelTombol || "Konsultasi Bulanan Sekarang"}
+            </ConsultationButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /**
  * "Harga Transparan / Paket Layanan" — diport dari `PricingPackages`
@@ -85,9 +284,11 @@ function KartuPaket({
 export function HargaLayanan({
   paket,
   desain,
+  slug,
 }: {
   paket: PaketLayanan[];
   desain?: PropsHargaLayanan;
+  slug?: string;
 }) {
   if (paket.length === 0) return null;
 
@@ -97,7 +298,8 @@ export function HargaLayanan({
   const labelKeunggulan = desain?.labelKeunggulan ?? "Keunggulan";
   const labelTombol = desain?.labelTombol ?? "Konsultasi";
   const tengah = (desain?.perataan ?? "tengah") === "tengah";
-
+  const isSpt = slug === "laporan-spt" || paket.some((p) => p.nama.includes("SPT Badan"));
+  const isBulanan = slug === "laporan-perpajakan-keuangan" || (paket.length >= 8 && paket.some((p) => p.nama.includes("Dormant")));
   return (
     <section
       id="harga"
@@ -126,20 +328,26 @@ export function HargaLayanan({
           <p className="text-[1.05rem] text-teks-sekunder">{deskripsi}</p>
         </div>
 
-        <ul className="flex flex-wrap justify-center gap-6">
-          {paket.map((p) => (
-            <li
-              key={p.nama}
-              className="w-full max-w-[400px] flex-[1_1_300px]"
-            >
-              <KartuPaket
-                paket={p}
-                labelKeunggulan={labelKeunggulan}
-                labelTombol={labelTombol}
-              />
-            </li>
-          ))}
-        </ul>
+        {isSpt ? (
+          <TabelHargaSpt labelTombol={labelTombol} />
+        ) : isBulanan ? (
+          <TabelHargaBulanan labelTombol={labelTombol} />
+        ) : (
+          <ul className="flex flex-wrap justify-center gap-6">
+            {paket.map((p) => (
+              <li
+                key={p.nama}
+                className="w-full max-w-[400px] flex-[1_1_300px]"
+              >
+                <KartuPaket
+                  paket={p}
+                  labelKeunggulan={labelKeunggulan}
+                  labelTombol={labelTombol}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
