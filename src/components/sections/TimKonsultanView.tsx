@@ -32,7 +32,7 @@ export function TimKonsultanView({ tim }: { tim: AnggotaTim[] }) {
             id="tim-judul"
             className="mt-6 max-w-[720px] font-heading text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.25] font-extrabold tracking-[-0.03em] text-white text-balance"
           >
-            Tim konsultan berlisensi yang mendampingi Anda
+            Tim konsultan profesional yang mendampingi Anda
           </h2>
 
           <p className="mt-4 max-w-[620px] text-[1rem] leading-[1.7] text-white/70">
@@ -62,7 +62,7 @@ export function TimKonsultanView({ tim }: { tim: AnggotaTim[] }) {
 
                 <span className="absolute -right-1 -bottom-1 grid h-9 w-9 place-items-center rounded-full border-2 border-navy-900 bg-yellow-500 text-navy-900">
                   <Perisai className="h-4 w-4" />
-                  <span className="sr-only">Konsultan {orang.lisensi}</span>
+                  <span className="sr-only">Tim Konsultan</span>
                 </span>
               </div>
 
@@ -75,7 +75,7 @@ export function TimKonsultanView({ tim }: { tim: AnggotaTim[] }) {
                 </p>
                 <p className="mt-2 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-2.5 py-1 text-[0.7rem] font-bold tracking-[0.04em] text-white/85 uppercase">
                   <Perisai className="h-3 w-3 text-yellow-500" />
-                  Konsultan {orang.lisensi} Level {orang.level}
+                  Konsultan Pajak &amp; Akuntansi
                 </p>
               </div>
 

@@ -16,14 +16,14 @@ export function LayananHero() {
           <span className="text-yellow-500">Finansial untuk Bisnis Anda</span>
         </>
       }
-      deskripsi="Mulai dari pelaporan SPT tahunan, pembukuan bulanan, hingga pendampingan audit dan pengurusan PKP. Dikelola langsung oleh konsultan pajak berizin resmi (BKP) dan berpengalaman menangani berbagai industri di Indonesia."
+      deskripsi="Mulai dari pelaporan SPT tahunan, pembukuan bulanan, hingga pendampingan audit dan pengurusan PKP. Dikelola langsung oleh tim konsultan pajak profesional dan berpengalaman menangani berbagai industri di Indonesia."
       tombolUtama={{
         label: "Konsultasi Gratis",
         href: tautanKonsultasiWhatsApp(undefined, "layanan-hero"),
         eksternal: true,
       }}
       tombolSekunder={{ label: "Eksplorasi Layanan", href: "#katalog-layanan" }}
-      bukti={["Pembukuan Sesuai SAK", "Konsultan Berizin Resmi"]}
+      bukti={["Pembukuan Sesuai SAK", "Konsultan Berpengalaman"]}
       gambar={{
         src: "/images/external/photo-1553877522-43269d4ea984.webp",
         alt: "Layanan Konsultan Pajak EasyTax",

@@ -300,6 +300,23 @@ async function main() {
     );
   }
   console.log(`· ${layananBeranda.length} layanan`);
+  /* Hapus layanan usang yang sudah tidak aktif (mis. restitusi-pajak). */
+  const slugLayananAktif = new Set(layananBeranda.map((l) => l.slug));
+  const layananLama = await PAYLOAD.find({
+    collection: "layanan",
+    limit: 100,
+    overrideAccess: true,
+  });
+  for (const d of layananLama.docs) {
+    if (!slugLayananAktif.has(d.slug)) {
+      await PAYLOAD.delete({
+        collection: "layanan",
+        id: d.id,
+        overrideAccess: true,
+      });
+      console.log(`- Hapus layanan usang: ${d.slug}`);
+    }
+  }
 
   /* Artikel. */
   for (const a of artikelBeranda) {

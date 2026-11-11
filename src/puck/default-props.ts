@@ -82,7 +82,7 @@ export const DEFAULT_MITRA = {
   lencana: "Mitra yang sudah percaya",
   judul: "Ribuan UMKM dan perusahaan mempercayakan pajaknya kepada EasyTax",
   deskripsi:
-    "Pembukuan, perizinan PKP, sampai pelaporan SPT, semuanya ditangani tenaga ahli berlisensi dengan proses yang aman dan terlacak.",
+    "Pembukuan, perizinan PKP, sampai pelaporan SPT, semuanya ditangani tenaga ahli profesional dengan proses yang aman dan terlacak.",
   jumlah: 24,
 };
 

@@ -25,6 +25,6 @@ export const faqBeranda: FaqLayanan[] = [
   {
     pertanyaan: "Layanan Perpajakan Apa Saja yang Ditawarkan oleh EasyTax?",
     jawaban:
-      "EasyTax menyediakan ragam layanan, meliputi Lapor SPT Tahunan (SPT Tahunan Pribadi dan Badan), Pengurusan PKP (pengukuhan PKP, aktivasi e-Faktur, sertifikat elektronik DJP, dan pembekalan teknis faktur pajak), Penyusunan Laporan Keuangan (membantu mengelola dan menyusun laporan keuangan serta pelaporan pajak tepat waktu), dan Restitusi Pajak (menyiapkan dokumen, memeriksa kelengkapan data, dan mendampingi proses pengajuan pengembalian kelebihan pembayaran pajak).",
+      "EasyTax menyediakan ragam layanan, meliputi Lapor SPT Tahunan (SPT Tahunan Pribadi dan Badan), Pengurusan PKP (pengukuhan PKP, sertifikat elektronik, dan aktivasi e-Faktur), Laporan Perpajakan & Keuangan Bulanan, Pencabutan NPWP Badan, Penonaktifan NPWP Pribadi, Pembuatan NPWP, serta Pengajuan Surat Pajak Badan.",
   },
 ];

@@ -55,152 +55,383 @@ const FAQ_SAMA: FaqLayanan[] = [
 
 export const detailLayanan: DetailLayanan[] = [
   {
-    slug: "restitusi-pajak",
+    slug: "pencabutan-npwp-badan",
     paket: [
       {
-        nama: "Paket Restitusi Basic",
+        nama: "Pencabutan NPWP Badan",
         deskripsi:
-          "Cocok untuk kebutuhan restitusi dengan dokumen dan transaksi yang relatif sederhana.",
-        harga: "Rp 2.500.000",
-        satuan: "/paket",
+          "Pengurusan pencabutan atau penghapusan NPWP Badan bagi perusahaan yang bubar atau tidak lagi beroperasi.",
+        harga: "Rp 500.000",
+        satuan: "/layanan",
         fitur: [
-          "Pemeriksaan kelengkapan dokumen",
-          "Review data perpajakan",
-          "Pendampingan persiapan pengajuan",
-          "Konsultasi dasar restitusi",
-        ],
-      },
-      {
-        nama: "Paket Restitusi Standard",
-        deskripsi:
-          "Pendampingan restitusi yang lebih menyeluruh untuk dokumen yang lebih kompleks.",
-        harga: "Rp 5.000.000",
-        satuan: "/paket",
-        fitur: [
-          "Review dokumen dan data perpajakan",
-          "Pemeriksaan transaksi terkait",
-          "Persiapan dokumen restitusi",
-          "Pendampingan proses pengajuan",
-          "Konsultasi selama proses",
-        ],
-      },
-      {
-        nama: "Paket Restitusi Professional",
-        deskripsi:
-          "Pemeriksaan dan dokumentasi yang lebih mendalam untuk proses restitusi.",
-        harga: "Rp 8.000.000",
-        satuan: "/paket",
-        fitur: [
-          "Review komprehensif dokumen perpajakan",
-          "Analisis data dan transaksi",
-          "Persiapan dokumen pendukung",
-          "Pendampingan proses restitusi",
-          "Konsultasi dan monitoring proses",
-        ],
-      },
-      {
-        nama: "Paket Restitusi Corporate",
-        deskripsi:
-          "Pendampingan end-to-end untuk volume dokumen yang besar dan kompleks.",
-        harga: "Rp 12.500.000",
-        satuan: "/paket",
-        fitur: [
-          "Review menyeluruh data perpajakan",
-          "Analisis dokumen dan transaksi",
-          "Persiapan dokumen pendukung",
-          "Pendampingan proses restitusi",
-          "Monitoring dan konsultasi intensif",
+          "Konsultasi persyaratan pencabutan NPWP Badan",
+          "Pemeriksaan kelengkapan dokumen pendukung",
+          "Pengecekan riwayat utang dan kewajiban pajak",
+          "Penyusunan surat permohonan penghapusan NPWP",
+          "Pengajuan resmi ke Kantor Pelayanan Pajak (KPP)",
+          "Monitoring proses pemeriksaan hingga SK terbit",
         ],
       },
     ],
     faq: [
       {
-        pertanyaan: "Apa itu Restitusi Pajak?",
+        pertanyaan: "Kapan badan usaha perlu mengajukan pencabutan NPWP?",
         jawaban:
-          "Restitusi pajak adalah hak wajib pajak untuk meminta kembali kelebihan uang pajak yang telanjur disetor atau dana yang sebenarnya tidak wajib dibayarkan. Pengembalian ini bisa diajukan untuk berbagai jenis pungutan seperti PPh, PPN, dan PPnBM, dan negara akan mengembalikan dana tersebut setelah Direktorat Jenderal Pajak (DJP) merampungkan proses pemeriksaan sesuai aturan yang berlaku.",
+          "Pencabutan NPWP Badan diajukan ketika perusahaan telah resmi dilikuidasi/dibubarkan, menghentikan seluruh kegiatan usaha secara permanen, atau mengalami penggabungan/peleburan usaha sehingga tidak lagi memenuhi syarat subjektif dan objektif sebagai wajib pajak.",
       },
       {
-        pertanyaan: "Apa itu Jasa Restitusi Pajak?",
+        pertanyaan: "Apa syarat utama pencabutan NPWP Badan?",
         jawaban:
-          "Jasa Restitusi Pajak adalah layanan yang membantu wajib pajak, baik perorangan maupun badan usaha, dalam mengurus proses pengajuan permohonan pengembalian (restitusi) atas kelebihan pembayaran pajak kepada negara. Seluruh proses administratif yang kompleks dan membutuhkan ketelitian tinggi ditangani langsung oleh tenaga ahli perpajakan.",
+          "Akta pembubaran badan usaha yang telah disahkan Kemenkumham, seluruh utang pajak telah dilunasi, dan SPT Tahunan masa pajak terakhir telah dilaporkan.",
       },
       {
-        pertanyaan: "Apa Penyebab Restitusi Pajak?",
+        pertanyaan: "Berapa lama proses pencabutan NPWP Badan?",
         jawaban:
-          "Restitusi pajak biasanya terjadi akibat kesalahan hitung atau potong saat pihak lain memotong, memungut, atau Anda salah menghitung besaran pajak di SPT; perusahaan mendapat fasilitas khusus berupa PPh atau PPN yang dibebaskan atau ditanggung pemerintah; kegiatan usaha tertentu dikenakan tarif pajak 0%; atau Anda menyetor pajak padahal sebenarnya tidak termasuk wajib pajak yang harus membayarnya.",
-      },
-      {
-        pertanyaan: "Siapa Saja yang Berhak Mengajukan Permohonan Restitusi Pajak?",
-        jawaban:
-          "Restitusi dapat diajukan oleh Wajib Pajak Orang Pribadi maupun Wajib Pajak Badan (perusahaan) yang mengalami kondisi kelebihan bayar pajak atau melakukan setoran pajak yang tidak terutang sesuai ketentuan perpajakan yang berlaku.",
-      },
-      {
-        pertanyaan:
-          "Berapa lama proses pengajuan restitusi sampai dicairkan?",
-        jawaban:
-          "Umumnya 1–3 bulan sejak pengajuan, tergantung proses verifikasi DJP. EasyTax menyiapkan dokumen secara lengkap agar verifikasi tidak berputar.",
+          "Sesuai regulasi DJP, proses pemeriksaan pencabutan NPWP Badan membutuhkan waktu maksimal 12 bulan sejak dokumen permohonan dinyatakan lengkap oleh KPP.",
       },
       ...FAQ_SAMA,
     ],
     seo: {
-      judul: "Jasa Restitusi Pajak PPH dan PPN - EasyTax",
+      judul: "Jasa Pencabutan NPWP Badan Resmi & Aman - EasyTax",
       deskripsi:
-        "Klaim kelebihan bayar pajak Anda dengan aman. EasyTax menyediakan jasa restitusi pajak profesional untuk membantu proses pendampingan hingga dana cair.",
+        "Layanan resmi pencabutan atau penghapusan NPWP Badan usaha mulai Rp 500.000. Dampingi proses administrasi hingga terbit Surat Keputusan Penghapusan NPWP dari KPP.",
+    },
+  },
+  {
+    slug: "penonaktifan-npwp-pribadi",
+    paket: [
+      {
+        nama: "Penonaktifan NPWP Pribadi",
+        deskripsi:
+          "Penetapan status Wajib Pajak Non-Efektif (NE) bagi orang pribadi agar terbebas dari kewajiban lapor SPT Tahunan.",
+        harga: "Rp 350.000",
+        satuan: "/layanan",
+        fitur: [
+          "Konsultasi kelayakan status Non-Efektif (NE)",
+          "Penyiapan formulir penetapan Wajib Pajak Non-Efektif",
+          "Validasi data NIK dan dokumen pendukung",
+          "Pengajuan permohonan ke KPP terdaftar",
+          "Bukti resmi penetapan status NPWP Non-Efektif",
+        ],
+      },
+    ],
+    faq: [
+      {
+        pertanyaan: "Siapa yang bisa mengajukan penonaktifan NPWP Pribadi (Non-Efektif)?",
+        jawaban:
+          "Wajib Pajak Orang Pribadi yang tidak lagi menjalankan usaha atau pekerjaan bebas, berpenghasilan di bawah Penghasilan Tidak Kena Pajak (PTKP), atau bertempat tinggal/bekerja di luar negeri lebih dari 183 hari dalam setahun.",
+      },
+      {
+        pertanyaan: "Apakah status Non-Efektif sama dengan penghapusan NPWP?",
+        jawaban:
+          "Berbeda. Status Non-Efektif (NE) membuat NPWP Anda tidak aktif sehingga tidak wajib lapor SPT dan tidak terkena sanksi denda, namun nomor NPWP tetap tersimpan dan dapat diaktifkan kembali jika Anda mulai berpenghasilan di kemudian hari.",
+      },
+      {
+        pertanyaan: "Berapa lama proses penetapan NPWP Non-Efektif?",
+        jawaban:
+          "Umumnya selesai dalam 5–10 hari kerja setelah seluruh dokumen persyaratan permohonan dinyatakan lengkap oleh KPP.",
+      },
+      ...FAQ_SAMA,
+    ],
+    seo: {
+      judul: "Jasa Penonaktifan NPWP Pribadi (Non-Efektif) - EasyTax",
+      deskripsi:
+        "Urus penetapan status NPWP Non-Efektif (NE) Pribadi mulai Rp 350.000. Bebas denda dan kewajiban lapor SPT Tahunan secara resmi.",
+    },
+  },
+  {
+    slug: "pembuatan-npwp-badan",
+    paket: [
+      {
+        nama: "Pembuatan NPWP Badan",
+        deskripsi:
+          "Pendaftaran Nomor Pokok Wajib Pajak baru untuk badan usaha (PT, CV, Yayasan, Koperasi) resmi DJP.",
+        harga: "Hubungi Kami",
+        satuan: "",
+        fitur: [
+          "Konsultasi penentuan Klasifikasi Lapangan Usaha (KLU)",
+          "Verifikasi akta pendirian dan SK Kemenkumham",
+          "Pendaftaran online melalui sistem resmi DJP",
+          "Penerbitan NPWP Badan dan Surat Keterangan Terdaftar (SKT)",
+          "Panduan aktivasi akun pajak badan usaha",
+        ],
+      },
+    ],
+    faq: [
+      {
+        pertanyaan: "Dokumen apa saja yang dibutuhkan untuk membuat NPWP Badan?",
+        jawaban:
+          "Akta pendirian dan SK Kemenkumham, NPWP dan KTP penanggung jawab/direktur utama, serta dokumen alamat domisili atau legalitas usaha.",
+      },
+      {
+        pertanyaan: "Berapa lama pembuatan NPWP Badan?",
+        jawaban:
+          "Proses pendaftaran melalui EasyTax selesai dalam 1–3 hari kerja setelah dokumen legalitas lengkap.",
+      },
+      ...FAQ_SAMA,
+    ],
+    seo: {
+      judul: "Jasa Pembuatan NPWP Badan PT, CV & Yayasan - EasyTax",
+      deskripsi:
+        "Bantu pendaftaran dan pembuatan NPWP Badan usaha baru cepat, praktis, dan terdaftar resmi di DJP bersama EasyTax.",
+    },
+  },
+  {
+    slug: "pembuatan-npwp-pribadi",
+    paket: [
+      {
+        nama: "Pembuatan NPWP Pribadi",
+        deskripsi:
+          "Pendaftaran NPWP baru untuk karyawan, profesional, dan pengusaha perorangan.",
+        harga: "Hubungi Kami",
+        satuan: "",
+        fitur: [
+          "Konsultasi kategori wajib pajak dan status PTKP",
+          "Validasi data NIK dan data kependudukan",
+          "Pendaftaran online ke sistem DJP",
+          "Penerbitan NPWP elektronik resmi",
+          "Panduan kewajiban perpajakan awal",
+        ],
+      },
+    ],
+    faq: [
+      {
+        pertanyaan: "Siapa saja yang wajib memiliki NPWP Pribadi?",
+        jawaban:
+          "Setiap orang pribadi yang memperoleh penghasilan di atas PTKP (Penghasilan Tidak Kena Pajak) atau menjalankan usaha/pekerjaan bebas di Indonesia.",
+      },
+      {
+        pertanyaan: "Apakah NPWP Pribadi sudah terintegrasi dengan NIK?",
+        jawaban:
+          "Ya, sejak diberlakukannya sistem perpajakan terbaru, NIK 16 digit telah dipadankan sebagai NPWP Orang Pribadi penduduk Indonesia.",
+      },
+      ...FAQ_SAMA,
+    ],
+    seo: {
+      judul: "Jasa Pembuatan NPWP Pribadi Cepat & Bebas Ribet - EasyTax",
+      deskripsi:
+        "Layanan pendaftaran NPWP Orang Pribadi baru untuk kebutuhan kerja, perbankan, dan usaha. Praktis tanpa antre di kantor pajak.",
+    },
+  },
+  {
+    slug: "pengajuan-surat-pajak-badan",
+    paket: [
+      {
+        nama: "Pengajuan Surat Pajak Badan",
+        deskripsi:
+          "Pengurusan surat keterangan dan administrasi perpajakan resmi ke Kantor Pelayanan Pajak (KPP).",
+        harga: "Hubungi Kami",
+        satuan: "",
+        fitur: [
+          "Konsultasi kebutuhan surat keterangan perpajakan",
+          "Review kepatuhan perpajakan sebelum permohonan",
+          "Penyusunan berkas permohonan resmi",
+          "Pengajuan Surat Keterangan Fiskal (SKF) / SKB",
+          "Pendampingan korespondensi administrasi di KPP",
+        ],
+      },
+    ],
+    faq: [
+      {
+        pertanyaan: "Surat keterangan pajak apa saja yang bisa diurus?",
+        jawaban:
+          "EasyTax membantu pengurusan Surat Keterangan Fiskal (SKF) untuk tender/proyek pemerintah, Surat Keterangan Bebas (SKB) pemotongan/pemungutan PPh, permohonan pemindahbukuan (Pbk), dan surat permohonan administrasi perpajakan lainnya.",
+      },
+      {
+        pertanyaan: "Berapa lama proses pengajuan surat keterangan pajak?",
+        jawaban:
+          "Tergantung jenis permohonan; SKF umumnya 3–5 hari kerja, sedangkan surat permohonan khusus lainnya mengikuti standar operasional KPP.",
+      },
+      ...FAQ_SAMA,
+    ],
+    seo: {
+      judul: "Jasa Pengajuan Surat Pajak Badan & SKF Resmi - EasyTax",
+      deskripsi:
+        "Layanan pengurusan Surat Keterangan Fiskal (SKF), SKB, dan surat administrasi pajak badan usaha terpercaya bersama EasyTax.",
     },
   },
   {
     slug: "laporan-spt",
     paket: [
       {
-        nama: "SPT Tahunan Badan",
-        deskripsi:
-          "Penyusunan dan e-Filing SPT Tahunan PPh Pasal 1771 untuk badan usaha.",
-        harga: "Rp 1.750.000",
+        nama: "SPT Badan — 0 / Tidak Beroperasi",
+        deskripsi: "SPT Tahunan PPh Badan bagi badan usaha yang belum/tidak beroperasi.",
+        harga: "Rp 499.000",
         satuan: "/tahun",
         fitur: [
-          "Pemeriksaan pembukuan dan bukti potong",
-          "Penyusunan lampiran SPT",
-          "e-Filing SPT Tahunan Badan",
-          "Bukti lapor resmi dari DJP",
+          "Penyusunan Laporan Laba Rugi dan Neraca",
+          "Penyusunan Draft SPT Tahunan PPh Badan",
+          "Pembuatan Kode Billing PPh Tahunan (status kurang bayar)",
+          "Submit SPT Tahunan PPh Badan resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
         ],
       },
       {
-        nama: "SPT Orang Pribadi",
-        deskripsi:
-          "Penghitungan dan pelaporan pajak penghasilan pribadi yearly.",
-        harga: "Rp 750.000",
+        nama: "SPT Pribadi — 0 / Tidak Beroperasi",
+        deskripsi: "SPT Tahunan Orang Pribadi bagi yang tidak memiliki omzet/penghasilan aktif.",
+        harga: "Rp 449.000",
         satuan: "/tahun",
         fitur: [
-          "Rekapitulasi penghasilan dan potongan",
-          "Penghitungan pajak terutang",
-          "Pelaporan SPT Orang Pribadi",
-          "Konsultasi satu kali",
+          "Penyusunan Draft SPT Tahunan PPh Pribadi",
+          "Pembuatan Kode Billing PPh Tahunan (status kurang bayar)",
+          "Submit SPT Tahunan PPh Pribadi resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
         ],
       },
       {
-        nama: "e-Filing & Pendampingan",
-        deskripsi:
-          "Pendampingan e-Filing lengkap dengan pemeriksaan sebelum pelaporan.",
-        harga: "Rp 2.500.000",
+        nama: "SPT Badan — Omzet Rp 0 – 600 Jt",
+        deskripsi: "Penyusunan dan pelaporan SPT Tahunan Badan dengan omzet s.d. Rp 600 juta/bulan.",
+        harga: "Rp 1.499.000",
         satuan: "/tahun",
         fitur: [
-          "Verifikasi dan rekonsiliasi data",
-          "Pendampingan.input pelaporan",
-          "Pemeriksaan hasil e-Filing",
-          "Simulasi risiko koreksi fiskal",
+          "Penyusunan Laporan Laba Rugi dan Neraca",
+          "Penyusunan Draft SPT Tahunan PPh Badan",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Badan resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
         ],
       },
       {
-        nama: "Paket Lengkap Setahun",
-        deskripsi:
-          "SPT Tahunan plus laporan bulanan dan pendampingan sepanjang tahun.",
-        harga: "Rp 4.500.000",
+        nama: "SPT Pribadi — Omzet Rp 0 – 600 Jt",
+        deskripsi: "Pelaporan SPT Tahunan Orang Pribadi / Usahawan omzet s.d. Rp 600 juta/bulan.",
+        harga: "Rp 1.349.000",
         satuan: "/tahun",
         fitur: [
-          "SPT Tahunan dan laporan bulanan",
-          "Laporan neraca dan laba rugi",
-          "Pendampingan pemeriksaan KPP",
-          "Konsultasi tanpa batas",
+          "Penyusunan Draft SPT Tahunan PPh Pribadi",
+          "Perhitungan PPh Final UMKM / Tarif Umum",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Pribadi resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Badan — Omzet Rp 600 Jt – 1,2 M",
+        deskripsi: "SPT Tahunan Badan usaha omzet Rp 600 juta s.d. Rp 1,2 miliar/bulan.",
+        harga: "Rp 1.999.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Laporan Laba Rugi dan Neraca",
+          "Penyusunan Draft SPT Tahunan PPh Badan",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Badan resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Pribadi — Omzet Rp 600 Jt – 1,2 M",
+        deskripsi: "SPT Tahunan Pribadi usahawan/profesional omzet Rp 600 juta s.d. Rp 1,2 miliar/bulan.",
+        harga: "Rp 1.799.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Draft SPT Tahunan PPh Pribadi",
+          "Perhitungan Pajak Terutang & Kredit Pajak",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Pribadi resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Badan — Omzet Rp 1,2 M – 2,4 M",
+        deskripsi: "SPT Tahunan Badan usaha omzet Rp 1,2 miliar s.d. Rp 2,4 miliar/bulan.",
+        harga: "Rp 2.499.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Laporan Laba Rugi dan Neraca",
+          "Penyusunan Draft SPT Tahunan PPh Badan",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Badan resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Pribadi — Omzet Rp 1,2 M – 2,4 M",
+        deskripsi: "SPT Tahunan Orang Pribadi omzet Rp 1,2 miliar s.d. Rp 2,4 miliar/bulan.",
+        harga: "Rp 2.249.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Draft SPT Tahunan PPh Pribadi",
+          "Perhitungan Pajak Terutang & Lampiran Harta",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Pribadi resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Badan — Omzet Rp 2,4 M – 3,6 M",
+        deskripsi: "SPT Tahunan Badan usaha omzet Rp 2,4 miliar s.d. Rp 3,6 miliar/bulan.",
+        harga: "Rp 2.999.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Laporan Laba Rugi dan Neraca",
+          "Penyusunan Draft SPT Tahunan PPh Badan",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Badan resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Pribadi — Omzet Rp 2,4 M – 3,6 M",
+        deskripsi: "SPT Tahunan Orang Pribadi omzet Rp 2,4 miliar s.d. Rp 3,6 miliar/bulan.",
+        harga: "Rp 2.699.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Draft SPT Tahunan PPh Pribadi",
+          "Perhitungan Komprehensif Pajak Terutang",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Pribadi resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Badan — Omzet Rp 3,6 M – 4,8 M",
+        deskripsi: "SPT Tahunan Badan usaha omzet Rp 3,6 miliar s.d. Rp 4,8 miliar/bulan.",
+        harga: "Rp 3.499.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Laporan Laba Rugi dan Neraca",
+          "Penyusunan Draft SPT Tahunan PPh Badan",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Badan resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Pribadi — Omzet Rp 3,6 M – 4,8 M",
+        deskripsi: "SPT Tahunan Orang Pribadi omzet Rp 3,6 miliar s.d. Rp 4,8 miliar/bulan.",
+        harga: "Rp 3.149.000",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Draft SPT Tahunan PPh Pribadi",
+          "Perhitungan Pajak Terutang & Rekonsiliasi",
+          "Pembuatan Kode Billing PPh Tahunan",
+          "Submit SPT Tahunan PPh Pribadi resmi DJP",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Badan — Omzet > 4,8 Miliar",
+        deskripsi: "SPT Tahunan Badan usaha omzet skala besar di atas Rp 4,8 miliar/bulan.",
+        harga: "Negotiable",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Laporan Keuangan Lengkap",
+          "Rekonsiliasi Fiskal Komprehensif",
+          "Penyusunan & Submit SPT 1771 Badan",
+          "Dedicated Tax Consultant",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
+        ],
+      },
+      {
+        nama: "SPT Pribadi — Omzet > 4,8 Miliar",
+        deskripsi: "SPT Tahunan Orang Pribadi High Net Worth / omzet di atas Rp 4,8 miliar/bulan.",
+        harga: "Negotiable",
+        satuan: "/tahun",
+        fitur: [
+          "Penyusunan Draft SPT 1770 / 1770 S",
+          "Review Portofolio Harta & Investasi",
+          "Pembuatan Kode Billing & Submit DJP",
+          "Dedicated Tax Advisor",
+          "[GRATIS] Revisi SPT Tahunan PPh 1 kali setahun",
         ],
       },
     ],
@@ -242,53 +473,43 @@ export const detailLayanan: DetailLayanan[] = [
     slug: "pengurusan-pkp",
     paket: [
       {
-        nama: "Pengurusan PKP Dasar",
-        deskripsi: "Pendampingan pengukuhan untuk usaha dengan omzet sederhana.",
-        harga: "Rp 1.500.000",
-        satuan: "/paket",
-        fitur: [
-          "Pendampingan pengisian formulir",
-          "Verifikasi kelengkapan dokumen",
-          "Panduan survei lokasi KPP",
-          "Pendampingan aktivasi e-Faktur",
-        ],
-      },
-      {
-        nama: "Pengurusan PKP Lengkap",
+        nama: "PKP Pulau Jawa",
         deskripsi:
-          "Proses sampai PKP aktif beserta e-Faktur dan sertifikat elektronik.",
-        harga: "Rp 2.500.000",
+          "Pendaftaran PKP untuk wilayah Pulau Jawa tanpa tambahan biaya apapun (harga coret Rp 3.000.000).",
+        harga: "Rp 1.499.000",
         satuan: "/paket",
         fitur: [
-          "Seluruh paperwork pengukuhan",
-          "Pendampingan survei lokasi",
-          "Aktivasi akun e-Faktur",
-          "Penerbitan sertifikat elektronik",
-          "Pelatihan pembekalan faktur pajak",
+          "Konsultasi tentang PKP / PPN",
+          "Pengecekan status wajib pajak",
+          "Pendaftaran PKP resmi DJP",
+          "Persiapan & korespondensi survei PKP",
+          "Pendampingan sertifikat elektronik",
+          "Aktivasi e-Faktur",
+          "Bonus Kupon Undian iPhone",
+          "Bonus Dokumen Kontrak Bisnis",
+          "Bonus Dokumen SOP Karyawan",
+          "Bonus Dokumen SOP Perusahaan",
+          "Bonus Voucher EasyLegal Rp 250.000",
         ],
       },
       {
-        nama: "PKP Plus Pembukuan",
-        deskripsi: "PKP aktif sekaligus penjadwalan pembukuan bulanan.",
-        harga: "Rp 4.000.000",
+        nama: "PKP Luar Jawa",
+        deskripsi:
+          "Pendaftaran PKP untuk wilayah Luar Pulau Jawa tanpa tambahan biaya apapun (harga coret Rp 4.000.000).",
+        harga: "Rp 1.999.000",
         satuan: "/paket",
         fitur: [
-          "Pengurusan PKP sampai aktif",
-          "Pembukuan bulanan 12 bulan",
-          "Penyusunan laporan pajak bulanan",
-          "Rekonsiliasi faktur dan pembelian",
-        ],
-      },
-      {
-        nama: "PKP Korporat",
-        deskripsi: "Pendampingan penuh untuk perusahaan multi-cabang.",
-        harga: "Rp 6.000.000",
-        satuan: "/paket",
-        fitur: [
-          "Pengurusan PKP untuk seluruh outlet",
-          "Standardisasi sistem faktur pajak",
-          "Pelatihan tim internal",
-          "Pendampingan satu tahun",
+          "Konsultasi tentang PKP / PPN",
+          "Pengecekan status wajib pajak",
+          "Pendaftaran PKP resmi DJP",
+          "Persiapan & korespondensi survei PKP",
+          "Pendampingan sertifikat elektronik",
+          "Aktivasi e-Faktur",
+          "Bonus Kupon Undian iPhone",
+          "Bonus Dokumen Kontrak Bisnis",
+          "Bonus Dokumen SOP Karyawan",
+          "Bonus Dokumen SOP Perusahaan",
+          "Bonus Voucher EasyLegal Rp 250.000",
         ],
       },
     ],

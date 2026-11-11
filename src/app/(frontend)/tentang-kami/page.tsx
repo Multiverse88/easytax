@@ -10,12 +10,12 @@ import { TimKonsultan } from "@/components/sections/TimKonsultan";
 export const metadata: Metadata = {
   title: "Tentang EasyTax | Konsultan Pajak Profesional",
   description:
-    "Kenali EasyTax: tim konsultan pajak bersertifikat yang membantu bisnis di Indonesia tumbuh dengan tata kelola pajak dan keuangan yang rapi.",
+    "Kenali EasyTax: tim konsultan pajak profesional yang membantu bisnis di Indonesia tumbuh dengan tata kelola pajak dan keuangan yang rapi.",
   alternates: { canonical: "/tentang-kami" },
   openGraph: {
     title: "Tentang EasyTax | Konsultan Pajak Profesional",
     description:
-      "Tim konsultan pajak bersertifikat yang membantu bisnis tumbuh dengan tata kelola pajak dan keuangan yang rapi.",
+      "Tim konsultan pajak profesional yang membantu bisnis tumbuh dengan tata kelola pajak dan keuangan yang rapi.",
     type: "website",
     locale: "id_ID",
     siteName: "EasyTax",

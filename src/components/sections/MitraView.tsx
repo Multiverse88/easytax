@@ -21,7 +21,7 @@ function ulangi(items: { nama: string; src: string }[]) {
 const FAKTA = [
   { nilai: "97%", label: "Kepuasan Klien" },
   { nilai: "< 1 jam", label: "respons konsultan" },
-  { nilai: "BKP & IAPI", label: "sertifikasi konsultan" },
+  { nilai: "Dedicated", label: "konsultan perpajakan" },
 ];
 
 export function MitraView({
@@ -38,7 +38,7 @@ export function MitraView({
     "Ribuan UMKM dan perusahaan mempercayakan pajaknya kepada EasyTax";
   const deskripsi =
     desain?.deskripsi ??
-    "Pembukuan, perizinan PKP, sampai pelaporan SPT, semuanya ditangani tenaga ahli berlisensi dengan proses yang aman dan terlacak.";
+    "Pembukuan, perizinan PKP, sampai pelaporan SPT, semuanya ditangani tenaga ahli profesional dengan proses yang aman dan terlacak.";
   return (
     <section
       id="mitra"

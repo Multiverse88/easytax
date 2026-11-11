@@ -10,7 +10,7 @@ const FAKTA = [
   },
   {
     nilai: "20+",
-    label: "Konsultan dengan sertifikasi BKP",
+    label: "Konsultan pajak & akuntansi berpengalaman",
     ikon: <Perisai className="h-5 w-5" />,
   },
   {
@@ -31,8 +31,8 @@ const NILAI = [
     isi: "Rincian lingkup pekerjaan dan biaya ditulis di proposal sebelum mulai. Tidak ada biaya tersembunyi yang muncul di tengah jalan.",
   },
   {
-    judul: "Tenaga berlisensi",
-    isi: "Setiap pekerjaan ditangani konsultan bersertifikat BKP dengan pengalaman di bidangnya, bukan sekadar berkas yang diunggah ke sistem.",
+    judul: "Tenaga profesional",
+    isi: "Setiap pekerjaan ditangani konsultan berpengalaman di bidangnya, bukan sekadar berkas yang diunggah ke sistem.",
   },
   {
     judul: "Kerja sama jangka panjang",

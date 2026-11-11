@@ -6,12 +6,12 @@ import { CTA } from "@/components/sections/CTA";
 export const metadata: Metadata = {
   title: "Tim Konsultan | EasyTax",
   description:
-    "Tim konsultan pajak dan akuntan bersertifikat EasyTax yang siap membantu kebutuhan perpajakan dan keuangan bisnis Anda.",
+    "Tim konsultan pajak dan akuntan EasyTax yang siap membantu kebutuhan perpajakan dan keuangan bisnis Anda.",
   alternates: { canonical: "/tim" },
   openGraph: {
     title: "Tim Konsultan | EasyTax",
     description:
-      "Tim konsultan pajak dan akuntan bersertifikat EasyTax yang siap membantu bisnis Anda.",
+      "Tim konsultan pajak dan akuntan EasyTax yang siap membantu bisnis Anda.",
     type: "website",
     locale: "id_ID",
     siteName: "EasyTax",

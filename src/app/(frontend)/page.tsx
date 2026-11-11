@@ -20,7 +20,7 @@ import { faqBeranda } from "@/data/faq-beranda";
 export const metadata: Metadata = {
   title: "Jasa Konsultan Pajak Dan Akuntansi Untuk Bisnis - EasyTax",
   description:
-    "Jasa konsultan pajak dan akuntansi terpercaya untuk UMKM dan perusahaan di Indonesia. Pelaporan SPT, pembukuan, pengurusan PKP, restitusi, dan pendampingan audit.",
+    "Jasa konsultan pajak dan akuntansi terpercaya untuk UMKM dan perusahaan di Indonesia. Pelaporan SPT, pembukuan bulanan, pengurusan PKP, dan kepatuhan perpajakan.",
   alternates: { canonical: "/", languages: { id: "/" } },
   openGraph: {
     title: "Jasa Konsultan Pajak Dan Akuntansi Untuk Bisnis - EasyTax",

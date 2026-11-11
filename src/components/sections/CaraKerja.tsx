@@ -23,7 +23,7 @@ const LANGKAH = [
   {
     judul: "Proses",
     deskripsi:
-      "Dokumen Anda diperiksa dan dikerjakan oleh tenaga ahli berlisensi.",
+      "Dokumen Anda diperiksa dan dikerjakan oleh tenaga ahli profesional.",
     ikon: <Jam className="h-5 w-5" />,
   },
   {

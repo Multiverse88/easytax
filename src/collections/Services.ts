@@ -55,7 +55,7 @@ export const Services: CollectionConfig = {
       index: true,
       admin: {
         position: "sidebar",
-        description: "Alamat URL, mis. restitusi-pajak. Ubah dengan hati-hati.",
+        description: "Alamat URL, mis. laporan-spt. Ubah dengan hati-hati.",
       },
     },
     {

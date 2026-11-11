@@ -24,7 +24,7 @@ const ALASAN = [
   {
     judul: "Ahli Pajak Profesional",
     deskripsi:
-      "Ditangani oleh tenaga ahli berlisensi yang memiliki pemahaman mendalam tentang peraturan perpajakan nasional dan internasional.",
+      "Ditangani oleh tenaga ahli profesional yang memiliki pemahaman mendalam tentang peraturan perpajakan nasional dan internasional.",
     ikon: <Centang className="h-5 w-5" />,
     gelap: true,
     bukti: false,

@@ -26,7 +26,7 @@ export function TentangHero() {
       }}
       tombolSekunder={{ label: "Lihat Tim", href: "#tim" }}
       bukti={[
-        "Konsultan Bersertifikat BKP",
+        "Konsultan Berpengalaman",
         "Pembukuan Sesuai Standar Akuntansi",
       ]}
       gambar={{
@@ -36,7 +36,7 @@ export function TentangHero() {
       kartu={[
         {
           nilai: "20+",
-          label: "Konsultan BKP",
+          label: "Konsultan Pajak",
           ikon: <Pengguna className="h-5 w-5" />,
           posisi: "kiri-atas",
         },

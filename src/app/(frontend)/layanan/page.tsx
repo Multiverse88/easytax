@@ -14,12 +14,12 @@ import { ambilLayanan } from "@/cms/konten";
 export const metadata: Metadata = {
   title: "Layanan Perpajakan & Akuntansi | EasyTax",
   description:
-    "Layanan perpajakan dan akuntansi EasyTax: pelaporan SPT, pembukuan, pengurusan PKP, restitusi pajak, dan pendampingan audit.",
+    "Layanan perpajakan dan akuntansi EasyTax: pelaporan SPT, pembukuan bulanan, pengurusan PKP, layanan NPWP, dan pengajuan surat pajak badan.",
   alternates: { canonical: "/layanan" },
   openGraph: {
     title: "Layanan Perpajakan & Akuntansi | EasyTax",
     description:
-      "Pelaporan SPT, pembukuan, pengurusan PKP, restitusi pajak, dan pendampingan audit.",
+      "Pelaporan SPT, pembukuan bulanan, pengurusan PKP, layanan NPWP, dan pengajuan surat pajak badan.",
     type: "website",
     locale: "id_ID",
     siteName: "EasyTax",

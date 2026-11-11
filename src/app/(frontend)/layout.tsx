@@ -24,8 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://easytax.id";
   const judul = "EasyTax | Konsultan Pajak & Akuntansi untuk Bisnis";
   const deskripsi =
-    "Jasa konsultan pajak dan akuntansi terpercaya untuk UMKM dan perusahaan di Indonesia. Pelaporan SPT, pembukuan, PKP, restitusi, dan pendampingan audit.";
-
+    "Jasa konsultan pajak dan akuntansi terpercaya untuk UMKM dan perusahaan di Indonesia. Pelaporan SPT, pembukuan bulanan, PKP, dan kepatuhan perpajakan.";
   return {
     metadataBase: new URL(siteUrl),
     title: { default: judul, absolute: judul },
