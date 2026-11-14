@@ -15,15 +15,16 @@ export interface Kantor {
 
 export const kantor: Kantor[] = [
   {
-    nama: "Kantor Pusat Jakarta",
+    nama: "EasyBuilding",
     label: "Kantor Pusat",
-    alamat: "Jl. TB Simatupang No. 36, Cilandak, Jakarta Selatan 12430",
+    alamat:
+      "EasyBuilding, Jl. Cihampelas No. 201A, Cipaganti, Coblong, Kota Bandung, Jawa Barat 40131",
     telepon: "021-2940-0153",
     whatsapp: "+62 811-1920-0080",
     email: "info@easytax.id",
     gambar:
       "/images/external/photo-1486406146926-c627a92ad1ab.webp",
-    peta: "https://maps.google.com/?q=Jl.+TB+Simatupang+No.36+Cilandak+Jakarta+Selatan",
+    peta: "https://maps.google.com/?q=EasyBuilding+Jl.+Cihampelas+No.+201A+Cipaganti+Coblong+Kota+Bandung+Jawa+Barat+40131",
   },
 ];
 

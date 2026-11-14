@@ -35,7 +35,7 @@ export function LokasiKantorView({
             id="lokasi-judul"
             className="mt-6 max-w-[560px] font-heading text-[clamp(1.7rem,3vw,2.35rem)] leading-[1.2] font-bold tracking-[-0.03em] text-navy-900 text-balance"
           >
-            Kunjungi kantor kami di Cilandak, Jakarta Selatan
+            Kunjungi kantor kami di EasyBuilding, Kota Bandung
           </h2>
 
           <p className="mt-4 max-w-[560px] text-[0.95rem] leading-[1.7] text-teks-sekunder">

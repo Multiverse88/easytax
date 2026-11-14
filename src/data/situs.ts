@@ -13,7 +13,7 @@ export const situs = {
   kontak: {
     telepon: "+62 811-1920-0080",
     email: "info@easytax.id",
-    alamat: "Jl. TB Simatupang No. 36, Cilandak, Jakarta Selatan 12430",
+    alamat: "EasyBuilding, Jl. Cihampelas No. 201A, Cipaganti, Coblong, Kota Bandung, Jawa Barat 40131",
   },
 } as const;
 

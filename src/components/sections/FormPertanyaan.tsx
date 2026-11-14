@@ -223,7 +223,7 @@ export function FormPertanyaan({
               </div>
 
               <p className="mt-3 text-[0.9rem] leading-[1.65] text-teks-sekunder">
-                Jakarta, Indonesia — Melayani pengusaha &amp; perusahaan di
+                Bandung, Indonesia — Melayani pengusaha &amp; perusahaan di
                 seluruh Indonesia 100% online secara cepat &amp; terproteksi.
               </p>
 
