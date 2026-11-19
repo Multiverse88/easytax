@@ -35,6 +35,7 @@ const nextConfig: NextConfig = {
   // URL lama diarahkan permanen ke URL kanonis agar trafik dan indeks mesin
   // pencari tidak berakhir di halaman 404 atau konten duplikat.
   async redirects() {
+    const slugTarifPpnLama = "tarif-ppn-2026-terbaru-besaran-ketentuan-dan-cara-menghitung";
     const artikelLamaSlugs = [
       "apa-yang-dimaksud-dengan-pengusaha-kena-pajak",
       "pengertian-nomor-pengukuhan-pkp-nppkp",
@@ -56,12 +57,16 @@ const nextConfig: NextConfig = {
       "pengusaha-wajib-bayar-pajak-ini-penjelasan-lengkapnya",
       "tarif-pph-21-terbaru-berapa-potongan-gaji-anda",
       "pmk-37-tahun-2025-berlaku-dampaknya-bagi-seller-marketplace",
-      "tarif-ppn-2026-terbaru-besaran-ketentuan-dan-cara-menghitung",
       "jenis-jenis-npwp-di-indonesia-kenali-perbedaannya",
       "pengertian-spt-bulanan-panduan-lengkap-bagi-anda",
     ];
 
     return [
+      ...["", "/artikel", "/tulisan-pajak"].map((prefix) => ({
+        source: `${prefix}/${slugTarifPpnLama}`,
+        destination: "/artikel/tarif-ppn",
+        permanent: true,
+      })),
       { source: "/tulisan-pajak", destination: "/artikel", permanent: true },
       {
         source: "/tulisan-pajak/:slug*",

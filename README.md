@@ -117,6 +117,14 @@ Form `/admin/collections/artikel` memakai editor rich text Lexical native Payloa
 CMS (paragraf, heading H2–H4, format teks, kutipan, daftar nomor/butir, dan gambar
 dari koleksi Media). Halaman publik `/tulisan-pajak/[slug]` langsung merender
 dokumen Lexical dengan daftar isi (TOC) otomatis dari heading H2/H3.
+
+URL artikel tarif PPN memakai slug tanpa tahun, `/artikel/tarif-ppn`.
+URL lama bertahun 2026, termasuk jalur `/tulisan-pajak/` dan jalur root,
+diarahkan permanen 308 ke URL tersebut. Pembaruan artikel tahun berikutnya
+tetap memakai slug yang sama; isi dan tanggal terbit dikelola melalui CMS.
+Judul SEO serta deskripsi halaman layanan dikelola melalui grup **SEO** di CMS,
+termasuk metadata layanan Pengurusan PKP dan Laporan SPT.
+
 ### Menjalankan Payload CLI di Node 26
 
 Node 26 sudah mengeksekusi TypeScript secara native, jadi CLI Payload

@@ -464,9 +464,9 @@ export const detailLayanan: DetailLayanan[] = [
       ...FAQ_SAMA,
     ],
     seo: {
-      judul: "Jasa Lapor SPT Tahunan Badan/Pribadi - Easytax",
+      judul: "Jasa Lapor SPT Tahunan Badan dan Pribadi",
       deskripsi:
-        "Jasa lapor SPT Tahunan Badan atau Pribadi melalui Coretax bersama tim berpengalaman EasyTax. Dari konsultasi, penyusunan, perhitungan, hingga pelaporan kami siap membantu Anda.",
+        "Bingung cara mengisi e-Filing? Gunakan Jasa Lapor SPT EasyaTax. Terima beres tanpa pusing aturan pajak, data terjamin aman, dan gratis konsultasi!",
     },
   },
   {
@@ -547,9 +547,9 @@ export const detailLayanan: DetailLayanan[] = [
       ...FAQ_SAMA,
     ],
     seo: {
-      judul: "Jasa Pengurusan PKP Resmi dan Cepat - EasyTax",
+      judul: "Jasa Pengurusan PKP (Pengusaha Kena Pajak)",
       deskripsi:
-        "Bantu bisnis Anda berkembang dengan jasa pengurusan PKP resmi & cepat dari EasyTax. Proses praktis, syarat mudah, dan didampingi tim ahli berpengalaman.",
+        "Butuh status Pengusaha Kena Pajak segera? Gunakan Jasa Pengurusan PKP dari EasyaTax. Proses cepat, syarat dibantu lengkap, dan pendampingan hingga terbit!",
     },
   },
   {

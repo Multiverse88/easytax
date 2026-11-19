@@ -183,7 +183,7 @@ export const artikelLama: ArtikelBeranda[] = [
     "gambar": "/images/artikel/pmk-37-tahun-2025-berlaku-dampaknya-bagi-seller-marketplace.webp"
   },
   {
-    "slug": "tarif-ppn-2026-terbaru-besaran-ketentuan-dan-cara-menghitung",
+    "slug": "tarif-ppn",
     "judul": "Tarif PPN 2026 Terbaru: Besaran, Ketentuan, dan Cara Menghitung",
     "ringkasan": "Saat membeli barang atau menggunakan jasa, Anda mungkin sering melihat tambahanPPNpada struk pembayaran atau invoice. Namun, masih banyak yang bertanya,berapa sebenarnya tarif PPN yang...",
     "kategori": "Pajak",
@@ -2728,7 +2728,7 @@ export const artikelDetailLamaWP: Array<{ slug: string; penulis: string; tags: s
     ]
   },
   {
-    "slug": "tarif-ppn-2026-terbaru-besaran-ketentuan-dan-cara-menghitung",
+    "slug": "tarif-ppn",
     "penulis": "Tim Konsultan EasyTax",
     "tags": [
       "kewajiban pengusaha kena pajak",
