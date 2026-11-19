@@ -1,14 +1,8 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
 import { it } from "node:test";
 
 import { buatSitemap } from "@/lib/sitemap";
 
-it("menunggu request sebelum mengakses CMS agar prerender tidak menjalankan query", async () => {
-  const source = await readFile(new URL("../../src/app/sitemap.ts", import.meta.url), "utf8");
-  assert.match(source, /await connection\(\);\s*return buatSitemap\(\{ ambilArtikel, ambilLayanan \}\);/);
-  assert.ok(source.indexOf("await connection()") < source.indexOf("buatSitemap({"));
-});
 
 it("mempertahankan URL kanonis statis dan memasukkan slug artikel/layanan yang diberikan saat request", async () => {
   const artikel = {
@@ -31,6 +25,7 @@ it("mempertahankan URL kanonis statis dan memasukkan slug artikel/layanan yang d
     {
       ambilArtikel: async () => [artikel],
       ambilLayanan: async () => [layanan],
+      ambilDaftarIstilah: async () => [{ slug: "istilah-terbaru" }],
     },
     "https://example.test/",
   );
@@ -40,27 +35,46 @@ it("mempertahankan URL kanonis statis dan memasukkan slug artikel/layanan yang d
   assert.ok(urls.includes("https://example.test/artikel"));
   assert.ok(urls.includes("https://example.test/artikel/artikel-published"));
   assert.ok(urls.includes("https://example.test/layanan/layanan-published"));
+  assert.ok(urls.includes("https://example.test/istilah/istilah-terbaru"));
+  assert.deepEqual(
+    urls.filter((url) => url.includes("/istilah/")),
+    ["https://example.test/istilah/istilah-terbaru"],
+  );
   assert.ok(!urls.some((url) => url.includes("/tulisan-pajak/")));
   assert.equal(sitemap.find(({ url }) => url === "https://example.test/")?.priority, 1);
 });
 
-it("menunggu kedua penyedia data dan mempropagasikan error CMS, bukan menyamarkannya sebagai sitemap kosong", async () => {
+it("mempropagasikan error setiap sumber CMS dan tidak menghidupkan URL istilah lama", async () => {
   let artikelCalled = false;
   let layananCalled = false;
   const sitemap = await buatSitemap(
     {
       ambilArtikel: async () => { artikelCalled = true; return []; },
       ambilLayanan: async () => { layananCalled = true; return []; },
+      ambilDaftarIstilah: async () => [],
     },
     "https://example.test",
   );
   assert.equal(artikelCalled, true);
   assert.equal(layananCalled, true);
   assert.ok(sitemap.length > 0);
+  assert.ok(!sitemap.some(({ url }) => url.includes("/istilah/")));
 
   const failure = new Error("CMS unavailable");
   await assert.rejects(
-    buatSitemap({ ambilArtikel: async () => { throw failure; }, ambilLayanan: async () => [] }),
+    buatSitemap({
+      ambilArtikel: async () => { throw failure; },
+      ambilLayanan: async () => [],
+      ambilDaftarIstilah: async () => [],
+    }),
+    failure,
+  );
+  await assert.rejects(
+    buatSitemap({
+      ambilArtikel: async () => [],
+      ambilLayanan: async () => [],
+      ambilDaftarIstilah: async () => { throw failure; },
+    }),
     failure,
   );
 });

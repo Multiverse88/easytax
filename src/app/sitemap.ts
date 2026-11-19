@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { connection } from "next/server";
 
-import { ambilArtikel, ambilLayanan } from "@/cms/konten";
+import { ambilArtikel, ambilDaftarIstilah, ambilLayanan } from "@/cms/konten";
 import { buatSitemap } from "@/lib/sitemap";
 
 /** URL kanonis publik; /tulisan-pajak dialihkan permanen ke /artikel. */
@@ -9,5 +9,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Sitemap is a special Route Handler and is prerendered by default. Wait for
   // an HTTP request before touching CMS so database reads never happen at build.
   await connection();
-  return buatSitemap({ ambilArtikel, ambilLayanan });
+  return buatSitemap({ ambilArtikel, ambilLayanan, ambilDaftarIstilah });
 }

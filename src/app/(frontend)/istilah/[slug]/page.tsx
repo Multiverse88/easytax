@@ -7,9 +7,7 @@ import { connection } from "next/server";
 
 import { Buku, Dokumen, PanahKanan, PanahKiri, Perisai, Rumah, WhatsApp } from "@/components/ikon";
 import { CTA } from "@/components/sections/CTA";
-import { markdownKeLexical } from "@/lib/artikel/lexical";
-import { ambilDetailIstilah } from "@/cms/konten";
-import { cariIstilah, cariIstilahTerkait, daftarIstilah } from "@/data/istilah";
+import { ambilDaftarIstilah, ambilDetailIstilah } from "@/cms/konten";
 import { tautanKonsultasiWhatsApp } from "@/features/whatsapp/config";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://easytax.id").replace(/\/+$/, "");
@@ -57,11 +55,9 @@ async function IsiDetailIstilah({ params }: { params: Params }) {
   const { slug } = await params;
   const term = await ambilDetailIstilah(slug);
   if (!term) notFound();
-  const related = cariIstilahTerkait(term.slug, term.category, 5);
-  const lexicalData =
-    term.content && typeof term.content === "object"
-      ? (term.content as any)
-      : markdownKeLexical(typeof term.content === "string" ? term.content : "");
+  const related = (await ambilDaftarIstilah())
+    .filter((item) => item.slug !== term.slug && item.category === term.category)
+    .slice(0, 5);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "DefinedTerm",
@@ -179,7 +175,7 @@ async function IsiDetailIstilah({ params }: { params: Params }) {
             <article className="lg:col-span-8">
               <div className="rounded-3xl border border-garis bg-white p-6 sm:p-10 shadow-xs">
                 <RichText
-                  data={lexicalData}
+                  data={term.content}
                   className="prose prose-slate max-w-none text-navy-900 leading-relaxed [&_h2]:mt-9 [&_h2]:mb-3 [&_h2]:border-b [&_h2]:border-garis [&_h2]:pb-2 [&_h2]:font-heading [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-navy-900 sm:[&_h2]:text-2xl [&_h3]:mt-7 [&_h3]:mb-2.5 [&_h3]:font-heading [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-navy-900 [&_ul]:my-4 [&_ul]:ml-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ol]:my-4 [&_ol]:ml-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_p]:mb-4 [&_p]:text-[0.96rem] [&_p]:leading-relaxed [&_p]:text-navy-900/90 [&_strong]:font-extrabold [&_strong]:text-navy-900"
                 />
 

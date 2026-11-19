@@ -23,12 +23,12 @@ dengan Payload CMS v3 + PostgreSQL; konten dapat dikelola lewat admin
 cp .env.example .env      # isi DATABASE_URI, PAYLOAD_SECRET, dll.
 npm install
 npm run cms:migrate       # jalankan migrasi skema ke PostgreSQL
-npm run cms:seed          # isi konten awal + akun admin
 npm run dev               # http://localhost:3004, admin di /admin
 ```
 
-Akun admin dari seed default: `admin@easytax.id` / `EasyTax#2026`
-(dapat diubah lewat `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD`).
+Seed dinonaktifkan karena situs sudah live. Konten hanya dikelola melalui CMS;
+jangan memasukkan ulang data `src/data/*` ke database produksi.
+Buat akun admin baru dengan `npm run admin:create` bila diperlukan.
 
 ## Perintah
 
@@ -39,7 +39,6 @@ npm run start      # jalankan hasil build di port 3004
 npm run typecheck  # tsc --noEmit
 
 # CMS (Payload CLI) — memakai loader Node sendiri, bukan tsx
-npm run cms:seed           # seed konten dari src/data/*
 npm run cms:types          # regenerate src/payload-types.ts
 npm run cms:importmap      # regenerate import map admin
 npm run cms:migrate        # jalankan migrasi
@@ -254,9 +253,8 @@ cp .env.example .env
 # 2. Bangun image dan jalankan database + aplikasi di background
 docker compose up --build -d
 
-# 3. Terapkan migrasi lalu seed pada database baru (dijalankan manual)
+# 3. Terapkan migrasi skema secara terkoordinasi; jangan seed database live
 docker compose run --rm app npm run cms:migrate
-docker compose run --rm app npm run cms:seed
 
 # 4. Periksa status dan healthcheck container
 docker compose ps

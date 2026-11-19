@@ -15,7 +15,6 @@
     "cms:migrate:create": "npm run cms -- migrate:create --disable-transpile",
     "admin:create": "node --env-file-if-exists=.env --import ./scripts/register-payload-loader.mjs ./scripts/create-admin.mjs",
     "content:import-demo": "node --env-file-if-exists=.env --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --disable-warning=DeprecationWarning --import ./scripts/register-payload-loader.mjs ./scripts/import-demo-content.ts",
-    "cms:seed": "npm run cms -- run src/seed/index.ts --disable-transpile",
     "cms:audit": "npm run cms -- run src/scripts/audit-layout.ts --disable-transpile"
   },
   "dependencies": {

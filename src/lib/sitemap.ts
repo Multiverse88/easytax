@@ -3,10 +3,11 @@ import type { MetadataRoute } from "next";
 import type { ArtikelBeranda } from "@/data/artikel";
 import type { LayananBeranda } from "@/data/layanan";
 
-import { daftarIstilah } from "@/data/istilah";
+import type { IstilahItem } from "@/data/istilah";
 type SumberSitemap = {
   ambilArtikel: () => Promise<ArtikelBeranda[]>;
   ambilLayanan: () => Promise<LayananBeranda[]>;
+  ambilDaftarIstilah: () => Promise<Pick<IstilahItem, "slug">[]>;
 };
 
 const STATIS = [
@@ -29,9 +30,10 @@ export async function buatSitemap(
   siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://easytax.id").replace(/\/+$/, ""),
 ): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteUrl.replace(/\/+$/, "");
-  const [layanan, artikel] = await Promise.all([
+  const [layanan, artikel, istilah] = await Promise.all([
     sumber.ambilLayanan(),
     sumber.ambilArtikel(),
+    sumber.ambilDaftarIstilah(),
   ]);
 
   return [
@@ -50,7 +52,7 @@ export async function buatSitemap(
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
-    ...daftarIstilah.map((item) => ({
+    ...istilah.map((item) => ({
       url: `${baseUrl}/istilah/${encodeURIComponent(item.slug)}`,
       changeFrequency: "monthly" as const,
       priority: 0.6,

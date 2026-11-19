@@ -155,7 +155,7 @@ async function IsiHalamanIstilah({ searchParams }: { searchParams: SearchParams 
             <div className="mt-8 flex flex-wrap items-center gap-6 border-t border-white/10 pt-6 text-sm text-white/90">
               <div className="flex items-center gap-2">
                 <Medali className="h-4 w-4 text-yellow-500" />
-                <span>70+ Istilah Terkurasi</span>
+                <span>{allTerms.length} Istilah Terbit</span>
               </div>
               <div className="flex items-center gap-2">
                 <Perisai className="h-4 w-4 text-emerald-400" />

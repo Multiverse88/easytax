@@ -20,11 +20,7 @@ import { logoMitra, namaMitra, mitraKlien } from "@/data/mitra";
 import { menuNavigasi as navigasiStatis, situs as situsStatis } from "@/data/situs";
 import { testimoni as testimoniStatis, type Testimoni as UjiTestimoni } from "@/data/testimoni";
 import { timKonsultan as timStatis, type AnggotaTim } from "@/data/tim";
-import {
-  daftarIstilah as daftarIstilahStatis,
-  cariIstilah as cariIstilahStatis,
-  type IstilahItem,
-} from "@/data/istilah";
+import type { IstilahItem } from "@/data/istilah";
 import { getClient } from "@/lib/payload";
 import { formatHargaRupiah, formatSatuan } from "@/lib/format-harga";
 import { mediaUrlRelatif } from "@/lib/media-url";
@@ -402,19 +398,19 @@ export async function ambilDaftarIstilah(): Promise<IstilahItem[]> {
 
   try {
     const payload = await getClient();
-    const res = await (payload as any).find({
+    const res = await payload.find({
       collection: "istilah",
       depth: 0,
-      limit: 500,
+      pagination: false,
+      limit: 0,
+      sort: "title",
       where: {
         status: { equals: "published" },
       },
       overrideAccess: true,
     });
 
-    if (!res?.docs || res.docs.length === 0) return daftarIstilahStatis;
-
-    return res.docs.map((doc: any) => ({
+    return res.docs.map((doc) => ({
       slug: doc.slug,
       title: doc.title,
       shortTitle: doc.shortTitle || undefined,
@@ -425,8 +421,7 @@ export async function ambilDaftarIstilah(): Promise<IstilahItem[]> {
     }));
   } catch (error) {
     catatKegagalanCms("istilah", error);
-    propagarKegagalanCmsSaatBuild(error);
-    return daftarIstilahStatis;
+    throw error;
   }
 }
 
@@ -441,7 +436,7 @@ export async function ambilDetailIstilah(
 
   try {
     const payload = await getClient();
-    const res = await (payload as any).find({
+    const res = await payload.find({
       collection: "istilah",
       where: {
         slug: { equals: cleanSlug },
@@ -452,7 +447,7 @@ export async function ambilDetailIstilah(
       overrideAccess: true,
     });
 
-    const doc: any = res?.docs?.[0];
+    const doc = res.docs[0];
     if (doc) {
       return {
         slug: doc.slug,
@@ -464,11 +459,10 @@ export async function ambilDetailIstilah(
         dasarHukum: doc.dasarHukum || undefined,
       };
     }
-    return cariIstilahStatis(cleanSlug);
+    return undefined;
   } catch (error) {
     catatKegagalanCms("istilah-detail", error);
-    propagarKegagalanCmsSaatBuild(error);
-    return cariIstilahStatis(cleanSlug);
+    throw error;
   }
 }
 
