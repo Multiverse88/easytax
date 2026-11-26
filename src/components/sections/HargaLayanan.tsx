@@ -73,7 +73,7 @@ function KartuPaket({
   );
 }
 const BARIS_SPT = [
-  { omzet: "0 / tidak beroperasi", badan: "Rp 499.000", pribadi: "Rp 449.000" },
+  { omzet: "0 / tidak beroperasi", badan: "Rp 649.000", pribadi: "Rp 449.000" },
   { omzet: "Rp 0 – 600 Jt", badan: "Rp 1.499.000", pribadi: "Rp 1.349.000" },
   { omzet: "Rp 600 Jt – 1,2 M", badan: "Rp 1.999.000", pribadi: "Rp 1.799.000" },
   { omzet: "Rp 1,2 M – 2,4 M", badan: "Rp 2.499.000", pribadi: "Rp 2.249.000" },

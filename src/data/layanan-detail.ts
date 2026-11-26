@@ -256,7 +256,7 @@ export const detailLayanan: DetailLayanan[] = [
       {
         nama: "SPT Badan — 0 / Tidak Beroperasi",
         deskripsi: "SPT Tahunan PPh Badan bagi badan usaha yang belum/tidak beroperasi.",
-        harga: "Rp 499.000",
+        harga: "Rp 649.000",
         satuan: "/tahun",
         fitur: [
           "Penyusunan Laporan Laba Rugi dan Neraca",
